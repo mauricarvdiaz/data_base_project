@@ -3,37 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Actividad;
 
-class EstructuraControlador extends Controller
+class ActividadControlador extends Controller
 {
-    public function alojamientos(){
-      return view("alojamientos");
-    }
-
-    public function vuelos(){
-      return view("vuelos");
-    }
-
-    public function autos(){
-      return view("autos");
-    }
-
-    public function actividades(){
-      return view("actividades");
-    }
-
-    public function paquetes(){
-      return view("paquetes");
-    }
-
-    public function traslados(){
-      return view("traslados");
-    }
-
-    public function registrar(){
-      return view("registro.add_usuario");
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +14,7 @@ class EstructuraControlador extends Controller
      */
     public function index()
     {
-        return view("welcome");
+        //
     }
 
     /**
@@ -71,9 +44,12 @@ class EstructuraControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        //Aca se busca en la base de datos con el destino....
+        $actividades = Actividad::where('ubicacion', $request->destino)->get();
+
+        return view('seleccion.actividad')->with('actividades', $actividades);
     }
 
     /**
