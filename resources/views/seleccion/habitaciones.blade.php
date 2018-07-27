@@ -18,11 +18,11 @@
             <tr>
               <td> 
                 @if($habitacion->tipo === 1)
-                  <b>Habitacion con cama de 1 plaza</b> <br>
+                  <b>Habitacion con cama individual</b> <br>
                   @elseif($habitacion->tipo === 2)
-                    <b>Habitacion con cama de 2 plazas</b> <br>
+                    <b>Habitacion con cama doble</b> <br>
                   @else
-                    <b>Habitacion con cama de 1 y 2 plazas</b> <br>
+                    <b>Habitacion con cama individual y doble</b> <br>
                 @endif 
                     Wi-Fi gratis <br>
                     Tv de pantalla plana / LCD / Plasma

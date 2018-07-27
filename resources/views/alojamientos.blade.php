@@ -3,7 +3,7 @@
 
 @section("buscador")
   <form action="hoteles/search" method="GET">
-  <!--  {{ csrf_field() }} -->
+   {{ csrf_field() }} 
     <div class="" style="margin: 20px 100px">
       <h1>Busca tu Alojamiento</h1>
     </div>
@@ -94,7 +94,8 @@
   @endif
     
     <div class="form-group">
-      {!! Form::submit('Buscar', ['class' => 'btn btn-primary', 'style' => 'margin: 10px 100px; width: 10rem']) !!}
+      <?php echo Form::submit('Buscar', ['class' => 'btn btn-primary', 'style' => 'margin: 10px 100px; width: 10rem']); ?>
+  <!--      {!! Form::submit('Buscar', ['class' => 'btn btn-primary', 'style' => 'margin: 10px 100px; width: 10rem']) !!} -->
     </div>
   </form>
 @endsection

@@ -11,9 +11,9 @@ class Reserva extends Model
 	protected $table = "reserva";
     //Relacion muchos a uno con Users.
     public function usuario(){
-      return $this->belongsTo('App\Usuario');
+      return $this->belongsTo('App\User');
     }
-	
+
 	public function actividad(){
 		return $this->belongsToMany('App\Actividad');
 	}

@@ -11,6 +11,6 @@ class Historial extends Model
 
     //Relacion uno a muchos con Habitacion.
     public function usuario(){
-      return $this->hasMany('App\Usuario');
+      return $this->hasMany('App\User');
     }
 }
