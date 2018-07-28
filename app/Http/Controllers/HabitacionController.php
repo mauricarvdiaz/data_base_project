@@ -63,15 +63,36 @@ class HabitacionController extends Controller
             ->where('capacidad', $capa2)
             ->orderBy('precio_noche', 'ASC')
             ->get();
+            $habitacion2 = $habitaciones_capa2->unique('tipo');
         }
         if($capa3 > 0){
             $habitaciones_capa3 = Habitacion::where('rut_hotel', $rut_hotel)
             ->where('capacidad', $capa3)
             ->orderBy('precio_noche', 'ASC')
             ->get();
+            $habitacion3 = $habitaciones_capa3->unique('tipo');
         }
 
-        return view('seleccion.habitaciones')->with('habitaciones', $habitacion1)->with('capa1', $capa1)->with('noches', $noches);
+        if($capa2 == 0 && capa3 == 0){
+            return view('seleccion.habitaciones')->with('habitaciones', $habitacion1)->with('capa1', $capa1)->with('noches', $noches);
+        }
+        else if($capa2 > 0 && capa3 == 0){
+            
+
+
+            return view('seleccion.habitaciones')->with('habitaciones', $habitacion1)
+            ->with('capa1', $capa1)
+            ->with('capa2', $capa2)
+            ->with('noches', $noches);
+        }
+        else{
+            return view('seleccion.habitaciones')->with('habitaciones', $habitacion1)
+            ->with('capa1', $capa1)
+            ->with('capa2', $capa2)
+            ->with('capa3', $capa3)
+            ->with('noches', $noches);
+        }
+        
 
         //Se llama a la vista.
     /*

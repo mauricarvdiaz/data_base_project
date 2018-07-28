@@ -9,6 +9,7 @@ class Habitacion extends Model
     protected $table = "habitacion";
     //campos permitidos.
     protected $fillable = ['nro_habitacion', 'rut_hotel', 'precio_noche', 'fecha_entrada', 'fecha_salida', 'capacidad'];
+    //protected $fillable = ['nro_habitacion', 'rut_hotel', 'precio_noche', 'capacidad', 'tipo'];
 
     //Relacion muchos a uno con Hotel.
     public function hotel(){
