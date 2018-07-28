@@ -51,11 +51,11 @@ class HabitacionController extends Controller
     }
 
     public function mostrar_habitaciones($rut_hotel, $capa1, $noches, $capa2, $capa3){
-        //Se busca en la base de datos las habitaciones del hotel con la capacidad buscada por el usuario.
+        //Se busca en la base de datos las habitaciones del hotel con la capacidad buscada por el usuario..
         $habitaciones_capa1 = Habitacion::where('rut_hotel', $rut_hotel)
         ->where('capacidad', $capa1)
         ->orderBy('precio_noche', 'ASC')
-        ->get(); 
+        ->get();
         $habitacion1 = $habitaciones_capa1->unique('tipo');
 
         if($capa2 > 0){

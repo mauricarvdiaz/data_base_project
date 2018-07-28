@@ -35,7 +35,7 @@
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#hab3" role="tab" aria-controls="hab3" aria-selected="false">habitacion 3</a>
         </li>
       </ul>
-      <div class="tab-content" id="myTabContent" style="margin-top: 10px; margin-left: 10px"> 
+      <div class="tab-content" id="myTabContent" style="margin-top: 10px; margin-left: 10px">
         <div class="tab-pane fade show active" id="hab1" role="tabpanel" aria-labelledby="hab1-tab">
           <label for="adultosh1">Adultos: </label>
           <input type="number" name="adultosh1" value="1" min="0" max="4"> <br>
@@ -92,7 +92,6 @@
       </ul>
     </div>
   @endif
-    
     <div class="form-group">
       {!! Form::submit('Buscar', ['class' => 'btn btn-primary', 'style' => 'margin: 10px 100px; width: 10rem']) !!}
     </div>

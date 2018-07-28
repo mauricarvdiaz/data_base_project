@@ -28,7 +28,7 @@ Route::resource('hoteles', 'HotelController');
 Route::resource('habitaciones', 'HabitacionController');
 Route::resource('actividad', 'ActividadControlador');
 
-//Ruta para las habitaciones del hotel escogido... 
+//Ruta para las habitaciones del hotel escogido...
 Route::get("/habitaciones/{rut_hotel}/{capa1}/{noches}/{capa2}/{capa3}", "HabitacionController@mostrar_habitaciones");
 
 Route::get("/reserva/alojamientos/{nro_habitacion}", "ReservaControlador@reserva_habitacion");
@@ -55,7 +55,7 @@ Route::get('/insertarHoteles', function(){
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [12874, "Hotel Kennedy", "Santiago", 714, 81408, "Av. Presidente Kennedy"]);
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [12145, "Hotel Gran Palace", "Santiago", 423, 81902, "Paseo Huerfanos"]);
 	//Hoteles Bogota
-	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [179654, "Hotel Tequendama Bogota", "Bogota", 7865, 45101, "Carrera 10"]);	
+	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [179654, "Hotel Tequendama Bogota", "Bogota", 7865, 45101, "Carrera 10"]);
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [178624, "Wyndham Bogotá Art", "Bogota", 2463, 52764, "Avenida Calle 24"]);
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [123648, "TRYP Bogota Usaquen", "Bogota", 8795, 36468, "Calle 120"]);
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [115271, "Hotel Fontibon", "Bogota", 2458, 17016, "Carrera 97"]);
@@ -64,11 +64,11 @@ Route::get('/insertarHoteles', function(){
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [65841, "Broadway Hotel & Suites", "Buenos Aires", 6542, 63522, "Av. Corrientes"]);
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [98543, "Globales Republica", "Buenos Aires", 9654, 31200, "Cerrito"]);
 	DB::insert("INSERT INTO hotel (rut_hotel, nombre, ciudad_hotel, nro_calle_hotel, precio_minimo, calle_hotel) VALUES(?,?,?,?,?,?)", [98423, "Rochester Classic Hotel", "Buenos Aires", 8452, 53799, "Esmeralda"]);
-});	
+});
 
 
 Route::get('/insertarHabitaciones', function(){
-	//---Habitaciones Buenos aires
+	//---Habitaciones Buenos aires..
 	DB::insert("INSERT INTO habitacion (nro_habitacion, rut_hotel, fecha_entrada, fecha_salida, capacidad, precio_noche, tipo) VALUES(?,?,?,?,?,?,?)", [100, 76541, '2018-07-30', '2018-08-15', 1, 48714, 1]);
 	DB::insert("INSERT INTO habitacion (nro_habitacion, rut_hotel, fecha_entrada, fecha_salida, capacidad, precio_noche, tipo) VALUES(?,?,?,?,?,?,?)", [101, 76541, '2018-07-30', '2018-08-15', 1, 48714, 1]);
 	DB::insert("INSERT INTO habitacion (nro_habitacion, rut_hotel, fecha_entrada, fecha_salida, capacidad, precio_noche, tipo) VALUES(?,?,?,?,?,?,?)", [102, 76541, '2018-07-30', '2018-08-15', 1, 48714, 2]);

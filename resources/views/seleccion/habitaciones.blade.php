@@ -16,14 +16,14 @@
       <tbody>
           @foreach($habitaciones as $habitacion)
             <tr>
-              <td> 
+              <td>
                 @if($habitacion->tipo === 1)
                   <b>Habitacion con cama de 1 plaza</b> <br>
                   @elseif($habitacion->tipo === 2)
                     <b>Habitacion con cama de 2 plazas</b> <br>
                   @else
                     <b>Habitacion con cama de 1 y 2 plazas</b> <br>
-                @endif 
+                @endif
                     Wi-Fi gratis <br>
                     Tv de pantalla plana / LCD / Plasma
                     Aire acondicionado Calefaccion <br>
@@ -31,17 +31,14 @@
               </td>
               <td align="center">{{ $habitacion->capacidad }}</td>
               <td align="center">{{ $habitacion->precio_noche }}</td>
-              <td align="center"> 
+              <td align="center">
                 Precio por <?php echo $noches ?> noches para {{$capa1}} personas <br> $ <?php echo $noches * $habitacion->precio_noche ?> <br>
                 <a href="/reserva/alojamientos/{{$habitacion->nro_habitacion}}" class="btn btn-primary" style="margin-left: 20px;margin-top: 40px">Reservar</a>
               </td>
             </tr>
           @endforeach
-      
       </tbody>
     </table>
     </div>
   </body>
 @endsection
-
-

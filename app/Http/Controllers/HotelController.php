@@ -63,23 +63,23 @@ class HotelController extends Controller
             'fecha_entrada' => 'required|date', //|after:tomorrow ??
             'fecha_salida' => 'required|date|after:fecha_entrada', //|after:tomorrow ??
             'adultosh1' => 'numeric|required|min:1'
-        ]); 
-    
+        ]);
+
         //Se calcula la cantidad de personas que compartiran una habitacion.
-        $cantidadh1 = $request->adultosh1 + $request->menoresh1;    
+        $cantidadh1 = $request->adultosh1 + $request->menoresh1;
         $cantidadh2 = $request->adultosh2 + $request->menoresh2;
         $cantidadh3 = $request->adultosh3 + $request->menoresh3;
-        $cantidad = $cantidadh1 + $cantidadh2 + $cantidadh3;    
-        
+        $cantidad = $cantidadh1 + $cantidadh2 + $cantidadh3;
+
         //Se calculan las noches de alojamiento de acuerdo a las fechas de entrada y salida.
         $fecha_in = new DateTime($request->fecha_entrada);
         $fecha_out = new DateTime($request->fecha_salida);
         $noches_alojamiento = $fecha_in->diff($fecha_out);
         $noches = data_get($noches_alojamiento, 'days');
 
-    
+
         //Se realizan las consulta a la base de datos de acuerdo a lo ingresado por el usuario. Obteniendo los hoteles que coincidan con el destino, fechas y habitaciones.
-        //Consulta para la habitacion 1
+        //Consulta para la habitacion 1.
         $consulta_hoteles_h1 = DB::table('hotel')->join('habitacion', 'habitacion.rut_hotel', '=', 'hotel.rut_hotel')
             ->where('hotel.ciudad_hotel', $request->destino)
             ->where('habitacion.capacidad', $cantidadh1)
@@ -87,7 +87,7 @@ class HotelController extends Controller
                 $query->where('habitacion.fecha_entrada', '>', $request->fecha_salida)->orWhere('habitacion.fecha_salida', '<', $request->fecha_entrada);
             })
             ->orderBy('hotel.precio_minimo', 'ASC')
-            ->get();      
+            ->get();
             $hoteles_h1 = $consulta_hoteles_h1->unique('nombre'); //Coleccion hoteles h1
         //Consulta para la habitacion 2
         if($cantidadh2 > 0){
@@ -98,7 +98,7 @@ class HotelController extends Controller
                 $query->where('habitacion.fecha_entrada', '>', $request->fecha_salida)->orWhere('habitacion.fecha_salida', '<', $request->fecha_entrada);
             })
             ->orderBy('hotel.precio_minimo', 'ASC')
-            ->get(); 
+            ->get();
             $hoteles_h2 = $consulta_hoteles_h2->unique('nombre'); //Coleccion hoteles h2
         }
         //Consulta para la habitacion 3
@@ -110,7 +110,7 @@ class HotelController extends Controller
                 $query->where('habitacion.fecha_entrada', '>', $request->fecha_salida)->orWhere('habitacion.fecha_salida', '<', $request->fecha_entrada);
             })
             ->orderBy('hotel.precio_minimo', 'ASC')
-            ->get(); 
+            ->get();
             $hoteles_h3 = $consulta_hoteles_h3->unique('nombre'); //Coleccion hoteles h3
         }
         //Se crea una coleccion con los hoteles que tienen las habotaciones disponibles.
@@ -121,7 +121,7 @@ class HotelController extends Controller
                     if($hotel_h2->nombre == $hotel_h1->nombre){
                         $hoteles->push($hotel_h1);
                     }
-                }   
+                }
             }
         }
         if($cantidadh3 > 0){
@@ -131,7 +131,7 @@ class HotelController extends Controller
                     if($hotel->nombre == $hotel_h3->nombre){
                         $hoteles_aux->push($hotel_h3);
                     }
-                }   
+                }
             }
             $hoteles = $hoteles_aux;
         }
@@ -143,7 +143,7 @@ class HotelController extends Controller
         else{
             return view('seleccion.hoteles')->with('hoteles', $hoteles)->with('info', $info);
         }
-    
+
     }
 
     /**
