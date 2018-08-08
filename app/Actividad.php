@@ -9,7 +9,7 @@ class Actividad extends Model
     //
     protected $table = "actividad";
 
-    public function reserva(){
-		return $this->belongsToMany('App\Reserva');
+    public function reservas(){
+		return $this->belongsToMany(Reserva::class);
 	}
 }

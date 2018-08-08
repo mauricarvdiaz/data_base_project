@@ -11,7 +11,7 @@ class Hotel extends Model
     protected $fillable = ['rut_hotel', 'nombre', 'ciudad_hotel', 'nro_calle_hotel', 'precio_minimo', 'calle_hotel'];
 
     //Relacion mucho a uno con Habitacion.
-    public function habitacion(){
-      return $this->hasMany('App\Habitacion');
+    public function habitaciones(){
+      return $this->hasMany(Habitacion::class);
     }
 }

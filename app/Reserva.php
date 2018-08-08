@@ -8,29 +8,30 @@ class Reserva extends Model
 {
     //
     protected $primaryKey = "id_reserva";
-	  protected $table = "reserva";
+  protected $table = "reserva";
+
     //Relacion muchos a uno con Users.
     public function usuario(){
-      return $this->belongsTo('App\User');
+      return $this->belongsTo(Usuario::class);
     }
+  
+  public function actividades(){
+    return $this->belongsToMany(Actividad::class);
+  }
 
-  	public function actividad(){
-  		return $this->belongsToMany('App\Actividad');
-  	}
+  public function habitaciones(){
+    return $this->belongsToMany(Habitacion::class);
+  }
 
-  	public function habitacion(){
-  		return $this->belongsToMany('App\Habitacion');
-  	}
+  public function traslados(){
+    return $this->belongsToMany(Traslado::class);
+  }
 
-  	public function traslado(){
-  		return $this->belongsToMany('App\Traslado');
-  	}
+  public function vehiculos(){
+    return $this->belongsToMany(Vehiculo::class);
+  }
 
-  	public function vehiculo(){
-  		return $this->belongsToMany('App\Vehiculo');
-  	}
-
-  	public function vuelo(){
-  		return $this->belongsToMany('App\Vuelo');
-  	}
+  public function vuelos(){
+    return $this->belongsToMany(Vuelo::class);
+  }
 }

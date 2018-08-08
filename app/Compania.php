@@ -10,7 +10,7 @@ class Compania extends Model
     protected $table = "compania";
 
     //Relacion uno a muchos con Vehiculos.
-    public function vehiculo(){
-      return $this->hasMany('App\Vehiculo');
+    public function vehiculos(){
+      return $this->hasMany(Vehiculo::class);
     }
 }

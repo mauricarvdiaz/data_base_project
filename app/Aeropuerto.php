@@ -9,7 +9,7 @@ class Aeropuerto extends Model
     //
     protected $table = "aeropuerto";
 
-    public function vuelo(){
-		return $this->belongsToMany('App\Vuelo');
+    public function vuelos(){
+		return $this->belongsToMany(Vuelo::class);
 	}
 }
