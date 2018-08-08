@@ -21,7 +21,7 @@ class CreateHabitacionReservaTable extends Migration
             //$table->date('fecha_salida');
             $table->mediumInteger('reserva_id');
             $table->foreign('reserva_id')->references('id_reserva')->on('reserva');
-            $table->foreign('habitacion_id')->references('id')->on('habitacion');
+            $table->foreign('habitacion_id')->references('id_habitacion')->on('habitacion');
             //$table->foreign('nro_habitacion')->references('nro_habitacion')->on('habitacion');
             //$table->foreign('fecha_entrada')->references('fecha_entrada')->on('habitacion');
             //$table->foreign('fecha_salida')->references('fecha_salida')->on('habitacion');

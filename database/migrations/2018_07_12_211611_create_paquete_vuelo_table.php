@@ -17,7 +17,7 @@ class CreatePaqueteVueloTable extends Migration
             $table->increments('id');
             $table->mediumInteger('paquete_id');
             $table->mediumInteger('nro_vuelo');
-            $table->foreign('paquete_id')->references('id')->on('paquete');
+            $table->foreign('paquete_id')->references('id_paquete')->on('paquete');
             $table->foreign('nro_vuelo')->references('nro_vuelo')->on('vuelo');
             $table->timestamps();
         });

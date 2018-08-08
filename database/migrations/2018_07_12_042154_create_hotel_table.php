@@ -19,7 +19,6 @@ class CreateHotelTable extends Migration
             $table->string('nombre');
             $table->string('ciudad_hotel');
             $table->mediumInteger('nro_calle_hotel');  //cambiar por alguna direccion.
-            $table->mediumInteger('precio_minimo');
             $table->string('calle_hotel');
             $table->timestamps();
         });

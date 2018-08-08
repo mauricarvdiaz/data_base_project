@@ -25,6 +25,7 @@ class CreateVueloTable extends Migration
             $table->mediumInteger('cantidad_equipaje');
             $table->mediumInteger('precio_vuelo');
             $table->string('aerolinea');
+            $table->mediumInteger('nro_escala');
             $table->timestamps();
         });
     }
