@@ -25,8 +25,8 @@ class CreateHabitacionTable extends Migration
             $table->mediumInteger('precio_noche');
             //tipo = 1: habitacion con cama 1 plaza,
             //tipo = 2: habitacion con cama 2 plazas,
-            //tipo = 3: habitacion con cama mixta. 
-            $table->tinyInteger('tipo'); 
+            //tipo = 3: habitacion con cama mixta.
+            $table->tinyInteger('tipo');
             $table->timestamps();
         });
     }
