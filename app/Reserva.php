@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
-    //
+    
     protected $primaryKey = "id_reserva";
-  protected $table = "reserva";
+    protected $table = "reserva";
 
     //Relacion muchos a uno con Users.
     public function usuario(){
