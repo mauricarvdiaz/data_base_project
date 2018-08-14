@@ -8,6 +8,7 @@ class Compania extends Model
 {
     //
     protected $table = "compania";
+    protected $primaryKey = "id_compania";
 
     //Relacion uno a muchos con Vehiculos.
     public function vehiculos(){
