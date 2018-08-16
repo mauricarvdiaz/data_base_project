@@ -27,6 +27,8 @@ Route::get("/añadirFondos", "EstructuraControlador@actividades");
 Route::resource('hoteles', 'HotelController');
 Route::resource('habitaciones', 'HabitacionController');
 Route::resource('actividad', 'ActividadControlador');
+Route::resource('vuelos', 'VueloController');
+Route::resource('aeropuerto', 'AeropuertoController');
 Route::resource('vehiculos', 'VehiculoController');
 Route::resource('companias', 'CompaniaController');
 
