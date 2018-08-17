@@ -6,18 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paquete extends Model
 {
-    //
     protected $table = "paquete";
+    protected $primaryKey =  'id_paquete';
+    protected $fillable = [
+    	'tipo', 'detalle', 'descuento', 'destino', 'cupos'
+    ];
 
-    public function habitacion(){
-		return $this->belongsToMany('App\Habitacion');
+    public function habitaciones(){
+		return $this->belongsToMany(Habitacion::class);
 	}
 
-	public function vuelo(){
-		return $this->belongsToMany('App\Vuelo');
+	public function vuelos(){
+		return $this->belongsToMany(Vuelo::class);
 	}
 
-	public function vehiculo(){
-		return $this->belongsToMany('App\Vehiculo');
+	public function vehiculos(){
+		return $this->belongsToMany(Vehiculo::class);
 	}
 }

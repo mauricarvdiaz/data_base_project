@@ -8,7 +8,7 @@ class Hotel extends Model
 {
     protected $primaryKey = 'rut_hotel';
     protected $table = "hotel";
-    protected $fillable = ['rut_hotel', 'nombre', 'ciudad_hotel', 'nro_calle_hotel', 'precio_minimo', 'calle_hotel'];
+    protected $fillable = ['rut_hotel', 'nombre', 'ciudad_hotel', 'nro_calle_hotel', 'calle_hotel'];
 
     //Relacion uno a mucho con Habitacion.
     public function habitaciones(){

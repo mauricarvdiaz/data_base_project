@@ -14,11 +14,11 @@ class CreateCompaniaTable extends Migration
     public function up()
     {
         Schema::create('compania', function (Blueprint $table) {
-            $table->increments('id_aeropuerto');
-            $table->string('calle_aeropuerto');
-            $table->string('nro_calle_aeropuerto');
-            $table->string('ciudad_aeropuerto');
-            $table->string('nombre_aeropuerto');
+            $table->increments('id_compania');
+            $table->string('calle_compania');
+            $table->string('nro_calle_compania');
+            $table->string('ciudad_compania');
+            $table->string('nombre_compania');
             $table->timestamps();
         });
     }

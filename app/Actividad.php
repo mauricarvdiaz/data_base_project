@@ -8,8 +8,12 @@ class Actividad extends Model
 {
     //
     protected $table = "actividad";
+    protected $primaryKey = "id_actividad";
+    protected $fillable = [
+    	'ubicacion', 'tipo_actividad', 'fecha', 'descripcion', 'nro_menores_edad', 'nro_mayores_edad', 'precio_actividad'
+    ];
 
-    public function reserva(){
-		return $this->belongsToMany('App\Reserva');
+    public function reservas(){
+		return $this->belongsToMany(Reserva::class);
 	}
 }

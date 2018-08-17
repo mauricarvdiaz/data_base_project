@@ -11,7 +11,8 @@ $factory->define(App\Habitacion::class, function (Faker $faker) {
     $fecha_out = date('Y-m-d', $fecha_out);
     return [
         'nro_habitacion' => $faker->numberBetween($min = 100, $max = 900),
-        'rut_hotel'      => factory('App\Hotel')->create()->rut_hotel,
+        //'rut_hotel'      => factory('App\Hotel')->create()->rut_hotel,
+        //'rut_hotel'      => App\Hotel::all()->random()->rut_hotel,
         'fecha_entrada'  => $fecha_in,
         'fecha_salida'   => $fecha_out,
         'capacidad'      => $faker->numberBetween($min = 1, $max = 4),
@@ -19,4 +20,3 @@ $factory->define(App\Habitacion::class, function (Faker $faker) {
         'tipo'           => $faker->numberBetween($min = 1, $max = 3)
     ];
 });
-hatchback

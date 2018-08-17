@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class HabitacionSeeder extends Seeder
+class ActividadSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,6 @@ class HabitacionSeeder extends Seeder
      */
     public function run()
     {
-        //factory(App\Habitacion::class, 20)->create();
+        factory(App\Actividad::class, 5)->create();
     }
 }

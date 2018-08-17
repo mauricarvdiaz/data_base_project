@@ -17,8 +17,7 @@ class CreatePaqueteVehiculoTable extends Migration
             $table->increments('id');
             $table->mediumInteger('paquete_id');
             $table->string('patente');
-
-            $table->foreign('paquete_id')->references('id')->on('paquete');
+            $table->foreign('paquete_id')->references('id_paquete')->on('paquete');
             $table->foreign('patente')->references('patente')->on('vehiculo');
             $table->timestamps();
         });

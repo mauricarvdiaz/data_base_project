@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Habitacion;
 
-class HabitacionController extends Controller
+class HistorialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        $habitaiones = Habiacion::all();
-        return $habitaciones;
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class HabitacionController extends Controller
      */
     public function create()
     {
-        return view('registro.add_data');
+        //
     }
 
     /**
@@ -36,8 +34,8 @@ class HabitacionController extends Controller
      */
     public function store(Request $request)
     {
-        $habitacion = new Habitacion($request->all());
-        $habitacion->save();
+        $Historial = new Historial($request->all());
+        $Historial->save();
     }
 
     /**
@@ -46,7 +44,7 @@ class HabitacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($rut_hotel)
+    public function show($id)
     {
         //
     }
@@ -69,9 +67,9 @@ class HabitacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_habitacion)
+    public function update(Request $request, $id)
     {
-        Habitacion::find($id_habitacion)->update($request->all());
+        //
     }
 
     /**
@@ -82,6 +80,6 @@ class HabitacionController extends Controller
      */
     public function destroy($id)
     {
-        Habitacion::where('id_habitacion', $id)->delete();
+        //
     }
 }

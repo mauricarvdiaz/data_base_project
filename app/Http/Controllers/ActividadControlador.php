@@ -35,21 +35,29 @@ class ActividadControlador extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $actividad = new Actividad($request->all());
+        $actividad->save();
     }
+/*
+    //Se buscan las actividades de acuerdo al destino
+    public function buscar_actividades($destino)
+    {
+        //Aca se busca en la base de datos con el destino....
+        $actividades = Actividad::where('ubicacion', $destino)->get();
+        return $actividades;
+    }*/
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
+     Se buca una actividad en especifico                    */
+    public function show($destino)
     {
         //Aca se busca en la base de datos con el destino....
-        $actividades = Actividad::where('ubicacion', $request->destino)->get();
-
-        return view('seleccion.actividad')->with('actividades', $actividades);
+        $actividad = Actividad::where('ubicacion', $destino)->get();
+        return $actividad;
     }
 
     /**
@@ -58,9 +66,10 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_actividad)
     {
-        //
+        $actividad = Actividad::find($id_actividad);
+        return $actividad;
     }
 
     /**
@@ -70,9 +79,13 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_actividad)
     {
-        //
+        $actividad = Actividad::find($id_actividad);
+        $nro_menores_edad = $actividad->nro_menores_edad - $request->nro_menores_edad;
+        $nro_mayores_edad = $actividad->nro_mayores_edad - $request->nro_mayores_edad;
+        Actividad::where('id_actividad', $id_actividad)
+            ->update(['nro_menores_edad' => $nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);
     }
 
     /**
@@ -81,8 +94,8 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_actividad)
     {
-        //
+        Actividad::where('id_actividad', $id_actividad)->delete();
     }
 }

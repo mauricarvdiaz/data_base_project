@@ -11,18 +11,18 @@ class Vehiculo extends Model
 
     //Relacion muchos a uno con Compañia.
     public function compania(){
-      return $this->belongsTo('App\Compania');
+      return $this->belongsTo(Compania::class);
     }
 
- 	public function paquete(){
-		return $this->belongsToMany('App\Paquete');
+ 	public function paquetes(){
+		return $this->belongsToMany(Paquete::class);
 	}
 
-	public function reserva(){
-		return $this->belongsToMany('App\Reserva');
+	public function reservas(){
+		return $this->belongsToMany(Reserva::class);
 	}
 
-	public function traslado(){
-		return $this->belongsToMany('App\Traslado');
+	public function traslados(){
+		return $this->belongsToMany(Traslado::class);
 	}
 }

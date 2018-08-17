@@ -20,8 +20,8 @@ class CreateHabitacionPaqueteTable extends Migration
             //$table->date('fecha_salida');
             $table->mediumInteger('habitacion_id');
             $table->mediumInteger('paquete_id');
-            $table->foreign('paquete_id')->references('id')->on('paquete');
-            $table->foreign('habitacion_id')->references('id')->on('habitacion');
+            $table->foreign('paquete_id')->references('id_paquete')->on('paquete');
+            $table->foreign('habitacion_id')->references('id_habitacion')->on('habitacion');
             //$table->foreign('nro_habitacion')->references('nro_habitacion')->on('habitacion');
             //$table->foreign('fecha_entrada')->references('fecha_entrada')->on('habitacion');
             //$table->foreign('fecha_salida')->references('fecha_salida')->on('habitacion');

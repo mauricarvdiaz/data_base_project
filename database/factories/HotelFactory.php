@@ -10,7 +10,6 @@ $factory->define(App\Hotel::class, function (Faker $faker) {
         'nombre'    => $nombre,
         'ciudad_hotel' => $faker->city,
         'nro_calle_hotel' => $faker->buildingNumber,
-        'precio_minimo' => 21544,
         'calle_hotel' => $faker->streetName
     ];
 });

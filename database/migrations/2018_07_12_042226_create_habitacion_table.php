@@ -14,7 +14,7 @@ class CreateHabitacionTable extends Migration
     public function up()
     {
         Schema::create('habitacion', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_habitacion');
             //$table->primary(['nro_habitacion', 'fecha_entrada', 'fecha_salida']);
             $table->mediumInteger('nro_habitacion');
             $table->mediumInteger('rut_hotel')->unsigned();

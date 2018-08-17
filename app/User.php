@@ -30,13 +30,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    //Relacion mucho a uno con Reserva.
-    public function reserva(){
-      return $this->hasMany('App\Reserva');
+    //Relacion muchos a uno con Reserva.
+    public function reservas(){
+      return $this->hasMany(Reserva::class);
     }
 
     //Relacion muchos a uno con Historial.
     public function historial(){
-      return $this->belongsTo('App\Historial');
+      return $this->belongsTo(Historial::class);
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Habitacion;
+use App\Paquete;
 
-class HabitacionController extends Controller
+class PaqueteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        $habitaiones = Habiacion::all();
-        return $habitaciones;
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class HabitacionController extends Controller
      */
     public function create()
     {
-        return view('registro.add_data');
+       
     }
 
     /**
@@ -36,8 +35,8 @@ class HabitacionController extends Controller
      */
     public function store(Request $request)
     {
-        $habitacion = new Habitacion($request->all());
-        $habitacion->save();
+        $paquete = new Paquete($request->all());
+        $paquete->save();
     }
 
     /**
@@ -46,9 +45,11 @@ class HabitacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($rut_hotel)
+    public function show(Request $request)
     {
-        //
+        //return $request;
+        $paquetes = Paquete::where('tipo', $request->tipo)->where('destino', $request->destino)->get();
+        return $paquetes;
     }
 
     /**
@@ -69,9 +70,12 @@ class HabitacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_habitacion)
+    public function update(Request $request, $id_paquete)
     {
-        Habitacion::find($id_habitacion)->update($request->all());
+        $paquete = Paquete::find($id_paquete);
+        $uno = 1;
+        $nuevo_cupo = $paquete->cupos - $uno;
+        Paquete::where('id_paquete', $id_paquete)->update(['cupos' => $nuevo_cupo]);
     }
 
     /**
@@ -80,8 +84,8 @@ class HabitacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_paquete)
     {
-        Habitacion::where('id_habitacion', $id)->delete();
+        Paquete::where('id_paquete', $id_paquete)->delete();
     }
 }

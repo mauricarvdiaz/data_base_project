@@ -9,12 +9,12 @@ class Traslado extends Model
     //
     protected $table = "traslado";
 
-    public function reserva(){
-		return $this->belongsToMany('App\Reserva');
+    public function reservas(){
+		return $this->belongsToMany(Reserva::class);
 	}
 
-	public function vehiculo(){
-		return $this->belongsToMany('App\Vehiculo');
+	public function vehiculos(){
+		return $this->belongsToMany(Vehiculo::class);
 	}
 
 }
