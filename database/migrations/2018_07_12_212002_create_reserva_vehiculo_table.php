@@ -16,9 +16,9 @@ class CreateReservaVehiculoTable extends Migration
         Schema::create('reserva_vehiculo', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumInteger('reserva_id');
-            $table->string('patente');
+            $table->mediumInteger('id_vehiculo');
             $table->foreign('reserva_id')->references('id_reserva')->on('reserva');
-            $table->foreign('patente')->references('patente')->on('vehiculo');
+            $table->foreign('id_vehiculo')->references('id_vehiculo')->on('vehiculo');
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@ class Vehiculo extends Model
 {
     //
     protected $table = "vehiculo";
-    protected $primaryKey = "patente";
+    protected $primaryKey = "id_vehiculo";
 
     //Relacion muchos a uno con Compañia.
     public function compania(){

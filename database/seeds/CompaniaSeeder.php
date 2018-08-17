@@ -11,6 +11,11 @@ class CompaniaSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Compania::class, 5)->create();
+       // factory(App\Compania::class, 5)->create();
+
+
+    	factory(App\Compania::class, 5)->create()->each(function($vehiculo){
+    		$vehiculo->vehiculos()->saveMany(factory(App\Vehiculo::class, 10)->make());
+    	});
     }
 }

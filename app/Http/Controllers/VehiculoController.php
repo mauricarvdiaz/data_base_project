@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Vehiculo;
+use App\Compania;
 
 class VehiculoController extends Controller
 {
@@ -13,7 +15,10 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        //
+        $data = Vehiculo::all();
+
+        return $data;
+        //return view($this->path.'.index', compact('data'));
     }
 
     /**
@@ -23,7 +28,14 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        //
+        
+
+        
+
+            //$table->primary('patente');
+            //$table->string('patente');
+            
+
     }
 
     /**
@@ -34,7 +46,8 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vehiculo = new vehiculo($request->all()); 
+        $vehiculo->save();
     }
 
     /**
@@ -43,9 +56,16 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        //ciudad, fechas, hora de arriendo, hora de devolucion
+        $vehiculos = Vehiculo::where('fecha_inicio_arriendo', $request->fecha_inicio_arriendo)
+            ->where('fecha_fin_arriendo', $request->fecha_fin_arriendo)
+            ->where('hora_inicio_arriendo', $request->hora_inicio_arriendo)
+            ->where('hora_fin_arriendo', $request->hora_fin_arriendo)->get();
+
+           // return $vehiculos;
+
     }
 
     /**
@@ -66,9 +86,9 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_vehiculo)
     {
-        //
+        Vehiculo::where('id_vehiculo', $id_vehiculo)->update(['precio_dia' => $request->nuevo_precio]);
     }
 
     /**
@@ -77,8 +97,8 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_vehiculo)
     {
-        //
+        Vehiculo::where('id_vehiculo', $id_vehiculo)->delete();
     }
 }

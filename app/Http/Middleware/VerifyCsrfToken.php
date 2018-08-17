@@ -15,5 +15,7 @@ class VerifyCsrfToken extends Middleware
         'vuelo*',
         'aeropuerto*',
         'historial*',
+        'vehiculo*',
+        'compania*',
     ];
 }

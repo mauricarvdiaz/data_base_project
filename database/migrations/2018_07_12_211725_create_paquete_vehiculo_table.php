@@ -16,9 +16,9 @@ class CreatePaqueteVehiculoTable extends Migration
         Schema::create('paquete_vehiculo', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumInteger('paquete_id');
-            $table->string('patente');
+            $table->mediumInteger('id_vehiculo');
             $table->foreign('paquete_id')->references('id_paquete')->on('paquete');
-            $table->foreign('patente')->references('patente')->on('vehiculo');
+            $table->foreign('id_vehiculo')->references('id_vehiculo')->on('vehiculo');
             $table->timestamps();
         });
     }
