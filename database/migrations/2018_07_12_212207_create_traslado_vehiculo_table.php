@@ -16,9 +16,9 @@ class CreateTrasladoVehiculoTable extends Migration
         Schema::create('traslado_vechiculo', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumInteger('traslado_id');
-            $table->string('patente');
+            $table->mediumInteger('vehiculo_id');
             $table->foreign('traslado_id')->references('id_traslado')->on('traslado');
-            $table->foreign('patente')->references('patente')->on('vehiculo');
+            $table->foreign('vehiculo_id')->references('id_vehiculo')->on('vehiculo');
             $table->timestamps();
         });
     }

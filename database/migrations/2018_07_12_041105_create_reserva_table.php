@@ -16,8 +16,9 @@ class CreateReservaTable extends Migration
         Schema::create('reserva', function (Blueprint $table) {
             $table->increments('id_reserva');
             $table->string('correo');
-            $table->foreign('correo')->references('correo')->on('users')->onDelete('cascade');
+            $table->foreign('correo')->references('email')->on('users')->onDelete('cascade');
             $table->mediumText('detalle');
+            $table->mediumInteger('monto_reserva');
             $table->date('fecha_reserva');
             $table->time('hora_reserva');
             $table->timestamps();

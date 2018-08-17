@@ -8,6 +8,7 @@ class Vuelo extends Model
 {
     //
     protected $table = "vuelo";
+    protected $primaryKey = "nro_vuelo";
 
     public function paquetes(){
 		return $this->belongsToMany(Paquete::class);

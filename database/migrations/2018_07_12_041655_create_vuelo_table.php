@@ -14,14 +14,17 @@ class CreateVueloTable extends Migration
     public function up()
     {
         Schema::create('vuelo', function (Blueprint $table) {
-            //$table->increments('id');
             $table->primary('nro_vuelo');
             $table->mediumInteger('nro_vuelo');
             $table->string('origen');
             $table->string('destino');
-            $table->dateTime('fecha_hora_salida');
-            $table->dateTime('fecha_hora_llegada');
-            $table->mediumInteger('cantidad_pasajeros');
+            $table->date('fecha_salida');
+            $table->time('hora_salida');
+            $table->date('fecha_llegada');
+            $table->time('hora_llegada');
+            $table->mediumInteger('cantidad_turista');
+            $table->mediumInteger('cantidad_ejecutivo');
+            $table->mediumInteger('cantidad_primera_clase');
             $table->mediumInteger('cantidad_equipaje');
             $table->mediumInteger('precio_vuelo');
             $table->string('aerolinea');

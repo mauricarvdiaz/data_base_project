@@ -6,7 +6,7 @@ $factory->define(App\Actividad::class, function (Faker $faker) {
 
     return [
        'ubicacion' => $faker->city,
-       'tipo_actividad' => 'canopy',
+       'tipo_actividad' => $faker->randomElement(['trekking', 'canopy', 'visita museos', 'escalada', 'tour ciudad']),
        'fecha' => $faker->dateTimeBetween($startDate = 'now', $endDate = '2018-12-30'),
        'descripcion' => $faker->realText($maxNbChars = 100, $indexSize = 2),
        'nro_menores_edad' => $faker->numberBetween($min = 1, $max = 20),

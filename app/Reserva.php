@@ -10,14 +10,14 @@ class Reserva extends Model
   protected $primaryKey = "id_reserva";
   protected $table = "reserva";
   protected $fillable = [
-    'correo', 'detalle', 'fecha_reserva', 'hora_reserva'
+    'correo', 'detalle', 'monto_reserva', 'fecha_reserva', 'hora_reserva'
   ];
 
   //Relacion muchos a uno con Users.
   public function usuario(){
     return $this->belongsTo(Usuario::class);
   }
-  
+
   public function actividades(){
     return $this->belongsToMany(Actividad::class);
   }

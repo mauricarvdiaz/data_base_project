@@ -15,7 +15,6 @@ class CreateVehiculoTable extends Migration
     {
         Schema::create('vehiculo', function (Blueprint $table) {
             $table->increments('id_vehiculo');
-            $table->primary('patente');
             $table->string('patente');
             $table->mediumInteger('id_compania')->unsigned();
             $table->foreign('id_compania')->references('id_compania')->on('compania');

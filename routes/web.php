@@ -27,3 +27,13 @@ Route::resource('actividad', 'ActividadControlador');
 Route::resource('hoteles', 'HotelController');
 Route::resource('habitaciones', 'HabitacionController');
 Route::resource('paquete', 'PaqueteController');
+Route::resource('actividad', 'ActividadControlador');
+Route::resource('vuelos', 'VueloController');
+Route::resource('aeropuerto', 'AeropuertoController');
+Route::resource('vehiculos', 'VehiculoController');
+Route::resource('companias', 'CompaniaController');
+Route::resource('usuario', 'UsersController');
+Route::resource('reserva', 'ReservaController');
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

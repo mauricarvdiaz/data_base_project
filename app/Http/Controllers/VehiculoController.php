@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Actividad;
 
-class ActividadControlador extends Controller
+class VehiculoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,8 +34,7 @@ class ActividadControlador extends Controller
      */
     public function store(Request $request)
     {
-        $actividad = new Actividad($request->all());
-        $actividad->save();
+        //
     }
 
     /**
@@ -44,12 +42,10 @@ class ActividadControlador extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     Se buca una actividad en especifico                    */
-    public function show($destino)
+     */
+    public function show($id)
     {
-        //Aca se busca en la base de datos con el destino....
-        $actividad = Actividad::where('ubicacion', $destino)->get();
-        return $actividad;
+        //
     }
 
     /**
@@ -58,10 +54,9 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_actividad)
+    public function edit($id)
     {
-        $actividad = Actividad::find($id_actividad);
-        return $actividad;
+        //
     }
 
     /**
@@ -71,13 +66,9 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_actividad)
+    public function update(Request $request, $id)
     {
-        $actividad = Actividad::find($id_actividad);
-        $nro_menores_edad = $actividad->nro_menores_edad - $request->nro_menores_edad;
-        $nro_mayores_edad = $actividad->nro_mayores_edad - $request->nro_mayores_edad;
-        Actividad::where('id_actividad', $id_actividad)
-            ->update(['nro_menores_edad' => $nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);
+        //
     }
 
     /**
@@ -86,8 +77,8 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_actividad)
+    public function destroy($id)
     {
-        Actividad::where('id_actividad', $id_actividad)->delete();
+        //
     }
 }
