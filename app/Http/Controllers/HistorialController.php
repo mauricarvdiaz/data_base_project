@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Aeropuerto;
+use App\Historial;
 
-class AeropuertoController extends Controller
+class HistorialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,8 +35,8 @@ class AeropuertoController extends Controller
      */
     public function store(Request $request)
     {
-        $aeropuerto = new Aeropuerto($request->all());
-        $aeropuerto->save();
+        $historial = new Historial($request->all());
+        $historial->save();
     }
 
     /**
@@ -45,10 +45,10 @@ class AeropuertoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_aeropuerto)
+    public function show($id_historial)
     {
-        $aeropuerto = Aeropuerto::where('id_aeropuerto', $id_aeropuerto)->get();
-        return $aeropuerto;
+        $accion = Historial::where('id_historial', $id_historial)->get(); 
+        return $accion;
     }
 
     /**
@@ -80,8 +80,8 @@ class AeropuertoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_aeropuerto)
+    public function destroy($id_historial)
     {
-        Aeropuerto::where('id_aeropuerto', $id_aeropuerto)->delete();
+        Historial::where('id_historial', $id_historial)->delete();
     }
 }

@@ -31,4 +31,4 @@ Route::resource('vuelos', 'VueloController');
 Route::resource('aeropuerto', 'AeropuertoController');
 Route::resource('vehiculos', 'VehiculoController');
 Route::resource('companias', 'CompaniaController');
-
+Route::resource('historial', 'HistorialController');
