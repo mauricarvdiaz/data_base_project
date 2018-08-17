@@ -52,12 +52,16 @@ class VueloController extends Controller
             $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->fecha_salida)->get();
             return $vuelos;
         }
-        //ida y vuelta
+        //Ida y vuelta
         else if($request->tipo == 2){
             $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->fecha_salida)->get();
             $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->get();
             $vuelos = [$vuelosIda, $vuelosRegreso];
             return $vuelos;
+        }
+        //Multiples destinos
+        else if($request->tipo == 3){
+            //No listo
         }
     }
 

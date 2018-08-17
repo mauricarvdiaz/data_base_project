@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Compania;
 
 class CompaniaController extends Controller
 {
@@ -23,7 +24,7 @@ class CompaniaController extends Controller
      */
     public function create()
     {
-        return view('Compania.create');    
+       // return view('Compania.create');    
     }
 
     /**
@@ -34,7 +35,8 @@ class CompaniaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $compania = new Compania($request->all());
+        $compania->save();
     }
 
     /**
@@ -43,9 +45,10 @@ class CompaniaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $companias = Compania::where('ciudad_compania', $request->ciudad_compania)->get();
+        return $companias;
     }
 
     /**
@@ -66,9 +69,14 @@ class CompaniaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_compania)
     {
-        //
+    Compania::find($id_compania)->update([
+        'calle_compania' => $request->nuevo_calle_compania,
+        'nro_calle_compania' => $request->nuevo_nro_calle_compania,
+        'ciudad_compania' => $request->nueva_ciudad_compania
+        ]);
+
     }
 
     /**
@@ -79,6 +87,6 @@ class CompaniaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Compania::where('id_compania', $id_compania)->delete();
     }
 }

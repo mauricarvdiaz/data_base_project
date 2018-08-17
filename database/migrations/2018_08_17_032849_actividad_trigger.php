@@ -12,7 +12,7 @@ class ActividadTrigger extends Migration
      * @return void
      */
     public function up()
-    {
+    {/*
         $usuario = \Auth::user();
         DB::unprepared('
             CREATE OR REPLACE FUNCTION actividad_trigger()
@@ -28,8 +28,8 @@ class ActividadTrigger extends Migration
 
             CREATE TRIGGER reservar_actividad
             AFTER UPDATE ON actividad
-            FOR EACH ROW EXECUTE PROCEDURE actividad_trigger();
-        ');
+            FOR EACH ROW EXECUTE PROCEDURE actividad_trigger();s
+        ');*/
     }
 
     /**

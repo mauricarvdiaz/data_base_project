@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Historial;
 
 class HistorialController extends Controller
 {
@@ -34,8 +35,8 @@ class HistorialController extends Controller
      */
     public function store(Request $request)
     {
-        $Historial = new Historial($request->all());
-        $Historial->save();
+        $historial = new Historial($request->all());
+        $historial->save();
     }
 
     /**
@@ -44,9 +45,10 @@ class HistorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_historial)
     {
-        //
+        $accion = Historial::where('id_historial', $id_historial)->get();
+        return $accion;
     }
 
     /**
@@ -78,8 +80,8 @@ class HistorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_historial)
     {
-        //
+        Historial::where('id_historial', $id_historial)->delete();
     }
 }
