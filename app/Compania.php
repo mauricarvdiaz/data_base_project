@@ -17,4 +17,8 @@ class Compania extends Model
     public function vehiculos(){
       return $this->hasMany(Vehiculo::class, 'id_compania');
     }
+
+    public function destino(){
+        return $this->belongsTo(Destino::class);
+    }
 }

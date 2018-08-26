@@ -1,30 +1,29 @@
-@extends("layouts.plantilla1")
-@section('titulo', 'Seleccion hotel')
+@extends('layouts.plantilla')
+@section('titulo', 'Hoteles')
 
-@section('buscador')
-  <body style="background-color:#78909C;">
-    @foreach($hoteles as $hotel)
-    <div class="card" style="margin-top: 10px;margin-right: 200px; margin-left: 200px;margin-bottom: 10px; height: 250px"> 
-      <div class="container">
-        <div class="row" style="">
-          <div class="rounded" style="width: 200px; height: 247px;">
-            <h5 style="margin-left: 30px; margin-top: 80px">Imagen</h5>
-          </div>
-          <div class="card-body" style="width: 400px; height: 247px;">
-            <!--Nombre del hotel-->
-            <h5 class="card-title">{{ $hotel->nombre }}</h5>
-            <!--Descripcion del hotel-->
-            <p class="card-text">Ubicado en el centro de {{ $hotel->ciudad_hotel }}, en este hotel encontraras habitaciones desde
-                los {{ $hotel->precio_minimo }}, equipados con aire acondicionado y wifi.</p>
-          </div>
-          <div class="rounded" style="width: 200px; height: 247px; background-color: #81C784;">
-            <!--Precio minimo del hotel-->
-            <h5 style="margin-left: 30px; margin-top: 80px">Precio por noche desde $ {{ $hotel->precio_minimo }}</h5>
-            <a href="/habitaciones/{{$hotel->rut_hotel}}/{{array_get($info, 'capa1')}}/{{array_get($info, 'noches')}}/{{array_get($info, 'capa2')}}/{{array_get($info, 'capa3')}}" class="btn btn-primary" style="margin-left: 30px;margin-top: 50px">Ver habitaciones</a>
-          </div>
+@section('contenido')
+<div class="fh5co-hero">
+  <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/place-5.jpg);">
+      <div class="desc">
+        <div class="container">
+          <div class="row" style="margin-top: -170px">
+            <ul class="list-group">
+              @foreach($hoteles as $hotel)
+                <li class="list-group-item">
+                  <div class="col">
+                    <h5>{{ $hotel->nombre }}</h5>
+                    <h6>Ubicado en {{$hotel->calle_hotel}} numero {{$hotel->nro_calle_hotel}}</h6>
+                  </div>
+                  <div class="col">
+                    
+                    <a href="/habitaciones/{{$hotel->rut_hotel}}/{{$fecha_in}}/{{$fecha_out}}/{{$capa1}}/{{$capa2}}" class="btn btn-primary" style="">Ver habitaciones</a>
+                  </div>
+                </li>
+              @endforeach
+            </ul>
+          </div>  
         </div>
       </div>
     </div>
-    @endforeach
-  </body>
 @endsection

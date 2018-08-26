@@ -49,6 +49,7 @@ class AeropuertoController extends Controller
     {
         $aeropuerto = Aeropuerto::where('id_aeropuerto', $id_aeropuerto)->get();
         return $aeropuerto;
+
     }
 
     /**

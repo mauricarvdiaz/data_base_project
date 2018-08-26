@@ -16,4 +16,8 @@ class Actividad extends Model
     public function reservas(){
 		return $this->belongsToMany(Reserva::class);
 	}
+
+	public function destino(){
+        return $this->belongsTo(Destino::class);
+    }
 }

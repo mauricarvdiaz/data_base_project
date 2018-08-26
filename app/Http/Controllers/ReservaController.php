@@ -39,6 +39,14 @@ class ReservaController extends Controller
         $nueva_reserva->save();
     }
 
+    public function reservar_habitacion($id_habitacion)
+    {
+        echo "Se va a reservar la habitacion con id " . $id_habitacion;
+        //Retornar una vista que contendra un formulario a llenar para guardar la reserva en la tabla reserva con POST.
+        
+    }
+
+
     /**
      * Display the specified resource.
      *

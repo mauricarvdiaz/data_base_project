@@ -72,12 +72,14 @@ class ActividadControlador extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id_actividad)
-    {
+    {/*
         $actividad = Actividad::find($id_actividad);
         $nro_menores_edad = $actividad->nro_menores_edad - $request->nro_menores_edad;
         $nro_mayores_edad = $actividad->nro_mayores_edad - $request->nro_mayores_edad;
         Actividad::where('id_actividad', $id_actividad)
-            ->update(['nro_menores_edad' => $nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);
+            ->update(['nro_menores_edad' => $nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);*/
+
+        Actividad::find($id_actividad)->update($request->all());
     }
 
     /**

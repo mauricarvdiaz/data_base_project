@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Hotel;
 use App\Habitacion;
+use App\Destino;
 use DB;
 use DateTime;
 
@@ -12,7 +13,8 @@ class HotelController extends Controller
 {
     public function alojamientos()
     {
-        return view('alojamientos');
+      //return view('alojamientos');
+      return view('hotel');
     }
 
     /**
@@ -20,9 +22,8 @@ class HotelController extends Controller
      * Mostar los hoteles
      * @return \Illuminate\Http\Response
      */
-    public function index($destino)
+    public function index()
     {
-        echo $destino;
         $hoteles = Hotel::all();
         //return $hoteles;
     }
@@ -48,124 +49,6 @@ class HotelController extends Controller
         $hotel = new Hotel($request->all());
         $hotel->save();
     }
-    /*
-    public function buscar_hoteles($destino, $in, $out, $adu1, $men1, $adu2, $men2)
-    {
-      //Se obtienen todas las habitaciones
-      /*$habitaciones_1 = Habitacion::where('capacidad', $cantidadh1)->orWhere('capacidad', $cantidadh2)->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']);
-      //Se obtienen las habitaciones no disponibles.
-      
-      $habitaciones_no_disp= Habitacion::where('fecha_entrada', '<=', $fecha_out)
-        ->where('fecha_salida', '>=', $fecha_in)
-        ->where(function ($query) use ($cantidadh1,$cantidadh2){
-          $query->where('capacidad', $cantidadh1)->orWhere('capacidad', $cantidadh2);
-        })
-        ->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']);  
-
-      //Se quitan las habitaciones no disponibles. ($habitaciones_1 - $habitaciones_no_disp)
-      $hab_disp_1 = collect();
-      foreach ($habitaciones_1 as $hd) {
-        foreach ($habitaciones_no_disp as $hnd) {
-          if(!($hd->rut_hotel == $hnd->rut_hotel && $hd->nro_habitacion == $hnd->nro_habitacion)){
-            $hab_disp_1->push($hd);
-          }
-        }
-      }
-      //Se quitan las habitaciones que se repiten
-      $unique = $hab_disp_1->unique(function ($item){
-        return $item['nro_habitacion'].$item['rut_hotel'];
-      });
-      //Se agrupan las habitaciones por hotel.
-      $hab_disp_2 = $unique->groupBy('rut_hotel');
-      //Se cuenta si la cantidad de habitaciones por hotel concuerda con lo pedido.
-      foreach ($hab_disp_2 as $habitaciones_hotel) {
-        //Se buscan 2 habitaciones
-        if($habitaciones_hotel->count() >= 2 && ($cantidadh2 > 0)){
-
-        }
-        //Se busca 1 habitacion
-        else if($habitaciones_hotel->count() >= 1 && ($cantidadh2 == 0)){
-
-        }
-      }
-      
-      //Se calcula la cantidad de personas que compartiran una habitacion.
-      $cantidadh1 = $adu1 + $men1;
-      $cantidadh2 = $adu2 + $men2;
-      $fecha_in = new DateTime($in);
-      $fecha_out = new DateTime($out);
-      //Se obtienen todos los hoteles del destino
-      $hoteles_1 = Hotel::where('ciudad_hotel', $destino)->get();
-      $habitaciones_1 = Habitacion::where('capacidad', $cantidadh1)->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']);
-      $habitaciones_2 = Habitacion::where('capacidad', $cantidadh2)->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']);  
-      //Habitaciones no disponibles
-      $habitaciones_no_disp_1 = Habitacion::where('fecha_entrada', '<=', $fecha_out)
-        ->where('fecha_salida', '>=', $fecha_in)
-        ->where('capacidad', $cantidadh1)
-        ->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']); 
-
-      //Habitaciones no disponibles
-      $habitaciones_no_disp_2 = Habitacion::where('fecha_entrada', '<=', $fecha_out)
-        ->where('fecha_salida', '>=', $fecha_in)
-        ->where('capacidad', $cantidadh2)
-        ->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']); 
-
-      //Se quitan las habitaciones no disponibles. ($habitaciones_1 - $habitaciones_no_disp)
-      $hab_disp_1 = collect();
-      if($habitaciones_no_disp_1->count() != 0){
-        foreach ($habitaciones_1 as $hd) {
-          foreach ($habitaciones_no_disp_1 as $hnd) {
-            if(!($hd->rut_hotel == $hnd->rut_hotel && $hd->nro_habitacion == $hnd->nro_habitacion)){
-              $hab_disp_1->push($hd);
-            }
-          }
-        }
-      }
-      else{
-        $hab_disp_1 = $habitaciones_1;
-      }
-      
-      $hab_disp_2 = collect();
-      if($habitaciones_no_disp_2->count() != 0){
-        foreach ($habitaciones_2 as $hd) {
-          foreach ($habitaciones_no_disp_2 as $hnd) {
-            if(!($hd->rut_hotel == $hnd->rut_hotel && $hd->nro_habitacion == $hnd->nro_habitacion)){
-              $hab_disp_2->push($hd);
-            }
-          }
-        }
-      }
-      else{
-        $hab_disp_2 = $habitaciones_2;
-      }
-      
-      //Se quitan las habitaciones que se repiten
-      $unique_1 = $hab_disp_1->unique(function ($item){
-        return $item['nro_habitacion'].$item['rut_hotel'];
-      });
-      //Se agrupan las habitaciones por hotel.
-      //$habdisp_1 = $unique_1->groupBy('rut_hotel');
-
-      //Se quitan las habitaciones que se repiten
-      $unique_2 = $hab_disp_2->unique(function ($item){
-        return $item['nro_habitacion'].$item['rut_hotel'];
-      });
-      //Se agrupan las habitaciones por hotel.
-      //$habdisp_2 = $unique_2->groupBy('rut_hotel');
-      
-      //Buscar los rut_hotel que este tanto en $habdisp_1 como en $habdisp_2
-      $rut_1 = collect();
-      foreach ($unique_1 as $habitacion) {
-        $rut_1->push($habitacion->rut_hotel);
-      }
-      $rut_2 = collect();
-      foreach ($unique_1 as $habitacion) {
-        $rut_1->push($habitacion->rut_hotel);
-      }
-      return $rut_1;
-      //Seguir trabajand
-    }
-    */
     
     /**
      * Display the specified resource.
@@ -175,86 +58,23 @@ class HotelController extends Controller
      */
     public function show(Request $request)
     {
-      //Se calcula la cantidad de personas que compartiran una habitacion.
-      $destino = $request->destino;
-      $cantidadh1 = $request->adultosh1 + $request->menoresh1;
-      $cantidadh2 = $request->adultosh2 + $request->menoresh2;
-      $fecha_in = new DateTime($request->fecha_entrada);
-      $fecha_out = new DateTime($request->fecha_salida);
-      //Se obtienen todos los hoteles del destino
-      $hoteles_1 = Hotel::where('ciudad_hotel', $destino)->get();
-      //Se obtienen las habitaciones por capacidad.
-      $habitaciones_1 = Habitacion::where('capacidad', $cantidadh1)->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']);
-      $habitaciones_2 = Habitacion::where('capacidad', $cantidadh2)->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']);  
-      //Se obtienen las habitaciones no disponibles por fecha.
-      $habitaciones_no_disp_1 = Habitacion::where('fecha_entrada', '<=', $fecha_out)
-        ->where('fecha_salida', '>=', $fecha_in)
-        ->where('capacidad', $cantidadh1)
-        ->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']); 
+        //Validacion de los datos de entrada.
+        $validateData = $request->validate([
+            'destino' => 'required',
+            'fecha_entrada' => 'required|date', //|after:tomorrow ??
+            'fecha_salida' => 'required|date|after:fecha_entrada', //|after:tomorrow ??
+            'adultos_hab1' => 'numeric|required|min:1'
+        ]);
 
-      //Habitaciones no disponibles
-      $habitaciones_no_disp_2 = Habitacion::where('fecha_entrada', '<=', $fecha_out)
-        ->where('fecha_salida', '>=', $fecha_in)
-        ->where('capacidad', $cantidadh2)
-        ->get(['rut_hotel', 'nro_habitacion', 'capacidad', 'precio_noche', 'tipo']); 
+        $capacidad_hab1 = $request->adultos_hab1 + $request->menores_hab1;
+        $capacidad_hab2 = $request->adultos_hab2 + $request->menores_hab2;
+        
+        $ciudad = Destino::where('ciudad', $request->destino)->first();
+        $hoteles = $ciudad->hoteles()->get();
+        //Contar la cantidad de habitaciones por hotel para dejar las habitaciones que tienen habitaciones disponibles.
 
-      //Se quitan las habitaciones no disponibles. ($habitaciones_1 - $habitaciones_no_disp)
-      $hab_disp_1 = collect();
-      if($habitaciones_no_disp_1->count() != 0){
-        foreach ($habitaciones_1 as $hd) {
-          foreach ($habitaciones_no_disp_1 as $hnd) {
-            if(!($hd->rut_hotel == $hnd->rut_hotel && $hd->nro_habitacion == $hnd->nro_habitacion)){
-              $hab_disp_1->push($hd);
-            }
-          }
-        }
-      }
-      else{
-        $hab_disp_1 = $habitaciones_1;
-      }
-      
-      $hab_disp_2 = collect();
-      if($habitaciones_no_disp_2->count() != 0){
-        foreach ($habitaciones_2 as $hd) {
-          foreach ($habitaciones_no_disp_2 as $hnd) {
-            if(!($hd->rut_hotel == $hnd->rut_hotel && $hd->nro_habitacion == $hnd->nro_habitacion)){
-              $hab_disp_2->push($hd);
-            }
-          }
-        }
-      }
-      else{
-        $hab_disp_2 = $habitaciones_2;
-      }
-      
-      //Se quitan las habitaciones que se repiten
-      $unique_1 = $hab_disp_1->unique(function ($item){
-        return $item['nro_habitacion'].$item['rut_hotel'];
-      });
-      //Se agrupan las habitaciones por hotel.
-      //$habdisp_1 = $unique_1->groupBy('rut_hotel');
-
-      //Se quitan las habitaciones que se repiten
-      $unique_2 = $hab_disp_2->unique(function ($item){
-        return $item['nro_habitacion'].$item['rut_hotel'];
-      });
-      //Se agrupan las habitaciones por hotel.
-      //$habdisp_2 = $unique_2->groupBy('rut_hotel');
-      //Buscar los rut_hotel que este tanto en $habdisp_1 como en $habdisp_2
-      $rut_1 = collect();
-      foreach ($unique_1 as $habitacion) {
-        $rut_1->push($habitacion->rut_hotel);
-      }
-      $rut_2 = collect();
-      foreach ($unique_1 as $habitacion) {
-        $rut_1->push($habitacion->rut_hotel);
-      }
-      $diff = $rut_1->diff($rut_2);
-      $rut_hoteles = $diff->unique();
-      $hoteles = $hoteles_1->whereIn('rut_hotel', $rut_hoteles);
-      return $hoteles;
-      //Seguir trabajando
-      
+        return view('seleccion.hoteles')->with('hoteles', $hoteles)->with('capa1', $capacidad_hab1)->with('capa2', $capacidad_hab2)
+          ->with('fecha_in', $request->fecha_entrada)->with('fecha_out', $request->fecha_salida);
     }
 
     /**

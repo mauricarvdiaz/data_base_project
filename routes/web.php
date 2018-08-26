@@ -35,6 +35,19 @@ Route::resource('companias', 'CompaniaController');
 Route::resource('historial', 'HistorialController');
 Route::resource('usuario', 'UsersController');
 Route::resource('reserva', 'ReservaController');
+Route::resource('destino', 'DestinoController');
+
+Route::get('habitaciones/{hotel}/{fecha_in}/{fecha_out}/{hab1}/{hab2?}', 'HabitacionController@buscar_habitaciones');
+//Aun no lo uso, quizas no lo use
+Route::get('reserva/alojamientos/{id}', 'ReservaController@reservar_habitacion');
+//Carrito
+Route::get('carrito/compras', [
+	'as' => 'carrito-compras',
+	'uses' => 'CarritoController@show'
+]);
+Route::get('carrito/agregar/habitacion/{id_habitacion}/{in}/{out}', 'CarritoController@agregar_habitacion');
+Route::get('carrito/vaciar', 'CarritoController@vaciar');
+Route::get('carrito/borrar/{llave}/{posicion}', 'CarritoController@borrar');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

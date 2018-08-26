@@ -12,6 +12,6 @@ class ActividadSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Actividad::class, 5)->create();
+        factory(App\Actividad::class, 20)->create();
     }
 }
