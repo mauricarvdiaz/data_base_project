@@ -2,6 +2,18 @@
 @section('titulo', 'Vuelos')
 
 @section('contenido')
+<script type="text/javascript">
+	function habilitar(){
+		document.getElementById('date-end').disabled=false;
+	}
+	function deshabilitar(){
+		document.getElementById('date-end').disabled=true;
+	}
+	function limpiar(id) {
+    	document.getElementById(id).value = "mm/dd/yyyy";
+	}
+</script>
+
 <div class="fh5co-hero">
 	<div class="fh5co-overlay"></div>
 		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
@@ -9,7 +21,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-5 col-md-5" style="margin-top: -70px">
-<form action="vuelos/search" method="GET">
+<form action="/vuelos/search" method="GET">
 	{{ csrf_field() }} 
 	<div class="tabulation animate-box">
 		<!-- Nav tabs -->
@@ -18,27 +30,27 @@
 			   <a href="" aria-controls="hotels" role="tab" data-toggle="tab">Escoge tu vuelo</a>
 		  </li> 
 		</ul>
-		<!-- Tab panes -->
+		<!-- Tab panes -->	
 		<div class="tab-content">
 		 <div role="tabpanel" class="tab-pane active" id="flights">
 			<div class="row">
 				<div class="col-xxs-12 col-xs-4 mt">
 					<label class="custom-control custom-radio">
-	  					<input id="radio1" name="radio" type="radio" class="custom-control-input" checked="checked">
+	  					<input id="radio1" name="radio" type="radio" class="custom-control-input" checked="checked" onclick="habilitar(),limpiar('date-end'),limpiar('date-start')">
 	  					<span class="custom-control-indicator"></span>
 	 					<span class="custom-control-description">Ida y Vuelta</span>
 					</label>
 				</div>
 				<div class="col-xxs-12 col-xs-3 mt">
 					<label class="custom-control custom-radio">
-	  					<input id="radio2" name="radio" type="radio" class="custom-control-input">
+	  					<input id="radio2" name="radio" type="radio" class="custom-control-input" onclick="deshabilitar(),limpiar('date-end'),limpiar('date-start')">
 	  					<span class="custom-control-indicator"></span>
 	 					<span class="custom-control-description">Solo Ida</span>
 					</label>
 				</div>
 				<div class="col-xxs-12 col-xs-5 mt">
 					<label class="custom-control custom-radio">
-	  					<input id="radio3" name="radio" type="radio" class="custom-control-input">
+	  					<input id="radio3" name="radio" type="radio" class="custom-control-input" onclick="deshabilitar(),limpiar('date-end'),limpiar('date-start')">
 	  					<span class="custom-control-indicator"></span>
 	 					<span class="custom-control-description">Multiples Destinos</span>
 					</label>
