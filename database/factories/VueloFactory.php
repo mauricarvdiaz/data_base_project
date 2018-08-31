@@ -12,7 +12,7 @@ $factory->define(App\Vuelo::class, function (Faker $faker) {
         'nro_vuelo' => $faker->unique()->numberBetween($min = 1000000, $max = 9999999),
         'origen' => $faker->city,
         'destino' => $faker->city,
-        'fecha_salida' => $fecha_in,
+        'fecha_salida' => $fecha_in->format('Y-m-d'),
         'hora_salida' => $faker->time($format = 'H:i:s', $max = 'now'),
         'fecha_llegada' => $fecha_out,
         'hora_llegada' => $faker->time($format = 'H:i:s', $max = 'now'),

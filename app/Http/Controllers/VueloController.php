@@ -7,6 +7,9 @@ use App\Vuelo;
 
 class VueloController extends Controller
 {
+    public function vuelos(){
+        return view('vuelos');
+    } 
     /**
      * Display a listing of the resource.
      *

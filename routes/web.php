@@ -14,7 +14,7 @@
 Route::get("/", "HotelController@alojamientos");
 Route::get("/alojamientos", "HotelController@alojamientos");
 Route::get("/autos", "EstructuraControlador@autos");
-Route::get("/vuelos", "EstructuraControlador@vuelos");
+Route::get("/buscar/vuelos", "VueloController@vuelos");
 Route::get("/traslados", "EstructuraControlador@traslados");
 Route::get("/paquetes", "EstructuraControlador@paquetes");
 Route::get("/actividades", "EstructuraControlador@actividades");

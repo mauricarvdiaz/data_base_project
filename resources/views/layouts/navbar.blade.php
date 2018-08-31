@@ -9,7 +9,7 @@
 				<li>
 					<a href="/actividades" class="fh5co-sub-ddown">Actividades</a>
 				</li>
-				<li><a href="/vuelos">Vuelos</a></li>
+				<li><a href="/buscar/vuelos">Vuelos</a></li>
 				<li>
 					<a href="/autos">Autos</a>
 					<ul class="fh5co-sub-menu">

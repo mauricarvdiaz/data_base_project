@@ -13,7 +13,7 @@ class CreateTrasladoVehiculoTable extends Migration
      */
     public function up()
     {
-        Schema::create('traslado_vechiculo', function (Blueprint $table) {
+        Schema::create('traslado_vehiculo', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumInteger('traslado_id');
             $table->mediumInteger('vehiculo_id');
