@@ -16,10 +16,6 @@ class Destino extends Model
     	return $this->hasMany(Hotel::class, 'id_ciudad');
     }
 
-    public function aeropuertos(){
-    	return $this->hasMany(Aeropuerto::class, 'id_ciudad');
-    }
-
     public function companias(){
     	return $this->hasMany(Compania::class, 'id_ciudad');
     }

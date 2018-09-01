@@ -50,22 +50,26 @@ class VueloController extends Controller
      */
     public function show(Request $request)
     {
+        //return $request;
+
         //Solo ida
-        if($request->tipo == 1){
-            $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->fecha_salida)->get();
-            return $vuelos;
+        if($request->radio == 2){
+            $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+            return view('seleccion.vuelosdisponibles1')->with('vuelosEncontrados', $vuelos)->with('tipoVuelo', $request->radio);
         }
         //Ida y vuelta
-        else if($request->tipo == 2){
-            $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->fecha_salida)->get();
-            $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->get();
-            $vuelos = [$vuelosIda, $vuelosRegreso];
-            return $vuelos;
+        else if($request->radio == 1){
+            $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+            $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->where('fecha_salida', $request->dateend)->get();
+            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('tipoVuelo', $request->radio);
+           // $vuelos = [$vuelosIda, $vuelosRegreso];
         }
         //Multiples destinos
-        else if($request->tipo == 3){
+        else if($request->radio == 3){
             //No listo
         }
+        //return $vuelos;
+       
     }
 
     /**
