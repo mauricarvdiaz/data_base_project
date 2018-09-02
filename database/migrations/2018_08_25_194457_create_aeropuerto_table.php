@@ -15,8 +15,7 @@ class CreateAeropuertoTable extends Migration
     {
         Schema::create('aeropuerto', function (Blueprint $table) {
             $table->increments('id_aeropuerto');
-            $table->mediumInteger('id_ciudad');
-            $table->foreign('id_ciudad')->references('id_destino')->on('destinos')->onDelete('cascade');
+            $table->string('ciudad_aeropuerto');
             $table->string('calle_aeropuerto');
             $table->string('nro_calle_aeropuerto');
             $table->string('nombre_aeropuerto');

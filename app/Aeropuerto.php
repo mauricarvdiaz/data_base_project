@@ -16,8 +16,4 @@ class Aeropuerto extends Model
     public function vuelos(){
 		return $this->belongsToMany(Vuelo::class);
 	}
-
-	public function destino(){
-        return $this->belongsTo(Destino::class);
-    }
 }
