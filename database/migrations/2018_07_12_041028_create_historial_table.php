@@ -14,10 +14,11 @@ class CreateHistorialTable extends Migration
     public function up()
     {
         Schema::create('historial', function (Blueprint $table) {
-
             $table->increments('id_historial');
-            $table->string('email');
-            $table->foreign('email')->references('email')->on('users')->onDelete('cascade');
+            //$table->string('email');
+            //$table->foreign('email')->references('email')->on('users')->onDelete('cascade');
+            $table->mediumInteger('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->string('accion');
             $table->dateTime('fecha_hora');
             $table->mediumText('descripcion');

@@ -19,7 +19,7 @@ class NuevoMontoTrigger extends Migration
             $$
             BEGIN
                 UPDATE users SET fondo_usuario = fondo_usuario - NEW.monto_reserva 
-                WHERE users.email = NEW.correo;
+                WHERE users.id = NEW.id_usuario;
                 RETURN NULL;
             END;
             $$

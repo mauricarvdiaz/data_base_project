@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reserva;
+use Auth;
 
 class ReservaController extends Controller
 {
@@ -39,11 +40,27 @@ class ReservaController extends Controller
         $nueva_reserva->save();
     }
 
-    public function reservar_habitacion($id_habitacion)
+    public function reservar_habitacion()
     {
-        echo "Se va a reservar la habitacion con id " . $id_habitacion;
-        //Retornar una vista que contendra un formulario a llenar para guardar la reserva en la tabla reserva con POST.
-        
+        $carrito = \Session::get('carrito');
+        $subtotal = \Session::get('subtotal');
+        foreach ($carrito as $key => $producto) {
+            if($key == "habitacion" && count($producto) > 0)
+            {
+                $i = 0;
+                foreach ($producto as $habitacion) {
+                    $reserva = new Reserva();
+                    $reserva->id_usuario = Auth::user()->id;
+                    $reserva->detalle = "Se ha realizado una reserva de habitacion";
+                    $reserva->monto_reserva = $subtotal[$key][$i];
+                    $reserva->fecha_reserva = date('Y-m-d');
+                    $reserva->hora_reserva = date('H:i:s');
+                    $reserva->save();
+                    $i++;
+                }
+            }
+        }
+        return redirect('/alojamientos');
     }
 
 

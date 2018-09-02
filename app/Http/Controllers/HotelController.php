@@ -8,12 +8,12 @@ use App\Habitacion;
 use App\Destino;
 use DB;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
 {
     public function alojamientos()
     {
-      //return view('alojamientos');
       return view('hotel');
     }
 
@@ -65,14 +65,14 @@ class HotelController extends Controller
             'fecha_salida' => 'required|date|after:fecha_entrada', //|after:tomorrow ??
             'adultos_hab1' => 'numeric|required|min:1'
         ]);
-
+        
         $capacidad_hab1 = $request->adultos_hab1 + $request->menores_hab1;
         $capacidad_hab2 = $request->adultos_hab2 + $request->menores_hab2;
         
         $ciudad = Destino::where('ciudad', $request->destino)->first();
         $hoteles = $ciudad->hoteles()->get();
+        
         //Contar la cantidad de habitaciones por hotel para dejar las habitaciones que tienen habitaciones disponibles.
-
         return view('seleccion.hoteles')->with('hoteles', $hoteles)->with('capa1', $capacidad_hab1)->with('capa2', $capacidad_hab2)
           ->with('fecha_in', $request->fecha_entrada)->with('fecha_out', $request->fecha_salida);
     }

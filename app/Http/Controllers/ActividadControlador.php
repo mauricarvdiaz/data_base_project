@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Actividad;
+use App\Destino;
 
 class ActividadControlador extends Controller
 {
@@ -27,6 +28,12 @@ class ActividadControlador extends Controller
         //
     }
 
+    public function detalleActividad($id_actividad)
+    {
+        $actividad = Actividad::find($id_actividad);
+        return view('seleccion.actividadDetalle')->with('actividad', $actividad);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -45,11 +52,13 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      Se buca una actividad en especifico                    */
-    public function show($destino)
+    public function show(Request $request)
     {
         //Aca se busca en la base de datos con el destino....
-        $actividad = Actividad::where('ubicacion', $destino)->get();
-        return $actividad;
+        $ciudad = Destino::where('ciudad', $request->destino)->first();
+        $actividades = $ciudad->actividades()->get();
+ 
+        return view('seleccion.actividad')->with('actividades', $actividades);
     }
 
     /**

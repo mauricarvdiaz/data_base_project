@@ -11,16 +11,16 @@
 |
 */
 //Con el @ llama al controlador que esta en app/controller
+Auth::routes();
 Route::get("/", "HotelController@alojamientos");
-Route::get("/alojamientos", "HotelController@alojamientos");
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/alojamientos', 'HotelController@alojamientos')->name('alojamientos');
+
 Route::get("/autos", "EstructuraControlador@autos");
-Route::get("/vuelos", "EstructuraControlador@vuelos");
+Route::get("/buscar/vuelos", "VueloController@vuelos");
 Route::get("/traslados", "EstructuraControlador@traslados");
 Route::get("/paquetes", "EstructuraControlador@paquetes");
 Route::get("/actividades", "EstructuraControlador@actividades");
-Route::get("/ingresar", "EstructuraControlador@actividades");
-Route::get("/registro", "EstructuraControlador@registrar");
-Route::get("/añadirFondos", "EstructuraControlador@actividades");
 
 //Rutas para CRUD.
 Route::resource('actividad', 'ActividadControlador');
@@ -38,16 +38,26 @@ Route::resource('reserva', 'ReservaController');
 Route::resource('destino', 'DestinoController');
 
 Route::get('habitaciones/{hotel}/{fecha_in}/{fecha_out}/{hab1}/{hab2?}', 'HabitacionController@buscar_habitaciones');
-//Aun no lo uso, quizas no lo use
-Route::get('reserva/alojamientos/{id}', 'ReservaController@reservar_habitacion');
+Route::get('habitacion/reserva', 'HabitacionController@reservar');
+Route::get('reservar/habitacion', 'ReservaController@reservar_habitacion');
+
 //Carrito
 Route::get('carrito/compras', [
 	'as' => 'carrito-compras',
 	'uses' => 'CarritoController@show'
 ]);
-Route::get('carrito/agregar/habitacion/{id_habitacion}/{in}/{out}', 'CarritoController@agregar_habitacion');
+Route::get('carrito/agregar/habitacion/{id_habitacion1}/{id_habitacion2}/{in}/{out}', 'CarritoController@agregar_habitacion');
+Route::get('carrito/agregar/actividad/{id_actividad}', 'CarritoController@agregar_actividad');
+
 Route::get('carrito/vaciar', 'CarritoController@vaciar');
 Route::get('carrito/borrar/{llave}/{posicion}', 'CarritoController@borrar');
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('detalle/orden', [
+	'middleware' => 'auth',
+	'as' => 'detalle-orden',
+	'uses' => 'CarritoController@detalle_orden'
+]);
+
+Route::get('actividad/detalle/{id}', 'ActividadControlador@detalleActividad');
+Route::get('/anadir/fondo', 'UsersController@nuevo_saldo');
+

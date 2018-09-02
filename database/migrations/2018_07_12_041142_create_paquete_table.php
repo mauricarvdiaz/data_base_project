@@ -18,7 +18,6 @@ class CreatePaqueteTable extends Migration
             $table->mediumInteger('tipo');
             $table->mediumText('detalle');
             $table->mediumInteger('descuento');
-            $table->string('destino');
             $table->mediumInteger('cupos');
             $table->timestamps();
         });

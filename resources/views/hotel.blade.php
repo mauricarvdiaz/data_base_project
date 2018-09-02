@@ -3,6 +3,7 @@
 
 @section('mensaje1', 'Busca un alojamiento en el lugar que quieras')
 @section('contenido')
+
 <div class="fh5co-hero">
 	<div class="fh5co-overlay"></div>
 		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">

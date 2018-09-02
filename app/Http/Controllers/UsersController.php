@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -57,7 +58,18 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('agregarFondos');
+    }
+
+    public function nuevo_saldo(Request $request)
+    {
+        $validateData = $request->validate([
+            'monto' => 'required|numeric|min:1'
+        ]);
+        $user = Auth::user();
+        $nuevo_saldo = $user->fondo_usuario + $request->monto;
+        User::where('id', $user->id)->update(['fondo_usuario' => $nuevo_saldo]);
+        return redirect('/anadir/fondo');
     }
 
     /**

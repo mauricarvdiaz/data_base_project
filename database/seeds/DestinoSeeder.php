@@ -11,12 +11,22 @@ class DestinoSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Destino::class, 20)->create();/*
+        //factory(App\Destino::class, 20)->create();
+        /*
         factory(App\Destino::class, 20)->create()->each(function ($destino){
         	$destino->hoteles()->saveMany(factory(App\Hotel::class, 20)->make());
         	$destino->aeropuertos()->saveMany(factory(App\Aeropuerto::class, 20)->make());
         	$destino->companias()->saveMany(factory(App\Compania::class, 20)->make());
         	$destino->actividades()->saveMany(factory(App\Actividad::class, 20)->make());
         });*/
+        factory(App\Destino::class, 20)->create()->each(function ($destino){
+            $destino->hoteles()->saveMany(factory(App\Hotel::class, 20)->create()->each(function ($hotel){
+                $hotel->habitaciones()->saveMany(factory(App\Habitacion::class, 20)->make());
+            }));
+            $destino->aeropuertos()->saveMany(factory(App\Aeropuerto::class, 20)->make());
+            $destino->companias()->saveMany(factory(App\Compania::class, 20)->make());
+            $destino->actividades()->saveMany(factory(App\Actividad::class, 20)->make());
+        });
+
     }
 }

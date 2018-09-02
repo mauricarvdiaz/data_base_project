@@ -7,7 +7,8 @@
     <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/place-5.jpg);">
       <div class="desc">
         <div class="container" style="margin-top: -200px">
-          <h3>Selecciona tu actividad</h3>
+          <h3>Detalle de tu actividad</h3>
+
           <table class="table table-bordered" style="background-color: #74B3CB">
             <thead>
               <tr>
@@ -17,18 +18,15 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($actividades as $actividad) 
                 <tr>
                   <td align="center"> {{$actividad->tipo_actividad}} </td>
                   <td align="center"> {{$actividad->descripcion}} </td>
-                  <td align="center"> {{$actividad->precio_actividad}} <br><br>
-                    <a href="/actividad/detalle/{{$actividad->id_actividad}}" class="btn btn-primary btn-sm" style="margin-left: ;margin-top: " >Ver detalle</a>
+                  <td align="center"> $ {{$actividad->precio_actividad}} <br>
                   </td>
                 </tr>
-              @endforeach
             </tbody>
-          </table> 
-          <!--
+          </table>
+          <form action="/carrito/agregar/actividad/{{$actividad->id_actividad}}" method="GET">
           <section>
             <h3>Selecciona una fecha</h3>
               <div class="row" style="background-color: ">
@@ -60,10 +58,11 @@
                   </section>
                 </div>
                 <div class="col-xs-12">
-                  <a href="/carrito/agregar/actividad/id_actividad/fecha/adultos/menores" class="btn btn-primary" style="margin-left: ;margin-top: " onclick="capturar()">Añadir al carrito</a>
+                  {!! Form::submit('Añadir al carrito', ['class' => 'btn btn-primary btn-block']) !!}
                 </div> 
               </div>
-          </section> -->
+          </section>
+          </form>
         </div>
       </div>
     </div>
