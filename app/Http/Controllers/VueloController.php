@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Vuelo;
+use App\Aeropuerto;
 
 class VueloController extends Controller
 {
@@ -55,7 +56,9 @@ class VueloController extends Controller
         //Solo ida
         if($request->radio == 2){
             $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
-            return view('seleccion.vuelosdisponibles1')->with('vuelosEncontrados', $vuelos)->with('tipoVuelo', $request->radio);
+            $aero1 = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
+            $aero2 = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
+            return view('seleccion.vuelosdisponibles1')->with('vuelosEncontrados', $vuelos)->with('tipoVuelo', $request->radio)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2);
         }
         //Ida y vuelta
         else if($request->radio == 1){

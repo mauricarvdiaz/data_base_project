@@ -37,13 +37,70 @@
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                          <div>
+                            <table style="width:100%">
+                              <tr>
+                                <td align="left">
+                                  <font style="font-size:110%;color: #B9770E;font-weight:bold"> {{ $vuelos->aerolinea }} </font>
+                                </td>
+                                <td align="right">
+                                  <font style="font-size:90%;color: #A04000;font-weight:bold"> Vuelo {{ $vuelos->nro_vuelo }} </font>
+                                </td> 
+                              </tr>
+                            </table>
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        ...
+                        <table style="width:100%">
+                          <tr>
+                            <td align="center" WIDTH="50">
+                              <font style="font-size:95%">{{ $vuelos->fecha_salida }}</font>
+                            </td>
+                            <td align="center" WIDTH="50"></td> 
+                            <td align="center" WIDTH="50">
+                              <font style="font-size:95%">{{ $vuelos->fecha_llegada }}</font>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="center" WIDTH="50">
+                              <font style="font-weight:bold;font-size:120%">{{ $vuelos->hora_salida }}</font>
+                            </td>
+                            <td align="center" WIDTH="50">Clase: ...</td> 
+                            <td align="center" WIDTH="50">
+                              <font style="font-weight:bold;font-size:120%">{{ $vuelos->hora_llegada }}</font>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="center" WIDTH="50">
+                              <font style="font-weight:normal;font-size:95%;color: #B89285">{{ $vuelos->origen }} </font>
+                            </td>
+                            <td align="center" WIDTH="50"></td> 
+                            <td align="center" WIDTH="50">
+                              <font style="font-weight:normal;font-size:95%;color: #B89285">{{ $vuelos->destino }}</font>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="center" WIDTH="50">
+                              <font style="font-weight:normal;font-size:75%;color: #B89285">
+                                @foreach($aeropuertoOrigen as $aero)
+                                {{ $aero->nombre_aeropuerto }}
+                                @endforeach 
+                              </font>
+                            </td>
+                            <td align="center" WIDTH="50"></td> 
+                            <td align="center" WIDTH="50">
+                              <font style="font-weight:normal;font-size:75%;color: #B89285">
+                                @foreach($aeropuertoDestino as $aero)
+                                {{ $aero->nombre_aeropuerto }}
+                                @endforeach
+                              </font>
+                            </td>
+                          </tr>
+                        </table>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
