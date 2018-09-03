@@ -62,7 +62,11 @@ class CarritoController extends Controller
 	{
 		$carrito = \Session::get('carrito');
 		$actividad = Actividad::find($id_actividad);
-		/*if($actividad->fecha == $request->fecha){
+		$actividad_nueva = new Actividad();
+		if($actividad->fecha == $request->fecha){
+			$actividad_nueva->id_actividad = $id_actividad;
+		}
+			/*
 			$actividad->nro_menores_edad += $request->menores;
 			$actividad->nro_mayores_edad += $request->adultos;
 			array_push($carrito['actividad'], $actividad);
@@ -77,8 +81,9 @@ class CarritoController extends Controller
 			$actividad_nueva->nro_mayores_edad = $request->adultos;
 			array_push($carrito['actividad'], $actividad_nueva);
 		}*/
-		$actividad_nueva = new Actividad();
+		
 		$actividad_nueva->id_ciudad = $actividad->id_ciudad;
+		$actividad_nueva->tipo_actividad = $actividad->tipo_actividad;
 		$actividad_nueva->fecha = $request->fecha;
 		$actividad_nueva->precio_actividad = $actividad->precio_actividad;
 		$actividad_nueva->descripcion = $actividad->descripcion;
@@ -87,6 +92,7 @@ class CarritoController extends Controller
 		array_push($carrito['actividad'], $actividad_nueva);
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
+
 	}
     //Borrar
 	public function borrar($llave, $posicion)

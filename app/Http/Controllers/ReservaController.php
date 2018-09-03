@@ -59,8 +59,24 @@ class ReservaController extends Controller
                     $i++;
                 }
             }
+            elseif($key == "actividad" && count($producto) > 0)
+            {
+                $i = 0;
+                foreach ($producto as $actividad) {
+                    $reserva = new Reserva();
+                    $reserva->id_usuario = Auth::user()->id;
+                    $reserva->detalle = "Se ha realizado la reserva de la actividad " . $actividad->tipo_actividad . " con fecha de realización " . $actividad->fecha;
+                    $reserva->monto_reserva = $subtotal[$key][$i];
+                    $reserva->fecha_reserva = date('Y-m-d');
+                    $reserva->hora_reserva = date('H:i:s');
+                    $reserva->save();
+                    $i++;
+                }
+            }
         }
-        return redirect('/alojamientos');
+        \Session::forget('carrito');
+        $ruta = "reserva/" . Auth::user()->id;
+        return redirect($ruta);
     }
 
 

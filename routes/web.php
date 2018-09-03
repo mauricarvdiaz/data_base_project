@@ -39,6 +39,7 @@ Route::resource('destino', 'DestinoController');
 
 Route::get('habitaciones/{hotel}/{fecha_in}/{fecha_out}/{hab1}/{hab2?}', 'HabitacionController@buscar_habitaciones');
 Route::get('habitacion/reserva', 'HabitacionController@reservar');
+Route::get('actividades/reserva', 'ActividadControlador@reservar');
 Route::get('reservar/habitacion', 'ReservaController@reservar_habitacion');
 
 //Carrito

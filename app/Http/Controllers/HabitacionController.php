@@ -52,7 +52,7 @@ class HabitacionController extends Controller
                 }
             }
         }
-        return redirect('/reservar/habitacion');
+        return redirect('actividades/reserva');
     }
 
     /**

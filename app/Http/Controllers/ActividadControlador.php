@@ -17,7 +17,28 @@ class ActividadControlador extends Controller
     {
         //
     }
+    public function reservar()
+    {
+        $carrito = \Session::get('carrito');
+        $subtotal = \Session::get('subtotal');
+        foreach ($carrito as $key => $actividades) {
+            if($key == "actividad" && count($actividades) > 0){
+                foreach ($actividades as $actividad) {
+                    if ($actividad->id_actividad != Null){
+                        $actividad2 = Actividad::find($actividad->id_actividad);
+                        $nro_menores_edad = $actividad2->nro_menores_edad + $actividad->nro_menores_edad;
+                        $nro_mayores_edad = $actividad2->nro_mayores_edad + $actividad->nro_mayores_edad;
+                        Actividad::where('id_actividad', $actividad->id_actividad)->update(['nro_menores_edad' =>$nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);
 
+                    }
+                    else{
+                    $actividad->save();
+                    }
+                }
+            }
+        }
+        return redirect('/reservar/habitacion');
+    }
     /**
      * Show the form for creating a new resource.
      *
