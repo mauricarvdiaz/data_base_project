@@ -89,7 +89,7 @@ class VueloController extends Controller
         }
         //Multiples destinos
         else if($request->radio == 3){
-            //No listo
+            return $request;
         }
         //return $vuelos;
 
