@@ -30,8 +30,11 @@
                         	<a class="dropdown-item" href="/usuario/{{Auth::user()->id}}/edit">
                                 {{ __('Añadir fondos') }}
                             </a>
+                            <a class="dropdown-item" href="/reserva/{{Auth::user()->id}}">
+                                {{ __('Reservas') }}
+                            </a>
                             @if(Auth::user()->rol == "admin")
-                            	<a class="dropdown-item" href="">
+                            	<a class="dropdown-item" href="/hoteles/create">
                                 	{{ __('Alojamientos') }}
                             	</a>
                             	<a class="dropdown-item" href="">

@@ -51,7 +51,7 @@ class ReservaController extends Controller
                 foreach ($producto as $habitacion) {
                     $reserva = new Reserva();
                     $reserva->id_usuario = Auth::user()->id;
-                    $reserva->detalle = "Se ha realizado una reserva de habitacion";
+                    $reserva->detalle = "Se ha realizado la reserva de la habitacion N°" . $habitacion->nro_habitacion . " con fecha de entrada " . $habitacion->fecha_entrada . " y fecha de salida " . $habitacion->fecha_salida;
                     $reserva->monto_reserva = $subtotal[$key][$i];
                     $reserva->fecha_reserva = date('Y-m-d');
                     $reserva->hora_reserva = date('H:i:s');
@@ -72,7 +72,8 @@ class ReservaController extends Controller
      */
     public function show($id)
     {
-        //
+        $reservas = Reserva::where('id_usuario', $id)->get();
+        return view('reserva')->with('reservas', $reservas);
     }
 
     /**

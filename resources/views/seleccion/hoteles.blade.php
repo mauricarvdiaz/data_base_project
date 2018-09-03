@@ -2,12 +2,9 @@
 @section('titulo', 'Hoteles')
 
 @section('contenido')
-<div class="fh5co-hero">
-  <div class="fh5co-overlay"></div>
-    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/place-5.jpg);">
-      <div class="desc">
-        <div class="container">
-          <div class="row" style="margin-top: -170px">
+<body style="background-color: #F0B27A">
+  <div class="container">
+    <div class="row" style="margin-top: -170px">
             <ul class="list-group">
               @foreach($hoteles as $hotel)
                 <li class="list-group-item" style="margin-top: 10px">
@@ -22,7 +19,6 @@
               @endforeach
             </ul>
           </div>  
-        </div>
-      </div>
-    </div>
+  </div>
+</body>
 @endsection

@@ -35,19 +35,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('create.add_data');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $hotel = new Hotel($request->all());
-        $hotel->save();
+        return view('create.alojamientosAdmin');
     }
     
     /**
@@ -110,6 +98,19 @@ class HotelController extends Controller
     public function destroy($rut)
     {
         Hotel::where('rut_hotel', $rut)->delete();
+    }
+
+    //Funciones para el administrador.
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $hotel = new Hotel($request->all());
+        $hotel->save();
     }
 }
 

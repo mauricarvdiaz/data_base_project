@@ -2,11 +2,8 @@
 @section('titulo', 'Habitaciones')
 
 @section('contenido')
-<div class="fh5co-hero">
-  <div class="fh5co-overlay"></div>
-    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/place-5.jpg);">
-      <div class="desc">
-        <div class="container" style="margin-top: -200px">
+<body style="background-color: #F0B27A">
+  <div class="container" style="margin-top: 20px">
           @if(count($habitaciones) > 0)
           <table class="table table-bordered" style="background-color: #74B3CB">
             <thead>
@@ -36,7 +33,7 @@
                             Minibar en la habitación
                       </td>
                       <td align="center">{{ $habitacion->capacidad }}</td>
-                      <td align="center">{{ $habitacion->precio_noche }}</td>
+                      <td align="center">${{ $habitacion->precio_noche }}</td>
                       <td align="center">
                         Precio por <?php echo $noches ?> noches para {{$habitacion->capacidad}} personas <br> $ <?php echo $noches * $habitacion->precio_noche ?> <br>
                         <a href="/carrito/agregar/habitacion/{{$habitacion->id_habitacion}}/0/{{$in}}/{{$out}}" class="btn btn-primary" style="margin-left: 20px;margin-top: 40px">Añadir al carrito</a>
@@ -98,29 +95,29 @@
                       </td>
                       <td align="center">
                       @if($habitacion[0]['tipo'] === 1 && $habitacion[1]['tipo'] === 1)
-                          <b>economica: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                          <b>economica: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 1 && $habitacion[1]['tipo'] === 2)
-                            <b>economica: {{ $habitacion[1]['precio_noche'] }}</b> <br>
-                            <b>standar: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>economica: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>standar: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 2 && $habitacion[1]['tipo'] === 1)
-                            <b>economica: {{ $habitacion[0]['precio_noche'] }}</b> <br>
-                            <b>standar: {{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>economica: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>standar: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 1 && $habitacion[1]['tipo'] === 3)
-                            <b>economica: {{ $habitacion[0]['precio_noche'] }}</b> <br>
-                            <b>full: {{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>economica: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>full: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 3 && $habitacion[1]['tipo'] === 1)
-                            <b>economica: {{ $habitacion[1]['precio_noche'] }}</b> <br>
-                            <b>full: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>economica: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>full: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 2 && $habitacion[1]['tipo'] === 2)
-                            <b>estandar: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>estandar: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 2 && $habitacion[1]['tipo'] === 3)
-                            <b>estandar: {{ $habitacion[0]['precio_noche'] }}</b> <br>
-                            <b>full: {{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>estandar: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>full: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 3 && $habitacion[1]['tipo'] === 2)
-                            <b>estandar: {{ $habitacion[1]['precio_noche'] }}</b> <br>
-                            <b>full: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>estandar: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>full: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 3 && $habitacion[1]['tipo'] === 3)
-                            <b>full: {{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>full: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
                         @endif
                     </td>
                     <td align="center">
@@ -155,20 +152,20 @@
                     <td align="center">{{ $habitacion[0]['capacidad'] }}</td>
                     <td align="center">
                       @if($habitacion[0]['tipo'] === 1 && $habitacion[1]['tipo'] === 1)
-                          <b>habitacion economica: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                          <b>habitacion economica: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 1 && $habitacion[1]['tipo'] === 2)
-                            <b>habitacion economica: {{ $habitacion[1]['precio_noche'] }}</b> <br>
-                            <b>habitacion standar: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>habitacion economica: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>habitacion standar: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 1 && $habitacion[1]['tipo'] === 3)
-                            <b>habitacion economica: {{ $habitacion[0]['precio_noche'] }}</b> <br>
-                            <b>habitacion full: {{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>habitacion economica: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>habitacion full: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 2 && $habitacion[1]['tipo'] === 2)
-                            <b>habitacion estandar: {{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>habitacion estandar: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 2 && $habitacion[1]['tipo'] === 3)
-                            <b>habitacion estandar: {{ $habitacion[0]['precio_noche'] }}</b> <br>
-                            <b>habitacion full: {{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>habitacion estandar: ${{ $habitacion[0]['precio_noche'] }}</b> <br>
+                            <b>habitacion full: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
                           @elseif($habitacion[0]['tipo'] === 3 && $habitacion[1]['tipo'] === 3)
-                            <b>habitacion full: {{ $habitacion[1]['precio_noche'] }}</b> <br>
+                            <b>habitacion full: ${{ $habitacion[1]['precio_noche'] }}</b> <br>
                         @endif
                     </td>
                     <td align="center">
@@ -186,6 +183,5 @@
             </h3>
           @endif
         </div>
-      </div>
-    </div>
+</body>
 @endsection

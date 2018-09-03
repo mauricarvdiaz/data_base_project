@@ -10,7 +10,7 @@ class Historial extends Model
     protected $table = "historial";
     protected $primaryKey = "id_historial";
     protected $fillable = [
-      'accion', 'fecha_hora', 'descripcion'
+      'accion', 'fecha_hora', 'descripcion', 'id_usuario'
     ];
 
     //Relacion uno a muchos con Habitacion.
