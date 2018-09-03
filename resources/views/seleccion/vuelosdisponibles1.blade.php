@@ -2,12 +2,6 @@
 @section('titulo', 'Vuelos')
 
 @section("contenido")
-<script type="text/javascript">
-  function cambiarFecha(date){
-    $newDate = date("d/m/Y", strtotime(date));
-  }
-</script>
-
   <body style="background-color:#F0B27A;">
     @if(count($vuelosEncontrados) > 0)
     <div style="margin-top: 10px;margin-right: 50px; margin-left: 50px;margin-bottom: 10px">

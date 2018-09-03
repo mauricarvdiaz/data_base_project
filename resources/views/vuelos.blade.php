@@ -3,15 +3,43 @@
 
 @section('contenido')
 <script type="text/javascript">
-	function habilitar(){
-		document.getElementById('dateout').disabled=false;
+	function agregar(id){
+		document.getElementById(id).style.visibility="visible";
 	}
-	function deshabilitar(){
-		document.getElementById('dateout').disabled=true;
+	function quitar(id){
+		document.getElementById(id).style.visibility="hidden";		
+	}
+	function quitarTabla(id){
+		document.getElementById(id).style.visibility="collapse";
+	}
+	function habilitar(id){
+		document.getElementById(id).disabled=false;
+	}
+	function deshabilitar(id){
+		document.getElementById(id).disabled=true;
 	}
 	function limpiar(id) {
     	document.getElementById(id).value = "mm/dd/yyyy";
 	}
+	var nextinput = 1;
+    function AgregarCampos(){
+    	if (nextinput >= 1 && nextinput < 3) {
+    		agregar("tramosBtn");
+    		agregar("agregarTramo");
+    	}
+    	if (nextinput == 3) {
+    		quitar("agregarTramo");
+    	}
+    	if (nextinput <= 4 && nextinput >= 2) {
+    		agregar("eliminarTramo");
+    		agregar("tramosBtn");
+    	}
+    	if (nextinput <= 3) {
+    		campo ='<div class="col-xxs-12 col-xs-6 mt"><div class="input-field"><label for="origen">Origen:</label><input type="text" name="origen" class="form-control" id="origen'+nextinput+'" placeholder="Ingresa tu origen"/></div></div><div class="col-xxs-12 col-xs-6 mt"><div class="input-field"><label for="destino">Destino:</label><input type="text" name="destino" class="form-control" id="destino'+nextinput+'" placeholder="Ingresa tu destino"/></div></div><div class="col-xxs-12 col-xs-6 mt alternate"><div class="input-field"><label for="datestart">Partida:</label><input type="date" name="datestart" class="form-control" id="datein'+nextinput+'" placeholder="mm/dd/yyyy"/></div></div><div class="col-xxs-12 col-xs-6 mt alternate"><div class="input-field"><label id="regreso'+nextinput+'" for="dateend" style="visibility:hidden">Regreso:</label><input type="date" name="dateend" class="form-control" id="dateout'+nextinput+'" placeholder="mm/dd/yyyy" style="visibility:hidden"/></div></div>';
+    		$("#campos").append(campo);
+    		nextinput++;
+    	}
+    }
 </script>
 
 <div class="fh5co-hero">
@@ -36,21 +64,21 @@
 			<div class="row">
 				<div class="col-xxs-12 col-xs-4 mt">
 					<label class="custom-control custom-radio">
-	  					<input id="radio1" name="radio" type="radio" class="custom-control-input" value="1" checked="checked" onclick="habilitar(),limpiar('datein'),limpiar('dateout')">
+	  					<input id="radio1" name="radio" type="radio" class="custom-control-input" value="1" checked="checked" onclick="agregar('dateout'),agregar('regreso'),habilitar('dateout'),limpiar('datein'),limpiar('dateout'),quitar('eliminarTramo'),quitar('agregarTramo'),quitarTabla('tramosBtn')">
 	  					<span class="custom-control-indicator"></span>
 	 					<span class="custom-control-description">Ida y Vuelta</span>
 					</label>
 				</div>
 				<div class="col-xxs-12 col-xs-3 mt">
 					<label class="custom-control custom-radio">
-	  					<input id="radio2" name="radio" type="radio" class="custom-control-input" value="2" onclick="deshabilitar(),limpiar('datein'),limpiar('dateout')">
+	  					<input id="radio2" name="radio" type="radio" class="custom-control-input" value="2" onclick="deshabilitar('dateout'),agregar('dateout'),agregar('regreso'),limpiar('datein'),limpiar('dateout'),quitar('eliminarTramo'),quitar('agregarTramo'),quitarTabla('tramosBtn')">
 	  					<span class="custom-control-indicator"></span>
 	 					<span class="custom-control-description">Solo Ida</span>
 					</label>
 				</div>
 				<div class="col-xxs-12 col-xs-5 mt">
 					<label class="custom-control custom-radio">
-	  					<input id="radio3" name="radio" type="radio" class="custom-control-input" value="3" onclick="deshabilitar(),limpiar('datein'),limpiar('dateout')">
+	  					<input id="radio3" name="radio" type="radio" class="custom-control-input" value="3" onclick="quitar('regreso'),quitar('dateout'),limpiar('datein'),limpiar('dateout'),AgregarCampos()">
 	  					<span class="custom-control-indicator"></span>
 	 					<span class="custom-control-description">Multiples Destinos</span>
 					</label>
@@ -75,10 +103,29 @@
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
-						<label for="dateend">Regreso:</label>
+						<label id="regreso" for="dateend">Regreso:</label>
 						<input type="date" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
 					</div>
 				</div>
+				<div id="campos"></div>
+				<table id="tramosBtn" style="visibility: collapse;width: 100%;">
+					<tr>
+						<td style="text-align: left;">
+							<div class="button" id="eliminarTramo" style="visibility: hidden;margin-left: 20px">
+                				<a href="#">
+                					<h5 style="color: #C0392B;font-weight: bold;">Eliminar tramo</h5>
+                				</a>
+            				</div>
+						</td>
+						<td style="text-align: right;">
+							<div class="button" id="agregarTramo" style="visibility: hidden">
+                				<a href="#" onclick="AgregarCampos();">
+                					<h5 style="color: #148F77;font-weight: bold;margin-right: 20px">Agregar tramo</h5>
+                				</a>
+            				</div>
+						</td>
+					</tr>
+				</table>
 				<div class="col-sm-12 mt">
 					<section>
 						<label for="class">Clase:</label>
