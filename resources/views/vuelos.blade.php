@@ -82,19 +82,19 @@
 				<div class="col-sm-12 mt">
 					<section>
 						<label for="class">Clase:</label>
-						<select class="cs-select cs-skin-border">
-							<option value="" disabled selected>Económica/Turista</option>
-							<option value="economy">Económica/Turista</option>
-							<option value="first">Primera Clase</option>
-							<option value="business">Ejecutiva</option>
+						<select name="claseVuelo" class="cs-select cs-skin-border">
+							<!--<option value="1" disabled selected>Economica</option>-->
+							<option value="Economica">Economica</option>
+							<option value="Primera Clase">Primera Clase</option>
+							<option value="Ejecutiva">Ejecutiva</option>
 						</select>
 					</section>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt">
 					<section>
 						<label for="class">Adultos:</label>
-						<select class="cs-select cs-skin-border">
-							<option value="" disabled selected>1</option>
+						<select name="nroAdultos" class="cs-select cs-skin-border">
+							<!--<option value="" disabled selected>1</option>-->
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -105,9 +105,9 @@
 				<div class="col-xxs-12 col-xs-6 mt">
 					<section>
 						<label for="class">Menores:</label>
-						<select class="cs-select cs-skin-border">
-							<option value="" disabled selected>0</option>
-							<option value="4">0</option>
+						<select name="nroMenores" class="cs-select cs-skin-border">
+							<!--<option value="" disabled selected>0</option>-->							
+							<option value="0">0</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>

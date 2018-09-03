@@ -2,6 +2,12 @@
 @section('titulo', 'Vuelos')
 
 @section("contenido")
+<script type="text/javascript">
+  function cambiarFecha(date){
+    $newDate = date("d/m/Y", strtotime(date));
+  }
+</script>
+
   <body style="background-color:#F0B27A;">
     @if(count($vuelosEncontrados) > 0)
     <div style="margin-top: 10px;margin-right: 50px; margin-left: 50px;margin-bottom: 10px">
@@ -26,14 +32,14 @@
               <td align="center"> {{ $vuelos->hora_salida }}</td>
               <td align="center"> {{ $vuelos->hora_llegada }} </td>
               <td align="center"> {{ $vuelos->nro_escala }} </td>
-              <td align="center"> {{ $vuelos->precio_vuelo }} </td>
+              <td align="center"> ${{ $vuelos->precio_vuelo }} </td>
               <td align="center"> 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ $vuelos->nro_vuelo }}">
                   Detalles
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="{{ $vuelos->nro_vuelo }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -69,7 +75,8 @@
                             <td align="center" WIDTH="50">
                               <font style="font-weight:bold;font-size:120%">{{ $vuelos->hora_salida }}</font>
                             </td>
-                            <td align="center" WIDTH="50">Clase: ...</td> 
+                            <td align="center" WIDTH="50">
+                            </td> 
                             <td align="center" WIDTH="50">
                               <font style="font-weight:bold;font-size:120%">{{ $vuelos->hora_llegada }}</font>
                             </td>
@@ -78,7 +85,12 @@
                             <td align="center" WIDTH="50">
                               <font style="font-weight:normal;font-size:95%;color: #B89285">{{ $vuelos->origen }} </font>
                             </td>
-                            <td align="center" WIDTH="50"></td> 
+                            <td align="center" WIDTH="50">
+                              <p>
+                                -<font style="font-weight:normal;font-size:75%"> Clase: </font>
+                                <font style="font-weight:bold;font-size:75%;color: #B89285"> {{ $claseVuelo }} </font>-
+                              </p>
+                            </td> 
                             <td align="center" WIDTH="50">
                               <font style="font-weight:normal;font-size:95%;color: #B89285">{{ $vuelos->destino }}</font>
                             </td>

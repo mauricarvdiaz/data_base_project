@@ -55,16 +55,36 @@ class VueloController extends Controller
 
         //Solo ida
         if($request->radio == 2){
-            $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+            if ($request->claseVuelo == "Economica") {
+                $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->where('cantidad_turista', '>', $request->nroAdultos + $request->nroMenores)->get();
+            }
+            else if ($request->claseVuelo == "Primera Clase") {
+                $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->where('cantidad_primera_clase', '>', $request->nroAdultos + $request->nroMenores)->get();
+            }
+            else{
+                $vuelos = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->where('cantidad_ejecutivo', '>', $request->nroAdultos + $request->nroMenores)->get();
+            }
             $aero1 = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
             $aero2 = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
-            return view('seleccion.vuelosdisponibles1')->with('vuelosEncontrados', $vuelos)->with('tipoVuelo', $request->radio)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2);
+            return view('seleccion.vuelosdisponibles1')->with('vuelosEncontrados', $vuelos)->with('tipoVuelo', $request->radio)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('claseVuelo', $request->claseVuelo);
         }
         //Ida y vuelta
         else if($request->radio == 1){
-            $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
-            $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->where('fecha_salida', $request->dateend)->get();
-            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('tipoVuelo', $request->radio);
+            if ($request->claseVuelo == 1) {
+                $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+                $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->where('fecha_salida', $request->dateend)->get();
+            }
+            else if ($request->claseVuelo == 2) {
+                $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+                $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->where('fecha_salida', $request->dateend)->get();
+            }
+            else{
+                $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+                $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->where('fecha_salida', $request->dateend)->get();
+            }
+            $aero1 = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
+            $aero2 = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
+            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('tipoVuelo', $request->radio)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('claseVuelo', $request->claseVuelo);
            // $vuelos = [$vuelosIda, $vuelosRegreso];
         }
         //Multiples destinos
