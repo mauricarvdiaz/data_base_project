@@ -26,18 +26,20 @@
 							<th>Subtotal</th>
 						</tr>
 						@foreach($carrito as $clave => $productos)
-							<tr>
 								@if($clave == "habitacion")
 									@for($i = 0; $i < count($productos); $i++)
+									<tr>
 										<td>Habitacion</td>
 										<td>Reserva habitacion N° {{$productos[$i]->nro_habitacion}}, con fecha de entrada {{$productos[$i]->fecha_entrada}} y fecha de salida {{$productos[$i]->fecha_salida}}</td>
 										<td>
 											Precio por noche ${{ $productos[$i]->precio_noche}} 
 										</td>
 										<td> ${{ $subtotal[$clave][$i] }}</td>
+									</tr>
 									@endfor
 								@elseif($clave == "actividad")
 									@for($i = 0; $i < count($productos); $i++)
+									<tr>
 										<td>Actividad</td>
 										<td>Reserva Actividad {{$productos[$i]->tipo_actividad}} para 
 											@if($productos[$i]->nro_mayores_edad > 0)
@@ -49,9 +51,20 @@
 										</td>
 										<td>Precio por persona ${{ $productos[$i]->precio_actividad }}</td>
 										<td>${{ $subtotal[$clave][$i] }}</td>
+									</tr>
+									@endfor
+								@elseif($clave == "vuelo")
+									@for($i = 0; $i < count($productos); $i++)
+									<tr>
+										<td>Vuelo</td>
+										<td>Reserva Vuelo N° {{$productos[$i]->nro_vuelo}}, con fecha de vuelo {{$productos[$i]->fecha_salida}}</td>
+										<td>
+											Precio por persona ${{ $productos[$i]->precio_vuelo}} 
+										</td>
+										<td> ${{ $subtotal[$clave][$i] }}</td>
+									</tr>
 									@endfor
 								@endif
-							</tr>
 						@endforeach
 					</table>
 					<hr>
