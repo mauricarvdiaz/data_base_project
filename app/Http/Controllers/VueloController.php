@@ -21,6 +21,24 @@ class VueloController extends Controller
         //
     }
 
+    public function reservar()
+    {
+        $carrito = \Session::get('carrito');
+        $subtotal = \Session::get('subtotal');
+        foreach ($carrito as $key => $vuelos) {
+            if($key == "vuelo" && count($vuelos) > 0){
+                foreach ($vuelos as $vuelo) {
+                     $vuelo2 = Vuelo::find($vuelo->nro_vuelo);
+                        $cantidad_turista= $vuelo2->cantidad_turista+ $vuelo->cantidad_turista;
+                        $cantidad_ejecutivo= $vuelo2->cantidad_ejecutivo+ $vuelo->cantidad_ejecutivo;
+                        $cantidad_primera_clase= $vuelo2->cantidad_primera_clase+ $vuelo->cantidad_primera_clase;
+                        Vuelo::where('nro_vuelo', $vuelo2->nro_vuelo)->update(['cantidad_turista' =>$cantidad_turista, 'cantidad_ejecutivo' => $cantidad_ejecutivo,  'cantidad_primera_clase' => $cantidad_primera_clase]);
+                }
+            }
+        }
+        return redirect('/reservar/habitacion');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

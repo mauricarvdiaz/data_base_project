@@ -28,7 +28,7 @@ class ActividadControlador extends Controller
                         $actividad2 = Actividad::find($actividad->id_actividad);
                         $nro_menores_edad = $actividad2->nro_menores_edad + $actividad->nro_menores_edad;
                         $nro_mayores_edad = $actividad2->nro_mayores_edad + $actividad->nro_mayores_edad;
-                        Actividad::where('id_actividad', $actividad->id_actividad)->update(['nro_menores_edad' =>$nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);
+                        Vuelo::where('nro_vuelo', $vuelo->nro_vuelo)->update(['nro_menores_edad' =>$nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);
 
                     }
                     else{
@@ -37,7 +37,7 @@ class ActividadControlador extends Controller
                 }
             }
         }
-        return redirect('/reservar/habitacion');
+        return redirect('vuelo/reserva');
     }
     /**
      * Show the form for creating a new resource.
