@@ -49,6 +49,7 @@ Route::get('carrito/compras', [
 ]);
 Route::get('carrito/agregar/habitacion/{id_habitacion1}/{id_habitacion2}/{in}/{out}', 'CarritoController@agregar_habitacion');
 Route::get('carrito/agregar/actividad/{id_actividad}', 'CarritoController@agregar_actividad');
+Route::get('carrito/agregar/vuelo/{nro_vuelo}/{claseVuelo}/{cantidad_viajeros}', 'CarritoController@agregar_vuelo');
 
 Route::get('carrito/vaciar', 'CarritoController@vaciar');
 Route::get('carrito/borrar/{llave}/{posicion}', 'CarritoController@borrar');

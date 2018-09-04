@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Habitacion;
 use App\Actividad;
+use App\Vuelo;
 use DateTime;
 
 class CarritoController extends Controller
@@ -56,6 +57,43 @@ class CarritoController extends Controller
 		}
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
+	}
+	public function agregar_vuelo($nro_vuelo, $claseVuelo, $cantidad_viajeros)
+	{
+		$carrito = \Session::get('carrito');
+		$vue = Vuelo::find($nro_vuelo);
+		$vuelo_reservar = new Vuelo();
+		$vuelo_reservar->nro_vuelo = $vue->nro_vuelo;
+		$vuelo_reservar->origen = $vue->origen;
+		$vuelo_reservar->destino = $vue->destino;
+		$vuelo_reservar->fecha_salida = $vue->fecha_salida;
+		$vuelo_reservar->fecha_llegada = $vue->fecha_llegada;
+		$vuelo_reservar->hora_salida = $vue->hora_salida;
+		$vuelo_reservar->hora_llegada = $vue->hora_llegada;
+		$vuelo_reservar->aerolinea = $vue->aerolinea;
+		$vuelo_reservar->nro_escala = $vue->nro_escala;
+		$vuelo_reservar->cantidad_equipaje = $vue->cantidad_equipaje;
+		$vuelo_reservar->precio_vuelo = $vue->precio_vuelo;
+		if ($claseVuelo == 'Economica'){
+			$vuelo_reservar->cantidad_turista = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_ejecutivo = 0;
+			$vuelo_reservar->cantidad_primera_clase = 0;
+		}
+		else if($claseVuelo == 'Ejecutiva'){
+			$vuelo_reservar->cantidad_turista = 0;
+			$vuelo_reservar->cantidad_ejecutivo = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_primera_clase = 0;
+		}
+		else{
+			$vuelo_reservar->cantidad_primera_clase = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_ejecutivo = 0;
+			$vuelo_reservar->cantidad_turista = 0;
+		}
+		array_push($carrito['vuelo'], $vuelo_reservar);
+		\Session::put('carrito', $carrito);
+		return redirect()->route('carrito-compras');
+
+
 	}
 	//Funciones para agregar al carro actividades, vehiculos y lo que sea xd
 	public function agregar_actividad($id_actividad, Request $request)
@@ -149,6 +187,16 @@ class CarritoController extends Controller
     				$i++;
     			}
     		}
+    		else if($llave == 'vuelo'){
+    			$i = 0;
+    			foreach ($productos as $vuelo) {
+    				$sub = $vuelo->precio_vuelo * ($vuelo->cantidad_turista + $vuelo->cantidad_ejecutivo + $vuelo->cantidad_primera_clase);
+    				array_push($subtotal[$llave], $sub);
+    				$i++;
+    			}
+    		}
+    		
+
     		else if($llave == 'paquete'){
     			
     		}
