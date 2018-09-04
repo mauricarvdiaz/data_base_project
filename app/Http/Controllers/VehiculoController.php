@@ -13,6 +13,12 @@ class VehiculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function vehiculos()
+    {
+        return view('autos');
+    }
+
     public function index()
     {
         $data = Vehiculo::all();

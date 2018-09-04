@@ -13,7 +13,7 @@
 				<li>
 					<a href="/autos">Autos</a>
 					<ul class="fh5co-sub-menu">
-						<li><a href="#">Arriendo</a></li>
+						<li><a href="/autos">Arriendo</a></li>
 						<li><a href="#">Traslado</a></li>
 					</ul>
 				</li>

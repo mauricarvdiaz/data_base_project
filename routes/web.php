@@ -60,6 +60,8 @@ Route::get('detalle/orden', [
 	'uses' => 'CarritoController@detalle_orden'
 ]);
 
+Route::get('vehiculos', 'VehiculoController@vehiculos');
+
 Route::get('actividad/detalle/{id}', 'ActividadControlador@detalleActividad');
 Route::get('/anadir/fondo', 'UsersController@nuevo_saldo');
 
