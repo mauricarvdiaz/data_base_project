@@ -86,6 +86,7 @@ class VueloController extends Controller
             $aero2 = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
             return view('seleccion.vuelosdisponibles1')->with('vuelosEncontrados', $vuelos)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros',$request->nroAdultos + $request->nroMenores);
         }
+
         //Ida y vuelta
         else if($request->radio == 1){
             if ($request->claseVuelo == 1) {
@@ -102,15 +103,52 @@ class VueloController extends Controller
             }
             $aero1 = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
             $aero2 = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
-            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('tipoVuelo', $request->radio)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros',$request->nroAdultos + $request->nroMenores);
+            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros',$request->nroAdultos + $request->nroMenores);
            // $vuelos = [$vuelosIda, $vuelosRegreso];
         }
+
         //Multiples destinos
         else if($request->radio == 3){
-            return $request;
+            if (isset($request->origen) && isset($request->origen1) && isset($request->origen2) && isset($request->origen3)) {
+                $tramo1 = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+                $tramo2 = Vuelo::where('destino', $request->destino1)->where('origen', $request->origen1)->where('fecha_salida', $request->datestart1)->get();
+                $tramo3 = Vuelo::where('destino', $request->destino2)->where('origen', $request->origen2)->where('fecha_salida', $request->datestart2)->get();
+                $tramo4 = Vuelo::where('destino', $request->destino3)->where('origen', $request->origen3)->where('fecha_salida', $request->datestart3)->get();
+                $aero1O = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
+                $aero1D = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
+                $aero2O = Aeropuerto::where('ciudad_aeropuerto', $request->origen1)->get();
+                $aero2D = Aeropuerto::where('ciudad_aeropuerto', $request->destino1)->get();
+                $aero3O = Aeropuerto::where('ciudad_aeropuerto', $request->origen2)->get();
+                $aero3D = Aeropuerto::where('ciudad_aeropuerto', $request->destino2)->get();
+                $aero4O = Aeropuerto::where('ciudad_aeropuerto', $request->origen3)->get();
+                $aero4D = Aeropuerto::where('ciudad_aeropuerto', $request->destino3)->get();
+                $nroTramos = 4;
+                return view('seleccion.vuelosdisponibles3')->with('tramo1', $tramo1)->with('tramo2', $tramo2)->with('tramo3', $tramo3)->with('tramo4', $tramo4)->with('aero1O', $aero1O)->with('aero1D', $aero1D)->with('aero2O', $aero2O)->with('aero2D', $aero2D)->with('aero3O', $aero3O)->with('aero3D', $aero3D)->with('aero4O', $aero4O)->with('aero4D', $aero4D)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros', $request->nroAdultos + $request->nroMenores)->with('nroTramos', $nroTramos);
+            }
+            else if (isset($request->origen) && isset($request->origen1) && isset($request->origen2)) {
+                $tramo1 = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+                $tramo2 = Vuelo::where('destino', $request->destino1)->where('origen', $request->origen1)->where('fecha_salida', $request->datestart1)->get();
+                $tramo3 = Vuelo::where('destino', $request->destino2)->where('origen', $request->origen2)->where('fecha_salida', $request->datestart2)->get();
+                $aero1O = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
+                $aero1D = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
+                $aero2O = Aeropuerto::where('ciudad_aeropuerto', $request->origen1)->get();
+                $aero2D = Aeropuerto::where('ciudad_aeropuerto', $request->destino1)->get();
+                $aero3O = Aeropuerto::where('ciudad_aeropuerto', $request->origen2)->get();
+                $aero3D = Aeropuerto::where('ciudad_aeropuerto', $request->destino2)->get();
+                $nroTramos = 3;
+                return view('seleccion.vuelosdisponibles3')->with('tramo1', $tramo1)->with('tramo2', $tramo2)->with('tramo3', $tramo3)->with('aero1O', $aero1O)->with('aero1D', $aero1D)->with('aero2O', $aero2O)->with('aero2D', $aero2D)->with('aero3O', $aero3O)->with('aero3D', $aero3D)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros', $request->nroAdultos + $request->nroMenores)->with('nroTramos', $nroTramos);
+            }
+            else {
+                $tramo1 = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
+                $tramo2 = Vuelo::where('destino', $request->destino1)->where('origen', $request->origen1)->where('fecha_salida', $request->datestart1)->get();
+                $aero1O = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
+                $aero1D = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
+                $aero2O = Aeropuerto::where('ciudad_aeropuerto', $request->origen1)->get();
+                $aero2D = Aeropuerto::where('ciudad_aeropuerto', $request->destino1)->get();
+                $nroTramos = 2;
+                return view('seleccion.vuelosdisponibles3')->with('tramo1', $tramo1)->with('tramo2', $tramo2)->with('aero1O', $aero1O)->with('aero1D', $aero1D)->with('aero2O', $aero2O)->with('aero2D', $aero2D)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros', $request->nroAdultos + $request->nroMenores)->with('nroTramos', $nroTramos);
+            }
         }
-        //return $vuelos;
-
     }
 
     /**

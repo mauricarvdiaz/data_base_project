@@ -110,7 +110,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                         <a href="/carrito/agregar/vuelo/{{$vuelos->nro_vuelo}}/{{$claseVuelo}}/{{$cantidad_viajeros}}" class="btn btn-primary" style="margin-left: 20px;margin-top: 40px">Añadir al carrito</a>
+                         <a href="/carrito/agregar/vuelo/{{$vuelos->nro_vuelo}}/{{$claseVuelo}}/{{$cantidad_viajeros}}" class="btn btn-primary">Añadir al carrito</a>
                       </div>
                     </div>
                   </div>
