@@ -67,7 +67,7 @@ class ActividadControlador extends Controller
         $actividad->save();
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  int  $id

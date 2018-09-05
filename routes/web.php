@@ -30,7 +30,7 @@ Route::resource('paquete', 'PaqueteController');
 Route::resource('actividad', 'ActividadControlador');
 Route::resource('/vuelos', 'VueloController');
 Route::resource('aeropuerto', 'AeropuertoController');
-Route::resource('vehiculos', 'VehiculoController');
+Route::resource('autos', 'VehiculoController');
 Route::resource('companias', 'CompaniaController');
 Route::resource('historial', 'HistorialController');
 Route::resource('usuario', 'UsersController');
@@ -61,7 +61,7 @@ Route::get('detalle/orden', [
 	'uses' => 'CarritoController@detalle_orden'
 ]);
 
-Route::get('vehiculos', 'VehiculoController@vehiculos');
+Route::get('autos', 'VehiculoController@vehiculos');
 
 Route::get('actividad/detalle/{id}', 'ActividadControlador@detalleActividad');
 Route::get('/anadir/fondo', 'UsersController@nuevo_saldo');

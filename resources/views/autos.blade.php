@@ -23,42 +23,35 @@
 		<div class="tab-content">
 		 <div role="tabpanel" class="tab-pane active" id="flights">
 			<div class="row">
-				<div class="col-xxs-12 col-xs-6 mt">
+				<div class="col-xxs-12 col-xs-12 mt">
 					<div class="input-field">
 						<label for="from">Lugar de entrega:</label>
-						<input type="text" class="form-control" id="from-place" placeholder="Ingresa tu origen"/>
-					</div>
-				</div>
-				<div class="col-xxs-12 col-xs-6 mt">
-					<div class="input-field">
-						<label for="from">Lugar de devolución:</label>
-						<input type="text" class="form-control" id="to-place" placeholder="Ingresa tu destino"/>
+						<input type="text" name="destino" class="form-control" id="from-place" placeholder="Ingresa tu origen"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="date-start">Fecha entrega:</label>
-						<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+							<input type="date" name="datestart" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="date-end">Fecha devolución:</label>
-						<input type="text" class="form-control" id="date-end" placeholder="mm/dd/yyyy"/>
+							<input type="date" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="time-start">Hora entrega:</label>
- 						<input type="time" name="hora" style="color:#FOB27A" min="08:00"
-                        						         					max="21:00" step="1800">
+ 						<input type="time" name="hora1" style="color:coral; font-weight:bold; font-size: 95%"/>
 
                     </div>
 				</div>
-				<div class="col-xxs-12 col-xs-6 mt alternate">
+				<div class="col-xxs-12 col-xs-20 mt alternate">
 					<div class="input-field">
 						<label for="time-end">Hora devolución:</label>
-						<input type="text" class="form-control" id="time-end" placeholder="--:--"/>
+ 						<input type="time" name="hora2" style="color:coral; font-weight:bold; font-size: 95%"/>
 					</div>
 				</div>
 				

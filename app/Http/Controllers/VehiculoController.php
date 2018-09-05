@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vehiculo;
 use App\Compania;
+use App\Destino;
 
 class VehiculoController extends Controller
 {
@@ -62,15 +63,42 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function show(Request $request)
     {
-        //ciudad, fechas, hora de arriendo, hora de devolucion
-        $vehiculos = Vehiculo::where('fecha_inicio_arriendo', '<=' , $request->fecha_fin_arriendo)
-            ->where('fecha_fin_arriendo', '>=', $request->fecha_inicio_arriendo)
-            ->where('hora_inicio_arriendo', '<=', $request->hora_fin_arriendo)
-            ->where('hora_fin_arriendo', '>=', $request->hora_inicio_arriendo)->get();
+        $ciudad = Destino::where('ciudad', $request->destino)->first();
+        $companias = $ciudad->companias()->get();
+        $vehiculos = collect();
+        foreach ($companias as $compania) {
+            $vehiculos1 = Vehiculo::where('fecha_inicio_arriendo', '>' , $request->dateend)
+                ->where('id_compania', $compania->id_compania)->get();
+            $vehiculos2 = Vehiculo::where('fecha_fin_arriendo', '<' , $request->datestart)
+                ->where('id_compania', $compania->id_compania)->get();
 
-        return $vehiculos;
+            $vehiculos3 = Vehiculo::where('fecha_inicio_arriendo', '=' , $request->dateend)
+                ->where('hora_fin_arriendo', '>',$request->hora1)
+                ->where('id_compania', $compania->id_compania)->get();
+
+            $vehiculos4 = Vehiculo::where('fecha_fin_arriendo', '=' , $request->datestart)
+                ->where('hora_inicio_arriendo', '<',$request->hora2)
+                ->where('id_compania', $compania->id_compania)->get();
+
+            $vehiculos->push($vehiculos1);
+            $vehiculos->push($vehiculos2);
+            $vehiculos->push($vehiculos3);
+            $vehiculos->push($vehiculos4);
+            $compania->push($vehiculos);
+        }
+        return $companias;
+
+/*        return view('seleccion.autosEncontrados')
+            ->with('autosEncontrados', $vehiculos)
+            ->with('fechaInicio', $request->datestart)
+            ->with('fechaFin', $request->dateend)
+            ->with('horaInicio', $request->hora1)
+            ->with('horaFin',$request->hora2);*/
     }
 
     /**
