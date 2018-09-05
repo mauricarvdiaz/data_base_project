@@ -73,12 +73,16 @@ class ActividadControlador extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      Se buca una actividad en especifico                    */
-    public function show(Request $request)
+    public function show(Request $request) 
     {
         //Aca se busca en la base de datos con el destino....
         $ciudad = Destino::where('ciudad', $request->destino)->first();
-        $actividades = $ciudad->actividades()->get();
- 
+        if ($ciudad != Null) {
+            $actividades = $ciudad->actividades()->get();
+        }
+        else {
+            $actividades = collect();
+        }
         return view('seleccion.actividad')->with('actividades', $actividades);
     }
 

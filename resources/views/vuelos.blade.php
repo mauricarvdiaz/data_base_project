@@ -63,9 +63,10 @@
     }
 </script>
 
+<body style="background-color:#AF601A;">
 <div class="fh5co-hero">
-	<div class="fh5co-overlay"></div>
-		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
+
+		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-color:#AF601A;">
 			<div class="desc">
 				<div class="container">
 					<div class="row">
@@ -108,13 +109,13 @@
 					<div class="col-xxs-12 col-xs-6 mt">
 						<div class="input-field">
 							<label for="origen">Origen:</label>
-							<input type="text" required="true" name="origen" class="form-control" id="origen" placeholder="Ingresa tu origen"/>
+							<input type="text" required="true" name="origen" class="form-control" id="origen" placeholder="Ciudad origen"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt">
 						<div class="input-field">
 							<label for="destino">Destino:</label>
-							<input type="text" required="true" name="destino" class="form-control" id="destino" placeholder="Ingresa tu destino"/>
+							<input type="text" required="true" name="destino" class="form-control" id="destino" placeholder="Ciudad destino"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt alternate">
@@ -206,4 +207,5 @@
 		</div>
 	</div>
 </div>
+</body>
 @endsection

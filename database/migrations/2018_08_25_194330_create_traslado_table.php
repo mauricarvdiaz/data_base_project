@@ -15,11 +15,12 @@ class CreateTrasladoTable extends Migration
     {
         Schema::create('traslado', function (Blueprint $table) {
             $table->increments('id_traslado');
-            $table->mediumInteger('cantidad_pasajeros');
-            $table->dateTime('fecha_hora_traslado');
-            $table->string('tipo');
-            $table->string('ubicacion_hotel');
-            $table->string('ubicacion_aeropuerto');
+            $table->mediumInteger('id_vehiculo');
+            $table->foreign('id_vehiculo')->references('id_vehiculo')->on('vehiculo');
+            $table->date('fecha_traslado');
+            $table->mediumInteger('tipo');
+            $table->string('nombre_hotel');
+            $table->string('nombre_aeropuerto');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ Route::get('/alojamientos', 'HotelController@alojamientos')->name('alojamientos'
 
 Route::get("/autos", "EstructuraControlador@autos");
 Route::get("/buscar/vuelos", "VueloController@vuelos");
-Route::get("/traslados", "EstructuraControlador@traslados");
+Route::get("/traslados", "TrasladoController@traslado");
 Route::get("/paquetes", "EstructuraControlador@paquetes");
 Route::get("/actividades", "EstructuraControlador@actividades");
 
@@ -36,6 +36,7 @@ Route::resource('historial', 'HistorialController');
 Route::resource('usuario', 'UsersController');
 Route::resource('reserva', 'ReservaController');
 Route::resource('destino', 'DestinoController');
+Route::resource('traslado', 'TrasladoController');
 
 Route::get('habitaciones/{hotel}/{fecha_in}/{fecha_out}/{hab1}/{hab2?}', 'HabitacionController@buscar_habitaciones');
 Route::get('habitacion/reserva', 'HabitacionController@reservar');
