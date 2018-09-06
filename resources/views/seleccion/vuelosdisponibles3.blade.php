@@ -2,7 +2,7 @@
 @section('titulo', 'Vuelos')
 
 @section("contenido")
-  <body style="background-color:#F0B27A;">
+  <body style="background-color:#AF601A;">
     @if($nroTramos === 4)
       <h3>Tramo 1</h3>
       @if(count($tramo1) > 0)

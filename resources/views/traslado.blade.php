@@ -11,7 +11,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-5 col-md-5" style="margin-top: -70px">
-<form action="/traslado" method="GET">
+<form action="/traslado/search" method="GET">
 	{{ csrf_field() }}
 	<div class="tabulation animate-box">
 		<!-- Nav tabs -->

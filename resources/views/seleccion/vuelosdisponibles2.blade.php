@@ -2,7 +2,7 @@
 @section('titulo', 'Vuelos')
 
 @section("contenido")
-  <body style="background-color:#F0B27A;">
+  <body style="background-color:#AF601A;">
     @if(count($vuelosIda) > 0 && count($vuelosRegreso) > 0)
     <div style="margin-top: 10px;margin-right: 50px; margin-left: 50px;margin-bottom: 10px; height: 250px">
       <h3 style="font-weight:bold"> Selecciona tu vuelo de ida</h3>

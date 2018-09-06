@@ -26,32 +26,32 @@
 				<div class="col-xxs-12 col-xs-12 mt">
 					<div class="input-field">
 						<label for="from">Lugar de entrega:</label>
-						<input type="text" name="destino" class="form-control" id="from-place" placeholder="Ingresa tu origen"/>
+						<input type="text" required="true" name="destino" class="form-control" id="from-place" placeholder="Ingresa tu origen"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="date-start">Fecha entrega:</label>
-							<input type="date" name="datestart" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
+							<input type="date" required="true" name="datestart" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="date-end">Fecha devolución:</label>
-							<input type="date" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
+							<input type="date" required="true" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="time-start">Hora entrega:</label>
- 						<input type="time" name="hora1" style="color:coral; font-weight:bold; font-size: 95%"/>
+ 						<input type="time" required="true" name="hora1" style="color:coral; font-weight:bold; font-size: 95%"/>
 
                     </div>
 				</div>
 				<div class="col-xxs-12 col-xs-20 mt alternate">
 					<div class="input-field">
 						<label for="time-end">Hora devolución:</label>
- 						<input type="time" name="hora2" style="color:coral; font-weight:bold; font-size: 95%"/>
+ 						<input type="time" required="true" name="hora2" style="color:coral; font-weight:bold; font-size: 95%"/>
 					</div>
 				</div>
 				
