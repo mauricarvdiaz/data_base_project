@@ -49,7 +49,7 @@ class TrasladoController extends Controller
      */
     public function show(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
