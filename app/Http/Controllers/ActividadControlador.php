@@ -57,7 +57,7 @@ class ActividadControlador extends Controller
         //Aca se busca en la base de datos con el destino....
         $ciudad = Destino::where('ciudad', $request->destino)->first();
         $actividades = $ciudad->actividades()->get();
- 
+
         return view('seleccion.actividad')->with('actividades', $actividades);
     }
 

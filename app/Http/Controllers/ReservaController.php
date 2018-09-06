@@ -60,7 +60,8 @@ class ReservaController extends Controller
                 }
             }
         }
-        return redirect('/alojamientos');
+        $ruta = "reserva/" . Auth::user()->id;
+        return redirect($ruta);
     }
 
 

@@ -62,12 +62,15 @@ class CarritoController extends Controller
 	{
 		$carrito = \Session::get('carrito');
 		$actividad = Actividad::find($id_actividad);
-		/*if($actividad->fecha == $request->fecha){
+		$actividad_nueva = new Actividad();
+		if($actividad->fecha == $request->fecha){
+			$actividad_nueva->id_actividad = $id_actividad;
+			/*
 			$actividad->nro_menores_edad += $request->menores;
 			$actividad->nro_mayores_edad += $request->adultos;
-			array_push($carrito['actividad'], $actividad);
-		}
-		else{	
+			array_push($carrito['actividad'], $actividad);*/
+		}/*
+		else{
 			$actividad_nueva = new Actividad();
 			$actividad_nueva->id_ciudad = $actividad->id_ciudad;
 			$actividad_nueva->fecha = $request->fecha;
@@ -77,7 +80,6 @@ class CarritoController extends Controller
 			$actividad_nueva->nro_mayores_edad = $request->adultos;
 			array_push($carrito['actividad'], $actividad_nueva);
 		}*/
-		$actividad_nueva = new Actividad();
 		$actividad_nueva->id_ciudad = $actividad->id_ciudad;
 		$actividad_nueva->fecha = $request->fecha;
 		$actividad_nueva->precio_actividad = $actividad->precio_actividad;
@@ -88,6 +90,9 @@ class CarritoController extends Controller
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
 	}
+
+	public function agregar_vuelo()
+
     //Borrar
 	public function borrar($llave, $posicion)
 	{
