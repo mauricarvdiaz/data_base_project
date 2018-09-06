@@ -15,7 +15,7 @@
           <th scope="col" align="center">Hora llegada</th>
           <th scope="col" align="center">N° escalas</th>
           <th scope="col" align="center">Precio</th>
-          <th scope="col" align="center">Detalles</th>
+          <th scope="col" align="center"></th>
         </tr>
       </thead>
       <tbody>
@@ -110,7 +110,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Agregar al carrito</button>
+                        <a href="/carrito/agregar/vuelo/{{$vuelosi->nro_vuelo}}/{{$claseVuelo}}/{{$cantidad_viajeros}}" class="btn btn-primary">Añadir al carrito</a>
                       </div>
                     </div>
                   </div>
@@ -228,7 +228,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Agregar al carrito</button>
+                         <a href="/carrito/agregar/vuelo/{{$vuelosr->nro_vuelo}}/{{$claseVuelo}}/{{$cantidad_viajeros}}" class="btn btn-primary">Añadir al carrito</a>
                       </div>
                     </div>
                   </div>

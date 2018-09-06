@@ -27,6 +27,6 @@ class Vehiculo extends Model
 	}
 
 	public function traslados(){
-		return $this->belongsToMany(Traslado::class);
+		return $this->belongsTo(Traslado::class);
 	}
 }

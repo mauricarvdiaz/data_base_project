@@ -51,7 +51,7 @@ class ReservaController extends Controller
                 foreach ($producto as $habitacion) {
                     $reserva = new Reserva();
                     $reserva->id_usuario = Auth::user()->id;
-                    $reserva->detalle = "Se ha realizado la reserva de la habitacion N°" . $habitacion->nro_habitacion . " con fecha de entrada " . $habitacion->fecha_entrada . " y fecha de salida " . $habitacion->fecha_salida;
+                    $reserva->detalle = "Se ha realizado la reserva de la habitacion N° " . $habitacion->nro_habitacion . " con fecha de entrada " . $habitacion->fecha_entrada . " y fecha de salida " . $habitacion->fecha_salida;
                     $reserva->monto_reserva = $subtotal[$key][$i];
                     $reserva->fecha_reserva = date('Y-m-d');
                     $reserva->hora_reserva = date('H:i:s');
@@ -59,7 +59,37 @@ class ReservaController extends Controller
                     $i++;
                 }
             }
+            elseif($key == "actividad" && count($producto) > 0)
+            {
+                $i = 0;
+                foreach ($producto as $actividad) {
+                    $reserva = new Reserva();
+                    $reserva->id_usuario = Auth::user()->id;
+                    $reserva->detalle = "Se ha realizado la reserva de la actividad " . $actividad->tipo_actividad . " con fecha de realización " . $actividad->fecha;
+                    $reserva->monto_reserva = $subtotal[$key][$i];
+                    $reserva->fecha_reserva = date('Y-m-d');
+                    $reserva->hora_reserva = date('H:i:s');
+                    $reserva->save();
+                    $i++;
+                }
+            }
+            elseif($key == "vuelo" && count($producto) > 0)
+            {
+                $i = 0;
+                foreach ($producto as $vuelo) {
+                    $reserva = new Reserva();
+                    $reserva->id_usuario = Auth::user()->id;
+                    $reserva->detalle = "Se ha realizado la reserva del vuelo " . $vuelo->nro_vuelo . " con fecha de viaje " . $vuelo->fecha_salida;
+                    $reserva->monto_reserva = $subtotal[$key][$i];
+                    $reserva->fecha_reserva = date('Y-m-d');
+                    $reserva->hora_reserva = date('H:i:s');
+                    $reserva->save();
+                    $i++;
+                }
+            }
+
         }
+        \Session::forget('carrito');
         $ruta = "reserva/" . Auth::user()->id;
         return redirect($ruta);
     }
@@ -97,7 +127,7 @@ class ReservaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
     }
 
     /**

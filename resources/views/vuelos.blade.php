@@ -35,7 +35,7 @@
     		agregar("tramosBtn");
     	}
     	if (nextinput <= 3) {
-    		campo ='<div id="cuadro'+nextinput+'"><div class="col-xxs-12 col-xs-6 mt"><div class="input-field"><label for="origen">Origen:</label><input type="text" name="origen'+nextinput+'" class="form-control" id="origen'+nextinput+'" placeholder="Ingresa tu origen"/></div></div><div class="col-xxs-12 col-xs-6 mt"><div class="input-field"><label for="destino">Destino:</label><input type="text" name="destino'+nextinput+'" class="form-control" id="destino'+nextinput+'" placeholder="Ingresa tu destino"/></div></div><div class="col-xxs-12 col-xs-6 mt alternate"><div class="input-field"><label for="datestart">Partida:</label><input type="date" name="datestart'+nextinput+'" class="form-control" id="datein'+nextinput+'" placeholder="mm/dd/yyyy"/></div></div><div class="col-xxs-12 col-xs-6 mt alternate"><div class="input-field"><label id="regreso'+nextinput+'" for="dateend" style="visibility:hidden">Regreso:</label><input type="date" name="dateend'+nextinput+'" class="form-control" id="dateout'+nextinput+'" placeholder="mm/dd/yyyy" style="visibility:hidden" disabled/></div></div></div>';
+    		campo ='<div id="cuadro'+nextinput+'"><div class="col-xxs-12 col-xs-6 mt"><div class="col-md-12" style="border: 1px solid #F0B27A; margin-bottom: 20px; margin-top:15px"></div><div class="input-field"><label for="origen">Origen:</label><input type="text" required="true" name="origen'+nextinput+'" class="form-control" id="origen'+nextinput+'" placeholder="Ingresa tu origen"/></div></div><div class="col-xxs-12 col-xs-6 mt"><div class="col-md-12" style="border: 1px solid #F0B27A; margin-bottom: 20px;margin-top:15px"></div><div class="input-field"><label for="destino">Destino:</label><input type="text" required="true" name="destino'+nextinput+'" class="form-control" id="destino'+nextinput+'" placeholder="Ingresa tu destino"/></div></div><div class="col-xxs-12 col-xs-6 mt alternate"><div class="input-field"><label for="datestart">Partida:</label><input type="date" style="color: #E67E22;font-weight: bold;background-color: #F4ECF7;border:none;" required="true" name="datestart'+nextinput+'" class="form-control" id="datein'+nextinput+'" placeholder="mm/dd/yyyy"/></div></div><div class="col-xxs-12 col-xs-6 mt alternate"><div class="input-field"><label id="regreso'+nextinput+'" for="dateend" style="visibility:hidden">Regreso:</label><input type="date" name="dateend'+nextinput+'" class="form-control" id="dateout'+nextinput+'" placeholder="mm/dd/yyyy" style="visibility:hidden" disabled/></div></div></div>';
     		$("#campos").append(campo);
     		nextinput++;
     	}
@@ -63,9 +63,10 @@
     }
 </script>
 
+<body style="background-color:#AF601A;">
 <div class="fh5co-hero">
-	<div class="fh5co-overlay"></div>
-		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
+
+		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-color:#AF601A;">
 			<div class="desc">
 				<div class="container">
 					<div class="row">
@@ -108,25 +109,25 @@
 					<div class="col-xxs-12 col-xs-6 mt">
 						<div class="input-field">
 							<label for="origen">Origen:</label>
-							<input type="text" name="origen" class="form-control" id="origen" placeholder="Ingresa tu origen"/>
+							<input type="text" required="true" name="origen" class="form-control" id="origen" placeholder="Ciudad origen"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt">
 						<div class="input-field">
 							<label for="destino">Destino:</label>
-							<input type="text" name="destino" class="form-control" id="destino" placeholder="Ingresa tu destino"/>
+							<input type="text" required="true" name="destino" class="form-control" id="destino" placeholder="Ciudad destino"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt alternate">
 						<div class="input-field">
 							<label for="datestart">Partida:</label>
-							<input type="date" name="datestart" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
+							<input type="date" style="color: #E67E22;font-weight: bold;background-color: #F4ECF7;border:none;" required="true" name="datestart" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt alternate">
 						<div class="input-field">
 							<label id="regreso" for="dateend">Regreso:</label>
-							<input type="date" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
+							<input type="date" style="color: #E67E22;font-weight: bold;background-color: #F4ECF7;border:none;" required="true" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
 						</div>
 					</div>
 				</div>
@@ -206,4 +207,5 @@
 		</div>
 	</div>
 </div>
+</body>
 @endsection

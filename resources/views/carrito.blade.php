@@ -51,7 +51,19 @@
                         @elseif($clave === "vehiculo")
                             
                         @elseif($clave === "vuelo")
-                        
+                            @for($i = 0; $i < count($productos); $i++)
+                                <tr>
+                                    <td>vuelo</td>
+                                    <td>${{ $productos[$i]->precio_vuelo }} por persona</td>
+                                    <td>Para {{ $productos[$i]->cantidad_turista + $productos[$i]->cantidad_ejecutivo + $productos[$i]->cantidad_primera_clase}} personas</td>
+                                    <td> ${{ $subtotal[$clave][$i] }}</td>
+                                    <td align="center">
+                                        <a href="/carrito/borrar/vuelo/{{$i}}">
+                                            <button type="button" class="btn btn-danger btn-xs">x</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endfor
                         @elseif($clave === "paquete") <!--Paquete-->
                             
                         @endif

@@ -17,7 +17,28 @@ class ActividadControlador extends Controller
     {
         //
     }
+    public function reservar()
+    {
+        $carrito = \Session::get('carrito');
+        $subtotal = \Session::get('subtotal');
+        foreach ($carrito as $key => $actividades) {
+            if($key == "actividad" && count($actividades) > 0){
+                foreach ($actividades as $actividad) {
+                    if ($actividad->id_actividad != Null){
+                        $actividad2 = Actividad::find($actividad->id_actividad);
+                        $nro_menores_edad = $actividad2->nro_menores_edad + $actividad->nro_menores_edad;
+                        $nro_mayores_edad = $actividad2->nro_mayores_edad + $actividad->nro_mayores_edad;
+                        Vuelo::where('nro_vuelo', $vuelo->nro_vuelo)->update(['nro_menores_edad' =>$nro_menores_edad, 'nro_mayores_edad' => $nro_mayores_edad]);
 
+                    }
+                    else{
+                    $actividad->save();
+                    }
+                }
+            }
+        }
+        return redirect('vuelo/reserva');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -46,7 +67,7 @@ class ActividadControlador extends Controller
         $actividad->save();
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  int  $id
@@ -56,8 +77,12 @@ class ActividadControlador extends Controller
     {
         //Aca se busca en la base de datos con el destino....
         $ciudad = Destino::where('ciudad', $request->destino)->first();
-        $actividades = $ciudad->actividades()->get();
-
+        if ($ciudad != Null) {
+            $actividades = $ciudad->actividades()->get();
+        }
+        else {
+            $actividades = collect();
+        }
         return view('seleccion.actividad')->with('actividades', $actividades);
     }
 

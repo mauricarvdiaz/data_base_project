@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Vehiculo;
 use App\Compania;
+use App\Destino;
 
 class VehiculoController extends Controller
 {
@@ -13,6 +14,12 @@ class VehiculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function vehiculos()
+    {
+        return view('autos');
+    }
+
     public function index()
     {
         $data = Vehiculo::all();
@@ -28,13 +35,13 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        
 
-        
+
+
 
             //$table->primary('patente');
             //$table->string('patente');
-            
+
 
     }
 
@@ -46,7 +53,7 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        $vehiculo = new vehiculo($request->all()); 
+        $vehiculo = new vehiculo($request->all());
         $vehiculo->save();
     }
 
@@ -56,15 +63,46 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function show(Request $request)
     {
-        //ciudad, fechas, hora de arriendo, hora de devolucion
-        $vehiculos = Vehiculo::where('fecha_inicio_arriendo', '<=' , $request->fecha_fin_arriendo)
-            ->where('fecha_fin_arriendo', '>=', $request->fecha_inicio_arriendo)
-            ->where('hora_inicio_arriendo', '<=', $request->hora_fin_arriendo)
-            ->where('hora_fin_arriendo', '>=', $request->hora_inicio_arriendo)->get();
+        $ciudad = Destino::where('ciudad', $request->destino)->first();
+        $companias = $ciudad->companias()->get();
+        $vehiculos = collect();
+        foreach ($companias as $compania) {
+            $vehiculos_comp = collect();
+            $vehiculos1 = Vehiculo::where('fecha_inicio_arriendo', '>' , $request->dateend)
+                ->where('id_compania', $compania->id_compania)->get();
+            $vehiculos2 = Vehiculo::where('fecha_fin_arriendo', '<' , $request->datestart)
+                ->where('id_compania', $compania->id_compania)->get();
 
+            $vehiculos3 = Vehiculo::where('fecha_inicio_arriendo', '=' , $request->dateend)
+                ->where('hora_fin_arriendo', '>',$request->hora1)
+                ->where('id_compania', $compania->id_compania)->get();
+
+            $vehiculos4 = Vehiculo::where('fecha_fin_arriendo', '=' , $request->datestart)
+                ->where('hora_inicio_arriendo', '<',$request->hora2)
+                ->where('id_compania', $compania->id_compania)->get();
+
+            $vehiculos_comp->concat($vehiculos1);
+            $vehiculos_comp->concat($vehiculos2);
+            $vehiculos_comp->concat($vehiculos3);
+            $vehiculos_comp->concat($vehiculos4);
+            $vehiculos->push($vehiculos_comp);
+        }
+        //$combine = $companias->combine($vehiculos);
+        //
+        //vehiculos ( (vehisculos 1 vehiculos2 vehiculos3  vehiculos4) (vehisculos 1 vehiculos2)  (vehiculos3)  (vehiculos4)))
         return $vehiculos;
+
+/*        return view('seleccion.autosEncontrados')
+            ->with('autosEncontrados', $vehiculos)
+            ->with('fechaInicio', $request->datestart)
+            ->with('fechaFin', $request->dateend)
+            ->with('horaInicio', $request->hora1)
+            ->with('horaFin',$request->hora2);*/
     }
 
     /**

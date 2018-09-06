@@ -17,17 +17,17 @@ $factory->define(App\Vuelo::class, function (Faker $faker) {
     }
 
     return [
-        'nro_vuelo' => $faker->unique()->numberBetween($min = 1000000, $max = 9999999),
+        'nro_vuelo' => $faker->unique()->numberBetween($min = 100000, $max = 999999),
         'origen' => $ciudadO,
         'destino' => $ciudadD,
         'fecha_salida' => $fecha_in->format('Y-m-d'),
         'hora_salida' => $faker->time($format = 'H:i', $max = 'now'),
         'fecha_llegada' => $fecha_out,
         'hora_llegada' => $faker->time($format = 'H:i', $max = 'now'),
-        'cantidad_turista' => $faker->numberBetween($min = 70, $max = 100),
-        'cantidad_ejecutivo' => $faker->numberBetween($min = 70, $max = 100),
-        'cantidad_primera_clase' => $faker->numberBetween($min = 70, $max = 100),
-        'cantidad_equipaje' => $faker->numberBetween($min = 10, $max = 30),
+        'cantidad_turista' => $faker->numberBetween($min = 0, $max = 100),
+        'cantidad_ejecutivo' => $faker->numberBetween($min = 0, $max = 100),
+        'cantidad_primera_clase' => $faker->numberBetween($min = 0, $max = 100),
+        'cantidad_equipaje' => $faker->numberBetween($min = 1, $max = 2),
         'precio_vuelo' => $faker->numberBetween($min = 100000, $max = 300000),
         'aerolinea' => $faker->randomElement($aerolineas),
         'nro_escala' => $faker->numberBetween($min = 0, $max = 2),

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Habitacion;
 use App\Actividad;
+use App\Vuelo;
 use DateTime;
 
 class CarritoController extends Controller
@@ -57,6 +58,43 @@ class CarritoController extends Controller
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
 	}
+	public function agregar_vuelo($nro_vuelo, $claseVuelo, $cantidad_viajeros)
+	{
+		$carrito = \Session::get('carrito');
+		$vue = Vuelo::find($nro_vuelo);
+		$vuelo_reservar = new Vuelo();
+		$vuelo_reservar->nro_vuelo = $vue->nro_vuelo;
+		$vuelo_reservar->origen = $vue->origen;
+		$vuelo_reservar->destino = $vue->destino;
+		$vuelo_reservar->fecha_salida = $vue->fecha_salida;
+		$vuelo_reservar->fecha_llegada = $vue->fecha_llegada;
+		$vuelo_reservar->hora_salida = $vue->hora_salida;
+		$vuelo_reservar->hora_llegada = $vue->hora_llegada;
+		$vuelo_reservar->aerolinea = $vue->aerolinea;
+		$vuelo_reservar->nro_escala = $vue->nro_escala;
+		$vuelo_reservar->cantidad_equipaje = $vue->cantidad_equipaje;
+		$vuelo_reservar->precio_vuelo = $vue->precio_vuelo;
+		if ($claseVuelo == 'Economica'){
+			$vuelo_reservar->cantidad_turista = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_ejecutivo = 0;
+			$vuelo_reservar->cantidad_primera_clase = 0;
+		}
+		else if($claseVuelo == 'Ejecutiva'){
+			$vuelo_reservar->cantidad_turista = 0;
+			$vuelo_reservar->cantidad_ejecutivo = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_primera_clase = 0;
+		}
+		else{
+			$vuelo_reservar->cantidad_primera_clase = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_ejecutivo = 0;
+			$vuelo_reservar->cantidad_turista = 0;
+		}
+		array_push($carrito['vuelo'], $vuelo_reservar);
+		\Session::put('carrito', $carrito);
+		return redirect()->route('carrito-compras');
+
+
+	}
 	//Funciones para agregar al carro actividades, vehiculos y lo que sea xd
 	public function agregar_actividad($id_actividad, Request $request)
 	{
@@ -65,6 +103,7 @@ class CarritoController extends Controller
 		$actividad_nueva = new Actividad();
 		if($actividad->fecha == $request->fecha){
 			$actividad_nueva->id_actividad = $id_actividad;
+		}
 			/*
 			$actividad->nro_menores_edad += $request->menores;
 			$actividad->nro_mayores_edad += $request->adultos;
@@ -80,7 +119,9 @@ class CarritoController extends Controller
 			$actividad_nueva->nro_mayores_edad = $request->adultos;
 			array_push($carrito['actividad'], $actividad_nueva);
 		}*/
+
 		$actividad_nueva->id_ciudad = $actividad->id_ciudad;
+		$actividad_nueva->tipo_actividad = $actividad->tipo_actividad;
 		$actividad_nueva->fecha = $request->fecha;
 		$actividad_nueva->precio_actividad = $actividad->precio_actividad;
 		$actividad_nueva->descripcion = $actividad->descripcion;
@@ -89,6 +130,7 @@ class CarritoController extends Controller
 		array_push($carrito['actividad'], $actividad_nueva);
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
+
 	}
 
 	public function agregar_vuelo()
@@ -129,7 +171,7 @@ class CarritoController extends Controller
     	//$total = 0;
     	foreach ($carrito as $llave => $productos) {
     		if($llave == 'habitacion'){
-    			$i = 0; 
+    			$i = 0;
     			foreach ($productos as $habitacion) {
     				$fecha_entrada = new DateTime($habitacion->fecha_entrada);
         			$fecha_salida = new DateTime($habitacion->fecha_salida);
@@ -148,8 +190,18 @@ class CarritoController extends Controller
     				$i++;
     			}
     		}
+    		else if($llave == 'vuelo'){
+    			$i = 0;
+    			foreach ($productos as $vuelo) {
+    				$sub = $vuelo->precio_vuelo * ($vuelo->cantidad_turista + $vuelo->cantidad_ejecutivo + $vuelo->cantidad_primera_clase);
+    				array_push($subtotal[$llave], $sub);
+    				$i++;
+    			}
+    		}
+
+
     		else if($llave == 'paquete'){
-    			
+
     		}
     	}
     	return $subtotal;

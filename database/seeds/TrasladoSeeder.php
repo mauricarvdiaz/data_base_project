@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class VehiculoSeeder extends Seeder
+class TrasladoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class VehiculoSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Vehiculo::class, 20)->create();
+        factory(App\Traslado::class, 10)->create();
     }
 }
