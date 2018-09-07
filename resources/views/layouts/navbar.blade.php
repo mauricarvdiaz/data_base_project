@@ -34,7 +34,7 @@
                                 {{ __('Reservas') }}
                             </a>
                             @if(Auth::user()->rol == "admin")
-                            	<a class="dropdown-item" href="/hoteles/create">
+                            	<a class="dropdown-item" href="/hoteles">
                                 	{{ __('Alojamientos') }}
                             	</a>
                             	<a class="dropdown-item" href="">

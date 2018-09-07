@@ -1,15 +1,15 @@
 @extends("layouts.plantilla2")
 @section('tabla_hotel')
    {!! Form::open(['route' => 'hoteles.store', 'method' => 'POST']) !!}
-   <div class="form-group" style="margin: 20px; width: 500px">
+   <div class="form-group">
      <label for="nombre">Nombre Hotel</label>
     <input type="text" name="nombre" value="" class="form-control" placeholder="" required>
    </div>
-   <div class="form-group" style="margin: 20px; width: 500px">
+   <div class="form-group">
       <label for="rut_hotel">Rut</label>
       <input type="number" name="rut_hotel" value="" class="form-control" placeholder="" required>
     </div>
-    <div class="form-group" style="margin: 20px; width: 500px">
+    <div class="form-group">
       <label for="ciudad_hotel">Ciudad</label>
       <input type="text" name="ciudad_hotel" value="" class="form-control" placeholder="" required>
     </div>

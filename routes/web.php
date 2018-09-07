@@ -24,6 +24,10 @@ Route::get('arriendo', 'VehiculoController@vehiculos');
 //Rutas para CRUD.
 Route::resource('actividad', 'ActividadControlador');
 Route::resource('hoteles', 'HotelController');
+Route::get('hoteles/{rut_hotel}/destoy', [
+	'uses' => 'HotelController@destroy',
+	'as' => 'hoteles.destroy'
+]);
 Route::resource('habitaciones', 'HabitacionController');
 Route::resource('paquete', 'PaqueteController');
 Route::resource('actividad', 'ActividadControlador');
@@ -67,8 +71,6 @@ Route::get('detalle/orden', [
 	'as' => 'detalle-orden',
 	'uses' => 'CarritoController@detalle_orden'
 ]);
-
-
 
 Route::get('actividad/detalle/{id}', 'ActividadControlador@detalleActividad');
 Route::get('/anadir/fondo', 'UsersController@nuevo_saldo');

@@ -24,7 +24,7 @@
                 <tr>
                   <td align="center"> {{$actividad->tipo_actividad}} </td>
                   <td align="center"> {{$actividad->descripcion}} </td>
-                  <td align="center"> {{$actividad->precio_actividad}} <br><br>
+                  <td align="center"> ${{$actividad->precio_actividad}} <br><br>
                     <a href="/actividad/detalle/{{$actividad->id_actividad}}" class="btn btn-primary btn-sm" style="margin-left: ;margin-top: " >Ver detalle</a>
                   </td>
                 </tr>

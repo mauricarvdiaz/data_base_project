@@ -27,6 +27,7 @@ class CarritoController extends Controller
 		foreach ($subtotal as $subtotalProducto) {
 			$total += array_sum($subtotalProducto);
 		}
+		return $carrito;
 		return view('carrito')->with('carrito', $carrito)->with('total', $total)->with('subtotal', $subtotal);
 	}
 	public function agregar_traslado($id_vehiculo,$datestart,$numPasajeros){
@@ -161,7 +162,6 @@ class CarritoController extends Controller
 		$vuelo_reservar->aerolinea = $vue->aerolinea;
 		$vuelo_reservar->nro_escala = $vue->nro_escala;
 		$vuelo_reservar->cantidad_equipaje = $vue->cantidad_equipaje;
-
 		if ($claseVuelo == 'Economica'){
 			$vuelo_reservar->cantidad_turista = $cantidad_viajeros;
 			$vuelo_reservar->cantidad_ejecutivo = 0;
@@ -204,6 +204,7 @@ class CarritoController extends Controller
 		}
 
 	}
+	
 	//Funciones para agregar al carro actividades, vehiculos y lo que sea xd
 	public function agregar_actividad($id_actividad, Request $request)
 	{
@@ -224,7 +225,6 @@ class CarritoController extends Controller
 		array_push($carrito['actividad'], $actividad_nueva);
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
-
 	}
 
     //Borrar

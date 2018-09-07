@@ -22,31 +22,32 @@
                 @foreach($carrito as $clave => $productos)
                         @if($clave === "habitacion")
                             @for($i = 0; $i < count($productos); $i++)
-                                <tr>
-                                    <td>habitacion</td>
-                                    <td>${{ $productos[$i]->precio_noche }} por noche</td>
-                                    <td>Por {{ $subtotal[$clave][$i] / $productos[$i]->precio_noche }} noches</td>
-                                    <td> ${{ $subtotal[$clave][$i] }}</td>
-                                    <td align="center">
-                                        <a href="/carrito/borrar/habitacion/{{$i}}">
-                                            <button type="button" class="btn btn-danger btn-xs">x</button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>habitacion</td>
+                                        <td>${{ $productos[$i]->precio_noche }} por noche</td>
+                                        <td>Por {{ $subtotal[$clave][$i] / $productos[$i]->precio_noche }} noches</td>
+                                        <td> ${{ $subtotal[$clave][$i] }}</td>
+                                        <td align="center">
+                                            <a href="/carrito/borrar/habitacion/{{$i}}">
+                                                <button type="button" class="btn btn-danger btn-xs">x</button>
+                                            </a>
+                                        </td>
+                                    </tr>
                             @endfor
                         @elseif($clave === "actividad")
                             @for($i = 0; $i < count($productos); $i++)
-                                <tr>
-                                    <td>actividad</td>
-                                    <td>${{ $productos[$i]->precio_actividad }} por persona</td>
-                                    <td>Para {{ $productos[$i]->nro_menores_edad + $productos[$i]->nro_mayores_edad}} personas</td>
-                                    <td>${{ ($productos[$i]->nro_menores_edad + $productos[$i]->nro_mayores_edad) * $productos[$i]->precio_actividad }}</td>
-                                    <td align="center">
-                                        <a href="/carrito/borrar/actividad/{{$i}}">
-                                            <button type="button" class="btn btn-danger btn-xs">x</button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>actividad</td>
+                                        <td>${{ $productos[$i]->precio_actividad }} por persona</td>
+                                        <td>Para {{ $productos[$i]->nro_menores_edad + $productos[$i]->nro_mayores_edad}} personas</td>
+                                        <td>${{ $subtotal[$clave][$i] }}</td>
+                                        <td align="center">
+                                            <a href="/carrito/borrar/actividad/{{$i}}">
+                                                <button type="button" class="btn btn-danger btn-xs">x</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                 
                             @endfor
                         @elseif($clave === "vehiculo")
                             @for($i = 0; $i < count($productos); $i++)
@@ -64,17 +65,19 @@
                             @endfor
                         @elseif($clave === "vuelo")
                             @for($i = 0; $i < count($productos); $i++)
-                                <tr>
-                                    <td>vuelo</td>
-                                    <td>${{ $productos[$i]->precio_vuelo }} por persona</td>
-                                    <td>Para {{ $productos[$i]->cantidad_turista + $productos[$i]->cantidad_ejecutivo + $productos[$i]->cantidad_primera_clase}} personas</td>
-                                    <td> ${{ $subtotal[$clave][$i] }}</td>
-                                    <td align="center">
-                                        <a href="/carrito/borrar/vuelo/{{$i}}">
-                                            <button type="button" class="btn btn-danger btn-xs">x</button>
-                                        </a>
-                                    </td>
-                                </tr>
+                                
+                                    <tr>
+                                        <td>vuelo</td>
+                                        <td>${{ $productos[$i]->precio_vuelo }} por persona</td>
+                                        <td>Para {{ $productos[$i]->cantidad_turista + $productos[$i]->cantidad_ejecutivo + $productos[$i]->cantidad_primera_clase}} personas</td>
+                                        <td> ${{ $subtotal[$clave][$i] }}</td>
+                                        <td align="center">
+                                            <a href="/carrito/borrar/vuelo/{{$i}}">
+                                                <button type="button" class="btn btn-danger btn-xs">x</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                               
                             @endfor
                          @elseif($clave === "traslado")
                             @for($i = 0; $i < count($productos); $i++)
@@ -98,7 +101,7 @@
             </table> <hr>
                 <h3>
                     <span class="label label-success">
-                        Total: {{$total}}
+                        Total: ${{$total}}
                     </span>
                 </h3>
             <hr>

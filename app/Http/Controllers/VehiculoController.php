@@ -23,7 +23,6 @@ class VehiculoController extends Controller
     public function index()
     {
         $data = Vehiculo::all();
-
         return $data;
         //return view($this->path.'.index', compact('data'));
     }
