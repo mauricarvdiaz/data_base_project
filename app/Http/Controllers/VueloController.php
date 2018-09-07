@@ -36,8 +36,7 @@ class VueloController extends Controller
                 }
             }
         }
-       // return redirect('/reservar/habitacion');
-        return redirect('vehiculo/reserva');
+        return redirect('/reservar/habitacion');
     }
 
     /**
@@ -103,9 +102,6 @@ class VueloController extends Controller
             if ($request->claseVuelo == "Economica") {
                 $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();
                 $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->where('fecha_salida', $request->dateend)->get();
-
-
-
             }
             else if ($request->claseVuelo == "Primera Clase") {
                 $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->datestart)->get();

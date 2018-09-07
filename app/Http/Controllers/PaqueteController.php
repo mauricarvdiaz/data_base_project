@@ -52,20 +52,25 @@ class PaqueteController extends Controller
      */
     public function show(Request $request)
     {
-        
-        if ($request->radio == 1){ //si se selecciona vuelo + hotel
-            $capacidad_hab1 = $request->cantAdultos + $request->cantMenores;
-
+        //return $request;
+        //si se selecciona vuelo + hotel
+        if ($request->radio == 1){
+            $vuelosIda = Vuelo::where('destino', $request->destino)->where('origen', $request->origen)->where('fecha_salida', $request->fechaIngreso)->get();
+            $vuelosRegreso = Vuelo::where('origen', $request->destino)->where('destino', $request->origen)->where('fecha_salida', $request->fechaRetorno)->get();
+            $aero1 = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
+            $aero2 = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
+            
+            //$capacidad_hab = $request->cantAdultos + $request->cantMenores;
             $ciudad = Destino::where('ciudad', $request->destino)->first();
             $hoteles = $ciudad->hoteles()->get();
-            
-            return view('seleccion.paqueteVueloHotel')->with('hoteles', $hoteles)->with('capa1', $capacidad_hab1)->with('fecha_in', $request->fecha_entrada)->with('fecha_out', $request->fecha_salida);
 
+            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('cantidad_viajeros',$request->cantAdultos + $request->cantMenores);
             
-            $vuelo = Vuelo::where('', $request->tipo)->where('destino', $request->destino)->get();
+
+            /*return view('seleccion.hoteles')->with('hoteles', $hoteles)->with('capa1', $capacidad_hab1)->with('capa2', $capacidad_hab2)->with('fecha_in', $request->fecha_entrada)->with('fecha_out', $request->fecha_salida);*/
         }
         else{
-            return "ayy lmao";
+           
         }
     }
 

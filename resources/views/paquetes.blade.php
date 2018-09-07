@@ -34,14 +34,14 @@
      <!--Seccion de Alojamientos-->
        <div role="tabpanel" class="tab-pane active" id="hotels">
         <div class="row">
-          <div class="col-xxs-12 col-xs-10 mt">
+          <div class="col-xxs-12 col-xs-6 mt">
             <label class="custom-control custom-radio">
                 <input id="radio1" name="radio" type="radio" value=1 class="custom-control-input" checked="checked" onclick="agregarHabitacion('habitacion')">
                 <span class="custom-control-indicator"></span>
               <span class="custom-control-description">Vuelo + habitación</span>
             </label>
           </div>
-          <div class="col-xxs-12 col-xs-11 mt">
+          <div class="col-xxs-12 col-xs-6 mt">
             <label class="custom-control custom-radio">
                 <input id="radio2" name="radio" type="radio" value=2 class="custom-control-input" onclick="quitarHabitacion('habitacion')">
                 <span class="custom-control-indicator"></span>
@@ -76,7 +76,7 @@
             <section>
               <label for="class">Habitaciones:</label>
               <select name="cantidad_hab" class="cs-select cs-skin-border">
-                <option value="1" selected="">1</option>
+                <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -87,7 +87,7 @@
             <section>
               <label for="class">Adultos:</label>
               <select class="cs-select cs-skin-border" name="cantAdultos">
-                <option value="1" selected>1</option>
+                <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -98,7 +98,7 @@
             <section>
               <label for="class">Menores:</label>
               <select class="cs-select cs-skin-border" name="cantMenores">
-                <option value="0" selected>0</option>
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
