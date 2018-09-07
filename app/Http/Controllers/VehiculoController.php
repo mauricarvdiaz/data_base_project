@@ -35,14 +35,8 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        
-
-        
-
-            //$table->primary('patente');
-            //$table->string('patente');
-            
-
+        //$table->primary('patente');
+        //$table->string('patente');
     }
 
     /**
@@ -53,7 +47,7 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        $vehiculo = new vehiculo($request->all()); 
+        $vehiculo = new vehiculo($request->all());
         $vehiculo->save();
     }
 
@@ -64,14 +58,22 @@ class VehiculoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
+    public function vehiculos_disponibles($pos)
+    {
+        $vehiculos = \Session::get('vehiculos');
+        $vehiculos_compania = $vehiculos->get($pos);
+ 
+        return view('seleccion.autosEncontrados')->with('vehiculos', $vehiculos_compania);
+    }
 
     public function show(Request $request)
     {
+        \Session::forget('vehiculos');
         $ciudad = Destino::where('ciudad', $request->destino)->first();
         $companias = $ciudad->companias()->get();
         $vehiculos = collect();
         foreach ($companias as $compania) {
+            $vehiculos_comp = collect();
             $vehiculos1 = Vehiculo::where('fecha_inicio_arriendo', '>' , $request->dateend)
                 ->where('id_compania', $compania->id_compania)->get();
             $vehiculos2 = Vehiculo::where('fecha_fin_arriendo', '<' , $request->datestart)
@@ -85,20 +87,14 @@ class VehiculoController extends Controller
                 ->where('hora_inicio_arriendo', '<',$request->hora2)
                 ->where('id_compania', $compania->id_compania)->get();
 
-            $vehiculos->push($vehiculos1);
-            $vehiculos->push($vehiculos2);
-            $vehiculos->push($vehiculos3);
-            $vehiculos->push($vehiculos4);
-            $compania->push($vehiculos);
+            $vehiculos_comp = $vehiculos1->concat($vehiculos2)->concat($vehiculos3)->concat($vehiculos4);
+            $vehiculos->push($vehiculos_comp);
         }
-        return $companias;
-
-/*        return view('seleccion.autosEncontrados')
+        \Session::put('vehiculos', $vehiculos);
+        return view('seleccion.companias')
             ->with('autosEncontrados', $vehiculos)
-            ->with('fechaInicio', $request->datestart)
-            ->with('fechaFin', $request->dateend)
-            ->with('horaInicio', $request->hora1)
-            ->with('horaFin',$request->hora2);*/
+            ->with('request', $request)
+            ->with('companias', $companias);
     }
 
     /**

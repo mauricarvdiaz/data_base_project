@@ -58,6 +58,7 @@ class CarritoController extends Controller
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
 	}
+
 	public function agregar_vuelo($nro_vuelo, $claseVuelo, $cantidad_viajeros)
 	{
 		$carrito = \Session::get('carrito');
@@ -111,22 +112,7 @@ class CarritoController extends Controller
 		if($actividad->fecha == $request->fecha){
 			$actividad_nueva->id_actividad = $id_actividad;
 		}
-			/*
-			$actividad->nro_menores_edad += $request->menores;
-			$actividad->nro_mayores_edad += $request->adultos;
-			array_push($carrito['actividad'], $actividad);
-		}
-		else{	
-			$actividad_nueva = new Actividad();
-			$actividad_nueva->id_ciudad = $actividad->id_ciudad;
-			$actividad_nueva->fecha = $request->fecha;
-			$actividad_nueva->precio_actividad = $actividad->precio_actividad;
-			$actividad_nueva->descripcion = $actividad->descripcion;
-			$actividad_nueva->nro_menores_edad = $request->menores;
-			$actividad_nueva->nro_mayores_edad = $request->adultos;
-			array_push($carrito['actividad'], $actividad_nueva);
-		}*/
-		
+
 		$actividad_nueva->id_ciudad = $actividad->id_ciudad;
 		$actividad_nueva->tipo_actividad = $actividad->tipo_actividad;
 		$actividad_nueva->fecha = $request->fecha;
@@ -139,6 +125,9 @@ class CarritoController extends Controller
 		return redirect()->route('carrito-compras');
 
 	}
+
+	public function agregar_vuelo()
+
     //Borrar
 	public function borrar($llave, $posicion)
 	{
@@ -175,7 +164,7 @@ class CarritoController extends Controller
     	//$total = 0;
     	foreach ($carrito as $llave => $productos) {
     		if($llave == 'habitacion'){
-    			$i = 0; 
+    			$i = 0;
     			foreach ($productos as $habitacion) {
     				$fecha_entrada = new DateTime($habitacion->fecha_entrada);
         			$fecha_salida = new DateTime($habitacion->fecha_salida);
@@ -202,10 +191,10 @@ class CarritoController extends Controller
     				$i++;
     			}
     		}
-    		
+
 
     		else if($llave == 'paquete'){
-    			
+
     		}
     	}
     	return $subtotal;
