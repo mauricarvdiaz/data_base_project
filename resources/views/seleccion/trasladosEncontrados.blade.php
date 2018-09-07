@@ -12,7 +12,7 @@
           <th scope="col" align="center">Patente</th>
           <th scope="col" align="center">Tipo</th>
           <th scope="col" align="center">Capacidad</th>
-          <th scope="col" align="center">Precio x Hora</th>
+          <th scope="col" align="center">Precio x persona</th>
           <th scope="col" align="center"> </th>
         </tr>
       </thead>

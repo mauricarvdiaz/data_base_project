@@ -15,7 +15,7 @@ class CarritoController extends Controller
 	public function __construct()
 	{
 		//Si no existe carrito se crea.
-		if(!\Session::has('carrito')) \Session::put('carrito', array("habitacion" => array(), "actividad" => array(), "vuelo" => array(), "vehiculo" => array(), "paquete" => array()));
+		if(!\Session::has('carrito')) \Session::put('carrito', array("habitacion" => array(), "actividad" => array(), "vuelo" => array(), "vehiculo" => array(),"traslado" => array(), "paquete" => array()));
 	}
     //Mostrar carrito
 	public function show()
@@ -35,14 +35,14 @@ class CarritoController extends Controller
 
 		$traslado->id_vehiculo = $vehiculo->id_vehiculo;
 		$traslado->patente = $vehiculo->patente;
-		$traslado->compañia = $vehiculo->compañia;
+		$traslado->id_compania = $vehiculo->id_compania;
 		$traslado->tipo = $vehiculo->tipo;
 		$traslado->fecha_inicio_arriendo = $vehiculo->fecha_inicio_arriendo;
 		$traslado->fecha_fin_arriendo = ($vehiculo->fecha_inicio_arriendo);
 		$traslado->hora_inicio_arriendo = $vehiculo->hora_inicio_arriendo;
 		$traslado->hora_fin_arriendo = $vehiculo->hora_fin_arriendo;
 		$traslado->capacidad= $numPasajeros;
-		$decimales = ($vehiculo->precio_dia / 24 )*2;
+		$decimales = (($vehiculo->precio_dia / 24 )*2 )* $numPasajeros;
         $traslado->precio_dia = floor($decimales);
 		array_push($carrito['traslado'], $traslado);
 		\Session::put('carrito', $carrito);
@@ -218,6 +218,7 @@ class CarritoController extends Controller
     				$i++;
     			}
     		}
+    		
     		else if($llave == 'vuelo'){
     			$i = 0;
     			foreach ($productos as $vuelo) {
