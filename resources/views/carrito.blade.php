@@ -64,6 +64,20 @@
                                     </td>
                                 </tr>
                             @endfor
+                         @elseif($clave === "traslado")
+                            @for($i = 0; $i < count($productos); $i++)
+                                <tr>
+                                    <td>traslado</td>
+                                    <td>${{ $productos[$i]->precio_dia }} </td>
+                                    <td>Para {{ $productos[$i]->capacidad}} personas</td>
+                                    <td> ${{ $subtotal[$clave][$i] }}</td>
+                                    <td align="center">
+                                        <a href="/carrito/borrar/traslado/{{$i}}">
+                                            <button type="button" class="btn btn-danger btn-xs">x</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endfor
                         @elseif($clave === "paquete") <!--Paquete-->
                             
                         @endif

@@ -56,14 +56,19 @@ class TrasladoController extends Controller
         if ($autos != Null) {
             foreach ($autos as $auto) {
                 $vehiculo = Vehiculo::where('id_vehiculo', $auto->id_vehiculo)->where('capacidad', '>=', $request->numPasajeros)->where(function ($query) use ($request){$query->where('fecha_inicio_arriendo', '>', $request->datestart)->orWhere('fecha_fin_arriendo', '<', $request->datestart);})->get();
-                $vehiculos->push($vehiculo);
+                $vehiculos = $vehiculos->concat($vehiculo);
+
+                foreach ($vehiculos as $v ) {
+                    $decimales = ($v->precio_dia / 24 )*2;
+                    $v->precio_dia = floor($decimales);
+                }
             }
         }
         else {
             $vehiculos = collect();
         }
-        return $vehiculos;
-        return view('seleccion.trasladosEncontrados')->with('autosDisponibles', $vehiculos);
+        
+        return view('seleccion.trasladosEncontrados')->with('vehiculos', $vehiculos)->with('datestart',$request->datestart)->with('numPasajeros',$request->numPasajeros);
     }
 
     /**

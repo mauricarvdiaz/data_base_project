@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Habitacion;
 use App\Actividad;
 use App\Vuelo;
+use App\Vehiculo;
 use DateTime;
 
 class CarritoController extends Controller
@@ -26,6 +27,27 @@ class CarritoController extends Controller
 			$total += array_sum($subtotalProducto);
 		}
 		return view('carrito')->with('carrito', $carrito)->with('total', $total)->with('subtotal', $subtotal);
+	}
+	public function agregar_traslado($id_vehiculo,$datestart,$numPasajeros){
+		$carrito = \Session::get('carrito');
+		$vehiculo = Vehiculo::find($id_vehiculo);
+		$traslado = new Vehiculo();
+
+		$traslado->id_vehiculo = $vehiculo->id_vehiculo;
+		$traslado->patente = $vehiculo->patente;
+		$traslado->compañia = $vehiculo->compañia;
+		$traslado->tipo = $vehiculo->tipo;
+		$traslado->fecha_inicio_arriendo = $vehiculo->fecha_inicio_arriendo;
+		$traslado->fecha_fin_arriendo = ($vehiculo->fecha_inicio_arriendo);
+		$traslado->hora_inicio_arriendo = $vehiculo->hora_inicio_arriendo;
+		$traslado->hora_fin_arriendo = $vehiculo->hora_fin_arriendo;
+		$traslado->capacidad= $numPasajeros;
+		$decimales = ($vehiculo->precio_dia / 24 )*2;
+        $traslado->precio_dia = floor($decimales);
+		array_push($carrito['traslado'], $traslado);
+		\Session::put('carrito', $carrito);
+		return redirect()->route('carrito-compras');
+
 	}
     //Agregar al carrito
 	public function agregar_habitacion($id_habitacion, $id_habitacion2, $fecha_in, $fecha_out)
@@ -59,7 +81,7 @@ class CarritoController extends Controller
 		return redirect()->route('carrito-compras');
 	}
 
-	public function agregar_vuelo($nro_vuelo, $claseVuelo, $cantidad_viajeros)
+	public function agregar_vuelo($nro_vuelo, $claseVuelo, $cantidad_viajeros, $tipoVuelo)
 	{
 		$carrito = \Session::get('carrito');
 		$vue = Vuelo::find($nro_vuelo);
@@ -74,6 +96,7 @@ class CarritoController extends Controller
 		$vuelo_reservar->aerolinea = $vue->aerolinea;
 		$vuelo_reservar->nro_escala = $vue->nro_escala;
 		$vuelo_reservar->cantidad_equipaje = $vue->cantidad_equipaje;
+
 	
 		if ($claseVuelo == 'Economica'){
 			$vuelo_reservar->cantidad_turista = $cantidad_viajeros;
@@ -97,10 +120,24 @@ class CarritoController extends Controller
 			$vuelo_reservar->precio_vuelo = floor($decimales);
 
 		}
-		array_push($carrito['vuelo'], $vuelo_reservar);
-		\Session::put('carrito', $carrito);
-		return redirect()->route('carrito-compras');
+		if ($tipoVuelo == 2){
+			array_push($carrito['vuelo'], $vuelo_reservar);
+			\Session::put('carrito', $carrito);
+			return redirect()->route('carrito-compras');
 
+		}
+		if ($tipoVuelo == 1){
+			array_push($carrito['vuelo'], $vuelo_reservar);
+			\Session::put('carrito', $carrito);
+			return back();
+
+		}
+		if ($tipoVuelo == 3){
+			array_push($carrito['vuelo'], $vuelo_reservar);
+			\Session::put('carrito', $carrito);
+			return back();
+
+		}
 
 	}
 	//Funciones para agregar al carro actividades, vehiculos y lo que sea xd
@@ -126,9 +163,7 @@ class CarritoController extends Controller
 
 	}
 
-	public function agregar_vuelo()
-
-    //Borrar
+	
 	public function borrar($llave, $posicion)
 	{
 		$carrito = \Session::get('carrito');
