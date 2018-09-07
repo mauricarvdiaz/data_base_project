@@ -11,6 +11,6 @@ class TrasladoSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Traslado::class, 10)->create();
+        factory(App\Traslado::class, 20)->create();
     }
 }

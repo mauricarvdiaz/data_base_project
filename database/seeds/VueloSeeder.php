@@ -11,6 +11,6 @@ class VueloSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Vuelo::class, 10)->create();
+        factory(App\Vuelo::class, 30)->create();
     }
 }
