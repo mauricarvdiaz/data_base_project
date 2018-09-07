@@ -27,7 +27,6 @@ class CarritoController extends Controller
 		foreach ($subtotal as $subtotalProducto) {
 			$total += array_sum($subtotalProducto);
 		}
-		return $carrito;
 		return view('carrito')->with('carrito', $carrito)->with('total', $total)->with('subtotal', $subtotal);
 	}
 	public function agregar_traslado($id_vehiculo,$datestart,$numPasajeros){
