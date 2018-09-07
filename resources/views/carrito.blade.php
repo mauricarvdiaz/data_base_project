@@ -52,7 +52,7 @@
                             @for($i = 0; $i < count($productos); $i++)
                                 <tr>
                                     <td>vehiculo</td>
-                                    <td>Precio por día ${{ $productos[$i]->precio_dia }}</td>
+                                    <td>${{ $productos[$i]->precio_dia }} por dia</td>
                                     <td>Modelo {{$productos[$i]->tipo}} con capacidad de {{ $productos[$i]->capacidad}} personas</td>
                                     <td>${{ $subtotal[$clave][$i] }}</td>
                                     <td align="center">
@@ -80,7 +80,7 @@
                             @for($i = 0; $i < count($productos); $i++)
                                 <tr>
                                     <td>traslado</td>
-                                    <td>${{ $productos[$i]->precio_dia }} </td>
+                                    <td>${{ $productos[$i]->precio_dia }} por persona</td>
                                     <td>Para {{ $productos[$i]->capacidad}} personas</td>
                                     <td> ${{ $subtotal[$clave][$i] }}</td>
                                     <td align="center">

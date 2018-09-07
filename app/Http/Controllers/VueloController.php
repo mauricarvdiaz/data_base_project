@@ -129,7 +129,7 @@ class VueloController extends Controller
             }
             $aero1 = Aeropuerto::where('ciudad_aeropuerto', $request->origen)->get();
             $aero2 = Aeropuerto::where('ciudad_aeropuerto', $request->destino)->get();
-            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros',$request->nroAdultos + $request->nroMenores)->with('tipoVuelo',$request->radio)->with('tipoVuelo',$request->radio);
+            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('claseVuelo', $request->claseVuelo)->with('cantidad_viajeros',$request->nroAdultos + $request->nroMenores)->with('tipoVuelo',$request->radio)->with('tipoVuelo',$request->radio)->with('paquete', 0);
 
         }
 

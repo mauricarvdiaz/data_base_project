@@ -9,9 +9,12 @@ use App\Hotel;
 use App\Habitacion;
 use App\Vehiculo;
 use App\Destino;
+use App\Aeropuerto;
 
 class PaqueteController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -52,6 +55,7 @@ class PaqueteController extends Controller
      */
     public function show(Request $request)
     {
+        
         //return $request;
         //si se selecciona vuelo + hotel
         if ($request->radio == 1){
@@ -64,7 +68,7 @@ class PaqueteController extends Controller
             $ciudad = Destino::where('ciudad', $request->destino)->first();
             $hoteles = $ciudad->hoteles()->get();
 
-            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('cantidad_viajeros',$request->cantAdultos + $request->cantMenores);
+            return view('seleccion.vuelosdisponibles2')->with('vuelosIda', $vuelosIda)->with('vuelosRegreso', $vuelosRegreso)->with('aeropuertoOrigen', $aero1)->with('aeropuertoDestino', $aero2)->with('cantidad_viajeros',$request->cantAdultos + $request->cantMenores)->with('claseVuelo', $request->claseVuelo)->with('tipoVuelo', 1)->with('paquete', 1);
             
 
             /*return view('seleccion.hoteles')->with('hoteles', $hoteles)->with('capa1', $capacidad_hab1)->with('capa2', $capacidad_hab2)->with('fecha_in', $request->fecha_entrada)->with('fecha_out', $request->fecha_salida);*/
@@ -73,6 +77,8 @@ class PaqueteController extends Controller
            
         }
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

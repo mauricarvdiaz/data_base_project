@@ -62,16 +62,27 @@
           </div>
           <div class="col-xxs-12 col-xs-6 mt alternate">
             <div class="input-field">
-              <label for="date-start">Fecha ingreso:</label>
-              <input type="text" required="true" class="form-control" id="date-start" name="fechaIngreso" placeholder="mm/dd/yyyy"/>
+              <label for="datestart">Fecha ingreso:</label>
+              <input type="date" style="color: #E67E22;font-weight: bold;background-color: #F4ECF7;border:none;" required="true" name="fechaIngreso" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
             </div>
           </div>
           <div class="col-xxs-12 col-xs-6 mt alternate">
             <div class="input-field">
-              <label for="date-end">Fecha Retorno:</label>
-              <input type="text" required="true" class="form-control" id="date-end" name="fechaRetorno" placeholder="mm/dd/yyyy"/>
+              <label for="datestart">Fecha ingreso:</label>
+              <input type="date" style="color: #E67E22;font-weight: bold;background-color: #F4ECF7;border:none;" required="true" name="fechaRetorno" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
             </div>
           </div>
+          <div class="col-sm-12 mt">
+          <section>
+            <label for="class">Clase:</label>
+            <select name="claseVuelo" class="cs-select cs-skin-border">
+              <!--<option value="1" disabled selected>Economica</option>-->
+              <option value="Economica">Economica</option>
+              <option value="Primera Clase">Primera Clase</option>
+              <option value="Ejecutiva">Ejecutiva</option>
+            </select>
+          </section>
+        </div>
           <div class="col-sm-12 mt" id="habitacion">
             <section>
               <label for="class">Habitaciones:</label>

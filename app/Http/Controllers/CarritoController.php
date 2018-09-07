@@ -74,8 +74,6 @@ class CarritoController extends Controller
 		return redirect()->route('carrito-compras');
 	}
 
-
-
     //Agregar al carrito
 	public function agregar_habitacion($id_habitacion, $id_habitacion2, $fecha_in, $fecha_out)
 	{
@@ -108,6 +106,46 @@ class CarritoController extends Controller
 		return redirect()->route('carrito-compras');
 	}
 
+	public function agregar_vuelo_paquete($nro_vuelo, $claseVuelo, $cantidad_viajeros, $tipoVuelo)
+    {
+        $carrito = \Session::get('carrito');
+        $vue = Vuelo::find($nro_vuelo);
+		$vuelo_reservar = new Vuelo();
+		$vuelo_reservar->nro_vuelo = $vue->nro_vuelo;
+		$vuelo_reservar->origen = $vue->origen;
+		$vuelo_reservar->destino = $vue->destino;
+		$vuelo_reservar->fecha_salida = $vue->fecha_salida;
+		$vuelo_reservar->fecha_llegada = $vue->fecha_llegada;
+		$vuelo_reservar->hora_salida = $vue->hora_salida;
+		$vuelo_reservar->hora_llegada = $vue->hora_llegada;
+		$vuelo_reservar->aerolinea = $vue->aerolinea;
+		$vuelo_reservar->nro_escala = $vue->nro_escala;
+		$vuelo_reservar->cantidad_equipaje = $vue->cantidad_equipaje;
+		if ($claseVuelo == 'Economica'){
+			$vuelo_reservar->cantidad_turista = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_ejecutivo = 0;
+			$vuelo_reservar->cantidad_primera_clase = 0;
+			$vuelo_reservar->precio_vuelo = $vue->precio_vuelo;
+		}
+		else if($claseVuelo == 'Ejecutiva'){
+			$vuelo_reservar->cantidad_turista = 0;
+			$vuelo_reservar->cantidad_ejecutivo = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_primera_clase = 0;
+			$decimales = $vue->precio_vuelo + ($vue->precio_vuelo * 0.3);
+			$vuelo_reservar->precio_vuelo = floor($decimales);
+		}
+		else{
+			$vuelo_reservar->cantidad_primera_clase = $cantidad_viajeros;
+			$vuelo_reservar->cantidad_ejecutivo = 0;
+			$vuelo_reservar->cantidad_turista = 0;
+			$decimales = $vue->precio_vuelo + ($vue->precio_vuelo * 0.5);
+			$vuelo_reservar->precio_vuelo = floor($decimales);
+		}
+		array_push($carrito['paquete'], $vuelo_reservar);
+		\Session::put('carrito', $carrito);
+		return back();
+    }
+
 	public function agregar_vuelo($nro_vuelo, $claseVuelo, $cantidad_viajeros, $tipoVuelo)
 	{
 		$carrito = \Session::get('carrito');
@@ -124,7 +162,6 @@ class CarritoController extends Controller
 		$vuelo_reservar->nro_escala = $vue->nro_escala;
 		$vuelo_reservar->cantidad_equipaje = $vue->cantidad_equipaje;
 
-	
 		if ($claseVuelo == 'Economica'){
 			$vuelo_reservar->cantidad_turista = $cantidad_viajeros;
 			$vuelo_reservar->cantidad_ejecutivo = 0;

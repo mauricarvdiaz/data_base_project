@@ -238,6 +238,9 @@
       @endforeach
       </tbody>
 </table>
+@if($paquete != 0)
+<a href="" class="btn btn-primary">Continuar</a>
+@endif
 </div>
     @else
       <h3>
