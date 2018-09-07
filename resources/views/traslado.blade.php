@@ -11,6 +11,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-5 col-md-5" style="margin-top: -70px">
+
 <form action="/traslado/search" method="GET">
 	{{ csrf_field() }}
 	<div class="tabulation animate-box">
@@ -73,9 +74,14 @@
 				<div class="col-xs-12">
 					<input type="submit" class="btn btn-primary btn-block" value="Buscar Traslado">
 				</div>
+				<div class="col-xs-12">
+					<input style="font-color: #FF0000 ;border-color:#EB984E;background: #EB984E  ; margin-top: 30px ; margin-left: 150px "  type="button" value="Volver atrás" onclick="history.back(-1)" />
+				</div>
+				
 			</div>
 		</div>
 	</div>
+
 </form>
 </div>
 					<div class="desc2 animate-box">
@@ -85,11 +91,20 @@
 							<!--<span class="price">$599</span>-->
 							<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
 						</div>
-					</div>
+
+
+				
+				
+
 				</div>
 			</div>
+			
 		</div>
+		
 	</div>
+	
 </div>
+
 </body>
+
 @endsection

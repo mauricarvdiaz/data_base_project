@@ -31,6 +31,45 @@
               @endforeach
             </tbody>
           </table> 
+          <div class="col-xs-12">
+          <input style="font-color: #FF0000 ;border-color:#EB984E;background: #EB984E  ; margin-top: 30px ; margin-left: 150px "  type="button" value="Volver atrás" onclick="history.back(-1)" />
+        </div>
+          <!--
+          <section>
+            <h3>Selecciona una fecha</h3>
+              <div class="row" style="background-color: ">
+                <div class="col-xxs-12 col-xs-6 mt alternate">
+                  <div class="input-field">
+                    <label for="fecha">Fecha entrada:</label>
+                    <input type="date" class="form-control" id="" name="fecha" placeholder="mm/dd/yyyy"/>
+                  </div>
+                </div>
+                <div class="col-xxs-12 col-xs-6 mt">
+                  <section>
+                    <label for="adultos">N° Adultos:</label>
+                    <select name="adultos" class="cs-select cs-skin-border">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </section>
+                  <section>
+                    <label for="menores">N° menores:</label>
+                    <select name="menores" class="cs-select cs-skin-border">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </section>
+                </div>
+                <div class="col-xs-12">
+                  <a href="/carrito/agregar/actividad/id_actividad/fecha/adultos/menores" class="btn btn-primary" style="margin-left: ;margin-top: " onclick="capturar()">Añadir al carrito</a>
+                </div> 
+              </div>
+          </section> -->
           @else
             <h3>
               <span class="label label-warning">No hay actividades disponibles</span>
@@ -39,5 +78,6 @@
         </div>
       </div>
     </div>
+
   </body>
 @endsection

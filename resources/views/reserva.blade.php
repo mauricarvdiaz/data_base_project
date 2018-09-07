@@ -36,5 +36,8 @@
             @endif
             
 		</div>
+        <div class="col-xs-12">
+                    <input style="font-color: #FF0000 ;border-color:#EB984E;background: #EB984E  ; margin-top: 30px ; margin-left: 150px "  type="button" value="Volver atrás" onclick="history.back(-1)" />
+                </div>
 	</body>
 @endsection

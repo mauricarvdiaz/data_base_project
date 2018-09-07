@@ -57,6 +57,10 @@
 				<div class="col-xs-12">
 					<input type="submit" class="btn btn-primary btn-block" value="Buscar autos">
 				</div>
+
+				<div class="col-xs-12">
+          <input style="font-color: #FF0000 ;border-color:#EB984E;background: #EB984E  ; margin-top: 30px ; margin-left: 150px "  type="button" value="Volver atrás" onclick="history.back(-1)" />
+        </div>
 			</div>
 		</div>
 	</div>
