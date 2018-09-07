@@ -28,19 +28,19 @@
 					<div class="col-xxs-12 col-xs-12 mt">
 						<div class="input-field">
 							<label for="destino">Ciudad:</label>
-							<input type="text" class="form-control" name="destino" placeholder="destino"/>
+							<input type="text" required="true" class="form-control" name="destino" placeholder="destino"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt alternate">
 						<div class="input-field">
 							<label for="fecha_entrada">Fecha entrada:</label>
-							<input type="date" class="form-control" id="" name="fecha_entrada" placeholder="mm/dd/yyyy"/>
+							<input type="date" required="true" class="form-control" id="" name="fecha_entrada" placeholder="mm/dd/yyyy"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt alternate">
 						<div class="input-field">
 							<label for="fecha_salida">Fecha salida:</label>
-							<input type="date" class="form-control" id="" name="fecha_salida" placeholder="mm/dd/yyyy"/>
+							<input type="date" required="true" class="form-control" id="" name="fecha_salida" placeholder="mm/dd/yyyy"/>
 						</div>
 					</div>
 					<div class="col-sm-12 mt">

@@ -51,25 +51,25 @@
           <div class="col-xxs-12 col-xs-6 mt">
             <div class="input-field">
               <label for="from">Origen:</label>
-              <input type="text" class="form-control" id="from-place" name="origen" placeholder="Ingresa tu origen"/>
+              <input type="text" required="true" class="form-control" id="from-place" name="origen" placeholder="Ingresa tu origen"/>
             </div>
           </div>
           <div class="col-xxs-12 col-xs-6 mt">
             <div class="input-field">
               <label for="from">Destino:</label>
-              <input type="text" class="form-control" id="to-place" name="destino" placeholder="Ingresa tu destino"/>
+              <input type="text" required="true" class="form-control" id="to-place" name="destino" placeholder="Ingresa tu destino"/>
             </div>
           </div>
           <div class="col-xxs-12 col-xs-6 mt alternate">
             <div class="input-field">
               <label for="date-start">Fecha ingreso:</label>
-              <input type="text" class="form-control" id="date-start" name="fechaIngreso" placeholder="mm/dd/yyyy"/>
+              <input type="text" required="true" class="form-control" id="date-start" name="fechaIngreso" placeholder="mm/dd/yyyy"/>
             </div>
           </div>
           <div class="col-xxs-12 col-xs-6 mt alternate">
             <div class="input-field">
               <label for="date-end">Fecha Retorno:</label>
-              <input type="text" class="form-control" id="date-end" name="fechaRetorno" placeholder="mm/dd/yyyy"/>
+              <input type="text" required="true" class="form-control" id="date-end" name="fechaRetorno" placeholder="mm/dd/yyyy"/>
             </div>
           </div>
           <div class="col-sm-12 mt" id="habitacion">

@@ -63,7 +63,7 @@
     }
 </script>
 
-<body style="background-color:#AF601A;">
+<body style="background-color:#FA8258;">
 <div class="fh5co-hero">
 
 		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-color:#AF601A;">

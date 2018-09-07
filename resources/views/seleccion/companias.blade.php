@@ -3,7 +3,7 @@
 
 @section("contenido")
   <body style="background-color:#F0B27A;">
-    @if(count($autosEncontrados) > 0)
+    @if(count($autosEncontrados) > 0 && count($companias)>0)
     <div style="margin-top: 10px;margin-right: 50px; margin-left: 50px;margin-bottom: 10px">
       <h3> Selecciona un vehículo</h3>
       <table class="table table-bordered" style="background-color:#ECF0F1;">

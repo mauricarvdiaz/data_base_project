@@ -179,7 +179,7 @@
           </table>
           @else
             <h3>
-              <span class="label label-warning">No hay habitaciones disponibles :(</span>
+              <span class="label label-warning">No hay habitaciones disponibles </span>
             </h3>
           @endif
         </div>

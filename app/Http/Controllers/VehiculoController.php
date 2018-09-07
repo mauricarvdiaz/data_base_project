@@ -100,33 +100,45 @@ class VehiculoController extends Controller
 
     public function show(Request $request)
     {
-        \Session::forget('vehiculos');
         $ciudad = Destino::where('ciudad', $request->destino)->first();
-        $companias = $ciudad->companias()->get();
-        $vehiculos = collect();
-        foreach ($companias as $compania) {
-            $vehiculos_comp = collect();
-            $vehiculos1 = Vehiculo::where('fecha_inicio_arriendo', '>' , $request->dateend)
-                ->where('id_compania', $compania->id_compania)->get();
-            $vehiculos2 = Vehiculo::where('fecha_fin_arriendo', '<' , $request->datestart)
-                ->where('id_compania', $compania->id_compania)->get();
 
-            $vehiculos3 = Vehiculo::where('fecha_inicio_arriendo', '=' , $request->dateend)
-                ->where('hora_fin_arriendo', '>',$request->hora1)
-                ->where('id_compania', $compania->id_compania)->get();
+        if ($ciudad != Null) 
+        {
+            $companias = $ciudad->companias()->get();
+            $vehiculos = collect();
+            foreach ($companias as $compania) 
+            {
+                $vehiculos_comp = collect();
+                $vehiculos1 = Vehiculo::where('fecha_inicio_arriendo', '>' , $request->dateend)
+                    ->where('id_compania', $compania->id_compania)->get();
+                $vehiculos2 = Vehiculo::where('fecha_fin_arriendo', '<' , $request->datestart)
+                    ->where('id_compania', $compania->id_compania)->get();
 
-            $vehiculos4 = Vehiculo::where('fecha_fin_arriendo', '=' , $request->datestart)
-                ->where('hora_inicio_arriendo', '<',$request->hora2)
-                ->where('id_compania', $compania->id_compania)->get();
+                $vehiculos3 = Vehiculo::where('fecha_inicio_arriendo', '=' , $request->dateend)
+                    ->where('hora_fin_arriendo', '>',$request->hora1)
+                    ->where('id_compania', $compania->id_compania)->get();
 
-            $vehiculos_comp = $vehiculos1->concat($vehiculos2)->concat($vehiculos3)->concat($vehiculos4);
-            $vehiculos->push($vehiculos_comp);
-        }
-        \Session::put('vehiculos', $vehiculos);
-        return view('seleccion.companias')
+                $vehiculos4 = Vehiculo::where('fecha_fin_arriendo', '=' , $request->datestart)
+                    ->where('hora_inicio_arriendo', '<',$request->hora2)
+                    ->where('id_compania', $compania->id_compania)->get();
+
+                $vehiculos_comp = $vehiculos1->concat($vehiculos2)->concat($vehiculos3)->concat($vehiculos4);
+                $vehiculos->push($vehiculos_comp);
+            }
+            return view('seleccion.companias')
             ->with('autosEncontrados', $vehiculos)
             ->with('companias', $companias)
             ->with('request', $request);
+        }
+        else 
+        {
+            $vehiculos = collect();
+            return view('seleccion.companias')
+            ->with('autosEncontrados', $vehiculos);
+        }
+        
+        
+        
     }
 
     /**

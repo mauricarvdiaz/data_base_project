@@ -4,6 +4,7 @@
 @section('contenido')
 <body style="background-color: #F0B27A">
   <div class="container">
+    @if(count($hoteles) > 0)
     <div class="row" style="margin-top: -170px">
             <ul class="list-group">
               @foreach($hoteles as $hotel)
@@ -19,6 +20,11 @@
               @endforeach
             </ul>
           </div>  
+    @else
+      <h3>
+        <span class="label label-warning">No hay hoteles disponibles </span>
+      </h3>
+    @endif
   </div>
 </body>
 @endsection

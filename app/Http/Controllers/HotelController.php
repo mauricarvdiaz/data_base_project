@@ -58,7 +58,16 @@ class HotelController extends Controller
         $capacidad_hab2 = $request->adultos_hab2 + $request->menores_hab2;
         
         $ciudad = Destino::where('ciudad', $request->destino)->first();
-        $hoteles = $ciudad->hoteles()->get();
+        if ($ciudad != Null) 
+        {
+            $hoteles = $ciudad->hoteles()->get();
+        }
+        else 
+        {
+            $hoteles = collect();
+        }
+
+        
         
         //Contar la cantidad de habitaciones por hotel para dejar las habitaciones que tienen habitaciones disponibles.
         return view('seleccion.hoteles')->with('hoteles', $hoteles)->with('capa1', $capacidad_hab1)->with('capa2', $capacidad_hab2)
