@@ -75,6 +75,17 @@
 										<td> ${{ $subtotal[$clave][$i] }}</td>
 									</tr>
 									@endfor
+								@elseif($clave == "traslado")
+									@for($i = 0; $i < count($productos); $i++)
+									<tr>
+										<td>Traslado</td>
+										<td>Reserva traslado con el vehiculo {{$productos[$i]->patente}}, con fecha {{$productos[$i]->fecha_inicio_arriendo}}</td>
+										<td>
+											Precio por persona ${{ $productos[$i]->precio_dia}} 
+										</td>
+										<td> ${{ $subtotal[$clave][$i] }}</td>
+									</tr>
+									@endfor
 								@endif
 						@endforeach
 					</table>

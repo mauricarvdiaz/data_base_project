@@ -41,7 +41,9 @@ Route::get('habitaciones/{hotel}/{fecha_in}/{fecha_out}/{hab1}/{hab2?}', 'Habita
 Route::get('habitacion/reserva', 'HabitacionController@reservar');
 Route::get('actividades/reserva', 'ActividadControlador@reservar');
 Route::get('vuelo/reserva', 'VueloController@reservar');
-ROute::get('vehiculo/reserva', 'VehiculoController@reservar');
+Route::get('vehiculo/reserva', 'VehiculoController@reservar');
+Route::get('traslados/reserva', 'TrasladoController@reservar');
+
 Route::get('reservar/habitacion', 'ReservaController@reservar_habitacion');
 Route::get('vehiculos/disponibles/{pos}', 'VehiculoController@vehiculos_disponibles');
 

@@ -101,6 +101,20 @@ class ReservaController extends Controller
                     $i++;
                 }
             }
+            elseif($key == "traslado" && count($producto) > 0)
+            {
+                $i = 0;
+                foreach ($producto as $traslado) {
+                    $reserva = new Reserva();
+                    $reserva->id_usuario = Auth::user()->id;
+                    $reserva->detalle = "Se ha realizado la reserva del traslado con el vehiculo con patente " . $traslado->patente . " con fecha " . $traslado->fecha_inicio_arriendo;
+                    $reserva->monto_reserva = $subtotal[$key][$i];
+                    $reserva->fecha_reserva = date('Y-m-d');
+                    $reserva->hora_reserva = date('H:i:s');
+                    $reserva->save();
+                    $i++;
+                }
+            }
 
         }
         \Session::forget('carrito');

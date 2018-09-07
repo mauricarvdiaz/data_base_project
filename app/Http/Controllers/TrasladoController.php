@@ -21,6 +21,20 @@ class TrasladoController extends Controller
     {
         //
     }
+     public function reservar()
+    {
+        $carrito = \Session::get('carrito');
+        $subtotal = \Session::get('subtotal');
+        foreach ($carrito as $key => $traslados) {
+            if($key == "traslado" && count($traslados) > 0){
+                foreach ($traslados as $traslado) {
+    
+                    $traslado->save();
+                }
+            }
+        }
+        return redirect('reservar/habitacion');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -51,7 +65,7 @@ class TrasladoController extends Controller
      */
     public function show(Request $request)
     {
-        $autos = Traslado::where('nombre_aeropuerto', $request->nomAeropuerto)->where('nombre_hotel', $request->nomHotel)->where('tipo', $request->radio)->get();
+        $autos = Traslado::where('nombre_aeropuerto', $request->nomAeropuerto)->where('nombre_hotel', $request->nomHotel)->get();
         $vehiculos = collect();
         if ($autos != Null) {
             foreach ($autos as $auto) {

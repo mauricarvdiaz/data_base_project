@@ -7,7 +7,7 @@
             <div class="page-header text-center">
                 <h2>Carrito de compras</h2>
             </div>
-            @if(count($carrito['habitacion']) > 0 || count($carrito['actividad']) > 0 || count($carrito['vuelo']) > 0 || count($carrito['vehiculo']) > 0 || count($carrito['paquete']) > 0)
+            @if(count($carrito['habitacion']) > 0 || count($carrito['actividad']) > 0 || count($carrito['vuelo']) > 0 || count($carrito['vehiculo']) > 0 || count($carrito['traslado']) > 0 || count($carrito['paquete']) > 0)
             <table class="table table-bordered" style="background-color: #74B3CB">
             <thead>
               <tr>

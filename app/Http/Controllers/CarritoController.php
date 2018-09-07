@@ -34,16 +34,15 @@ class CarritoController extends Controller
 		$vehiculo = Vehiculo::find($id_vehiculo);
 		$traslado = new Vehiculo();
 
-		$traslado->id_vehiculo = $vehiculo->id_vehiculo;
 		$traslado->patente = $vehiculo->patente;
 		$traslado->id_compania = $vehiculo->id_compania;
 		$traslado->tipo = $vehiculo->tipo;
 		$traslado->fecha_inicio_arriendo = $vehiculo->fecha_inicio_arriendo;
-		$traslado->fecha_fin_arriendo = ($vehiculo->fecha_inicio_arriendo);
+		$traslado->fecha_fin_arriendo = $vehiculo->fecha_inicio_arriendo;
 		$traslado->hora_inicio_arriendo = $vehiculo->hora_inicio_arriendo;
 		$traslado->hora_fin_arriendo = $vehiculo->hora_fin_arriendo;
 		$traslado->capacidad= $numPasajeros;
-		$decimales = (($vehiculo->precio_dia / 24 )*2 )* $numPasajeros;
+		$decimales = ($vehiculo->precio_dia / 12 ) * $numPasajeros;
         $traslado->precio_dia = floor($decimales);
 		array_push($carrito['traslado'], $traslado);
 		\Session::put('carrito', $carrito);
@@ -223,7 +222,7 @@ class CarritoController extends Controller
     private function total()
     {
     	$carrito = \Session::get('carrito');
-    	$subtotal = array("habitacion" => array(), "actividad" => array(), "vuelo" => array(), "vehiculo" => array(), "paquete" => array());
+    	$subtotal = array("habitacion" => array(), "actividad" => array(), "vuelo" => array(), "vehiculo" => array(), "traslado" => array(),"paquete" => array());
     	//$total = 0;
     	foreach ($carrito as $llave => $productos) {
     		if($llave == 'habitacion'){
@@ -252,6 +251,14 @@ class CarritoController extends Controller
     			$i = 0;
     			foreach ($productos as $actividad) {
     				$sub = $actividad->precio_actividad * ($actividad->nro_menores_edad + $actividad->nro_mayores_edad);
+    				array_push($subtotal[$llave], $sub);
+    				$i++;
+    			}
+    		}
+    		else if($llave == 'traslado'){
+    			$i = 0;
+    			foreach ($productos as $traslado) {
+    				$sub = $traslado->precio_dia * $traslado->capacidad;
     				array_push($subtotal[$llave], $sub);
     				$i++;
     			}

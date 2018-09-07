@@ -73,7 +73,8 @@ class VehiculoController extends Controller
                 }
             }
         }
-        return redirect('reservar/habitacion');
+        return redirect('traslados/reserva');
+        //reservar/habitacion
     }
 
     public function vehiculos_disponibles($pos)
