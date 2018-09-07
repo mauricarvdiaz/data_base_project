@@ -1,9 +1,9 @@
 @extends("layouts.plantilla")
-@section('titulo', 'Vuelos')
+@section('titulo', 'Traslado')
 
 @section("contenido")
   <body style="background-color:#AF601A;">
-    @if(count($vuelosEncontrados) > 0)
+    @if(count($autosDisponibles) > 0)
     <div style="margin-top: 10px;margin-right: 50px; margin-left: 50px;margin-bottom: 10px">
       <h3> Selecciona tu vuelo</h3>
       <table class="table table-bordered" style="background-color:#ECF0F1;">

@@ -40,13 +40,13 @@
 				</div>
 					<div class="col-xxs-12 col-xs-6 mt">
 						<div class="input-field">
-							<label for="nomAeropuerto">Nombre aeropuerto:</label>
+							<label for="nomAeropuerto">Aeropuerto:</label>
 							<input type="text" required="true" name="nomAeropuerto" class="form-control" id="nomAeropuerto" placeholder="Nombre aeropuerto"/>
 						</div>
 					</div>
 					<div class="col-xxs-12 col-xs-6 mt">
 						<div class="input-field">
-							<label for="nomHotel">Nombre hotel:</label>
+							<label for="nomHotel">Hotel:</label>
 							<input type="text" required="true" name="nomHotel" class="form-control" id="nomHotel" placeholder="Nombre hotel"/>
 						</div>
 					</div>

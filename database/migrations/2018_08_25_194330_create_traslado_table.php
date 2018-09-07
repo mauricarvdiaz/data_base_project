@@ -17,7 +17,6 @@ class CreateTrasladoTable extends Migration
             $table->increments('id_traslado');
             $table->mediumInteger('id_vehiculo');
             $table->foreign('id_vehiculo')->references('id_vehiculo')->on('vehiculo');
-            $table->date('fecha_traslado');
             $table->mediumInteger('tipo');
             $table->string('nombre_hotel');
             $table->string('nombre_aeropuerto');
