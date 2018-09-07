@@ -1,7 +1,6 @@
 @extends("layouts.plantilla")
 @section('titulo', 'Vehiculos')
 
-
 @section('contenido')
 <div class="fh5co-hero">
 	<div class="fh5co-overlay"></div>
@@ -32,13 +31,13 @@
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="date-start">Fecha entrega:</label>
-							<input type="date" required="true" name="datestart" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
+							<input type="date" style="color: #E67E22;font-weight: bold;background-color: #F4ECF7;border:none;" required="true" name="datestart" class="form-control" id="datein" placeholder="mm/dd/yyyy"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">
 					<div class="input-field">
 						<label for="date-end">Fecha devolución:</label>
-							<input type="date" required="true" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
+							<input type="date" style="color: #E67E22;font-weight: bold;background-color: #F4ECF7;border:none;" required="true" name="dateend" class="form-control" id="dateout" placeholder="mm/dd/yyyy"/>
 					</div>
 				</div>
 				<div class="col-xxs-12 col-xs-6 mt alternate">

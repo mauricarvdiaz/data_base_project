@@ -77,12 +77,25 @@ class VehiculoController extends Controller
         //reservar/habitacion
     }
 
-    public function vehiculos_disponibles($pos)
+    public function vehiculos_disponibles($id_compania, $end, $start, $hora1, $hora2)
     {
-        $vehiculos = \Session::get('vehiculos');
-        $vehiculos_compania = $vehiculos->get($pos);
+        $vehiculos = collect();
+        $vehiculos1 = Vehiculo::where('id_compania', $id_compania)->where('fecha_inicio_arriendo', '>' , $end)->get();
+        $vehiculos2 = Vehiculo::where('id_compania', $id_compania)->where('fecha_fin_arriendo', '<' , $start)->get();
+
+        $vehiculos3 = Vehiculo::where('id_compania', $id_compania)->where('fecha_inicio_arriendo', '=' , $end)
+            ->where('hora_fin_arriendo', '>',$hora1)->get();
+
+        $vehiculos4 = Vehiculo::where('id_compania', $id_compania)->where('fecha_fin_arriendo', '=' , $start)
+            ->where('hora_inicio_arriendo', '<',$hora2)->get();
+
+        $vehiculos = $vehiculos1->concat($vehiculos2)->concat($vehiculos3)->concat($vehiculos4);
+
+        //$vehiculos = \Session::get('vehiculos');
+        //$vehiculos_compania = $vehiculos->get($pos);
  
-        return view('seleccion.autosEncontrados')->with('vehiculos', $vehiculos_compania);
+        //return view('seleccion.autosEncontrados')->with('vehiculos', $vehiculos_compania);
+        return view('seleccion.autosEncontrados')->with('vehiculos', $vehiculos);
     }
 
     public function show(Request $request)
@@ -112,7 +125,8 @@ class VehiculoController extends Controller
         \Session::put('vehiculos', $vehiculos);
         return view('seleccion.companias')
             ->with('autosEncontrados', $vehiculos)
-            ->with('companias', $companias);
+            ->with('companias', $companias)
+            ->with('request', $request);
     }
 
     /**

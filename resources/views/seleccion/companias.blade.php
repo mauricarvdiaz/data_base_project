@@ -24,7 +24,7 @@
                 <td align="center"> {{ $companias[$j]->nombre_compania }}</td>
                 <td align="center"> Ubicado en la calle {{ $companias[$j]->calle_compania}} n° {{ $companias[$j]->nro_calle_compania }} </td>
                 <td align="center">
-                  <a href="/vehiculos/disponibles/{{$j}}">
+                  <a href="/vehiculos/disponibles/{{$companias[$j]->id_compania}}/{{$request->dateend}}/{{$request->datestart}}/{{$request->hora1}}/{{$request->hora2}}">
                       <button  type="button" class="btn btn-primary"> Ver autos </button>
                   </a>
                 </td>

@@ -26,57 +26,9 @@
 						<div class="col-xxs-12 col-xs-12 mt">
 							<div class="input-field">
 								<label for="destino">Ciudad:</label>
-								<input type="text" class="form-control" name="destino" id="from-place" placeholder="destino"/>
+								<input type="text" required="true" class="form-control" name="destino" id="from-place" placeholder="destino"/>
 							</div>
 						</div>
-						<!--
-						<div class="col-xxs-12 col-xs-6 mt alternate">
-							<div class="input-field">
-								<label for="date-start">Fecha entrada:</label>
-								<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
-							</div>
-						</div>
-						<div class="col-xxs-12 col-xs-6 mt alternate">
-							<div class="input-field">
-								<label for="date-end">Fecha salida:</label>
-								<input type="text" class="form-control" id="date-end" placeholder="mm/dd/yyyy"/>
-							</div>
-						</div> -->
-					<!--	<div class="col-sm-12 mt">
-							<section>
-								<label for="class">Habitaciones:</label>
-								<select class="cs-select cs-skin-border">
-									<option value="" disabled selected>1</option>
-									<option value="economy">1</option>
-									<option value="first">2</option>
-									<option value="business">3</option>
-								</select>
-							</section>
-						</div> 
-						<div class="col-xxs-12 col-xs-6 mt">
-							<section>
-								<label for="class">Adultos:</label>
-								<select class="cs-select cs-skin-border">
-									<option value="" disabled selected>1</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-								</select>
-							</section>
-						</div>
-						<div class="col-xxs-12 col-xs-6 mt">
-							<section>
-								<label for="class">Niños:</label>
-								<select class="cs-select cs-skin-border">
-									<option value="" disabled selected>1</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-								</select>
-							</section>
-						</div> -->
 						<div class="col-xs-12">
 							{!! Form::submit('Buscar Actividad', ['class' => 'btn btn-primary btn-block']) !!}
 						</div>

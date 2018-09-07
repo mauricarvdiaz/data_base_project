@@ -45,7 +45,7 @@ Route::get('vehiculo/reserva', 'VehiculoController@reservar');
 Route::get('traslados/reserva', 'TrasladoController@reservar');
 
 Route::get('reservar/habitacion', 'ReservaController@reservar_habitacion');
-Route::get('vehiculos/disponibles/{pos}', 'VehiculoController@vehiculos_disponibles');
+Route::get('vehiculos/disponibles/{id_compania}/{end}/{start}/{hora1}/{hora2}', 'VehiculoController@vehiculos_disponibles');
 
 //Carrito
 Route::get('carrito/compras', [

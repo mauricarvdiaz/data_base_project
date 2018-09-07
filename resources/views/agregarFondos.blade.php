@@ -16,7 +16,7 @@
 							<div class="input-field">
 								<td><label for="monto">Monto a añadir:</label></td>
 								<td>
-									<input class="form-control" type="number" name="monto"/>
+									<input class="form-control" required="true" type="number" name="monto"/>
 								</td>
 							</div>
 						</tr>

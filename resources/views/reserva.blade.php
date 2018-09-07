@@ -8,7 +8,7 @@
                 <h2>Tus Reservas</h2>
             </div>
             @if(count($reservas) > 0)
-            	<table class="table table-bordered" style="background-color: #74B3CB">
+            	<table class="table table-bordered" style="background-color: white">
             <thead>
               <tr>
                 <th scope="col" align="center">Detalle</th>
