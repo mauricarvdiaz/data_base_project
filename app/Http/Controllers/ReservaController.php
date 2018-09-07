@@ -87,6 +87,20 @@ class ReservaController extends Controller
                     $i++;
                 }
             }
+             elseif($key == "vehiculo" && count($producto) > 0)
+            {
+                $i = 0;
+                foreach ($producto as $vehiculo) {
+                    $reserva = new Reserva();
+                    $reserva->id_usuario = Auth::user()->id;
+                    $reserva->detalle = "Se ha realizado la reserva del vehiculo con patente " . $vehiculo->patente . " con fecha y hora de retiro " . $vehiculo->fecha_inicio_arriendo . " " . $vehiculo->hora_inicio_arriendo . " hasta " . $vehiculo->fecha_fin_arriendo . " " . $vehiculo->hora_fin_arriendo;
+                    $reserva->monto_reserva = $subtotal[$key][$i];
+                    $reserva->fecha_reserva = date('Y-m-d');
+                    $reserva->hora_reserva = date('H:i:s');
+                    $reserva->save();
+                    $i++;
+                }
+            }
 
         }
         \Session::forget('carrito');

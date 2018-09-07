@@ -58,6 +58,24 @@ class VehiculoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+    public function reservar()
+    {
+        $carrito = \Session::get('carrito');
+        $subtotal = \Session::get('subtotal');
+        foreach ($carrito as $key => $autos) 
+        {
+            if ($key == "vehiculo" && count($autos) > 0)
+            {
+                foreach ($autos as $auto) 
+                {
+                    $auto->save();
+                }
+            }
+        }
+        return redirect('reservar/habitacion');
+    }
+
     public function vehiculos_disponibles($pos)
     {
         $vehiculos = \Session::get('vehiculos');
@@ -93,7 +111,6 @@ class VehiculoController extends Controller
         \Session::put('vehiculos', $vehiculos);
         return view('seleccion.companias')
             ->with('autosEncontrados', $vehiculos)
-            ->with('request', $request)
             ->with('companias', $companias);
     }
 

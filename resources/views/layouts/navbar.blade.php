@@ -11,9 +11,9 @@
 				</li>
 				<li><a href="/buscar/vuelos">Vuelos</a></li>
 				<li>
-					<a href="/autos">Autos</a>
+					<a href="/arriendo">Autos</a>
 					<ul class="fh5co-sub-menu">
-						<li><a href="/autos">Arriendo</a></li>
+						<li><a href="/arriendo">Arriendo</a></li>
 						<li><a href="/traslados">Traslado</a></li>
 					</ul>
 				</li>

@@ -20,9 +20,9 @@
           <tr>
             <td align="center"> {{$auto->tipo}} </td>
             <td align="center"> {{$auto->capacidad}}</td>
-            <td align="center"> {{$auto->precio_dia}}</td>
+            <td align="center"> ${{$auto->precio_dia}}</td>
             <td align="center"> 
-              <a href="/carrito/agregar/vehiculo/" class="btn btn-primary">Añadir al carrito</a>
+              <a href="/carrito/agregar/vehiculo/{{$auto->id_vehiculo}}/{{$auto->fecha_inicio_arriendo}}/{{$auto->fecha_fin_arriendo}}/{{$auto->hora_inicio_arriendo}}/{{$auto->hora_fin_arriendo}}" class="btn btn-primary">Añadir al carrito</a>
             </td>
           @endforeach
           </tr>   

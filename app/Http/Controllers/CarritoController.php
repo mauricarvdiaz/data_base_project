@@ -9,6 +9,7 @@ use App\Vuelo;
 use App\Vehiculo;
 use DateTime;
 
+
 class CarritoController extends Controller
 {
 	//Constructor
@@ -49,6 +50,33 @@ class CarritoController extends Controller
 		return redirect()->route('carrito-compras');
 
 	}
+
+	//Agregar auto al carrito
+	public function agregar_auto($id_vehiculo, $fecha_in, $fecha_out, $hora_in, $hora_out)
+	{
+		$carrito = \Session::get('carrito');
+		$auto = Vehiculo::find($id_vehiculo);
+		$auto_reservar= new Vehiculo();
+		$fecha_entrada = new DateTime($fecha_in);
+		$fecha_salida = new DateTime($fecha_out);
+		$hora_entrada = new DateTime($hora_in);
+		$hora_salida = new DateTime($hora_out);
+		$auto_reservar->patente = $auto->patente;
+		$auto_reservar->id_compania = $auto->id_compania;
+		$auto_reservar->tipo = $auto->tipo;
+		$auto_reservar->capacidad = $auto->capacidad;
+		$auto_reservar->precio_dia = $auto->precio_dia;
+		$auto_reservar->fecha_inicio_arriendo = $fecha_entrada->format('Y-m-d');
+		$auto_reservar->fecha_fin_arriendo = $fecha_salida->format('Y-m-d');
+		$auto_reservar->hora_inicio_arriendo = $hora_entrada->format('H:i:s');
+		$auto_reservar->hora_fin_arriendo = $hora_salida->format('H:i:s');
+		array_push($carrito['vehiculo'], $auto_reservar);
+		\Session::put('carrito', $carrito);
+		return redirect()->route('carrito-compras');
+	}
+
+
+
     //Agregar al carrito
 	public function agregar_habitacion($id_habitacion, $id_habitacion2, $fecha_in, $fecha_out)
 	{
@@ -163,7 +191,7 @@ class CarritoController extends Controller
 
 	}
 
-	
+    //Borrar
 	public function borrar($llave, $posicion)
 	{
 		$carrito = \Session::get('carrito');
@@ -208,6 +236,16 @@ class CarritoController extends Controller
         			$sub = $noches * $habitacion->precio_noche;
         			array_push($subtotal[$llave], $sub);
         			$i++;
+    			}
+    		}
+    		else if ($llave == 'vehiculo') {
+    			foreach ($productos as $auto) {
+    				$fecha_entrada = new DateTime($auto->fecha_inicio_arriendo);
+    				$fecha_salida = new DateTime($auto->fecha_fin_arriendo);
+    				$dias_arriendo = $fecha_entrada->diff($fecha_salida);
+    				$dias = data_get($dias_arriendo, 'days');
+    				$sub = $dias * $auto->precio_dia;
+    				array_push($subtotal[$llave], $sub);
     			}
     		}
     		else if($llave == 'actividad'){

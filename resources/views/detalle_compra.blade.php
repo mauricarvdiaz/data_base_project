@@ -37,6 +37,17 @@
 										<td> ${{ $subtotal[$clave][$i] }}</td>
 									</tr>
 									@endfor
+								@elseif($clave == "vehiculo")
+									@for($i = 0; $i < count($productos); $i++)
+									<tr>
+										<td>Vehiculo</td>
+										<td>Reserva auto {{$productos[$i]->tipo}}, con fecha de entrada {{$productos[$i]->fecha_inicio_arriendo}} y fecha de salida {{$productos[$i]->fecha_fin_arriendo}}</td>
+										<td>
+											Precio por día ${{ $productos[$i]->precio_dia}} 
+										</td>
+										<td> ${{ $subtotal[$clave][$i] }}</td>
+									</tr>
+									@endfor
 								@elseif($clave == "actividad")
 									@for($i = 0; $i < count($productos); $i++)
 									<tr>

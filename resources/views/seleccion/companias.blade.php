@@ -17,9 +17,9 @@
       <tbody>
         <!-- autosEncontrados [[autos comp 1][autos comp 2][ 3 ][.... 4]]-->
         <!-- companias [[comp 1][comp 2][ 3 ][.... 4]]-->
-          @for($i = 0; $i < count($autosEncontrados); $i++)
+          @for($i = 0; $i <count($autosEncontrados); $i++)
           <tr>
-            @for($j = 0; $j < count($companias); $j++)
+            @for($j = 0; $j <count($companias); $j++)
               @if($autosEncontrados[$i][0]->id_compania === $companias[$j]->id_compania)
                 <td align="center"> {{ $companias[$j]->nombre_compania }}</td>
                 <td align="center"> Ubicado en la calle {{ $companias[$j]->calle_compania}} n° {{ $companias[$j]->nro_calle_compania }} </td>

@@ -36,7 +36,8 @@ class VueloController extends Controller
                 }
             }
         }
-        return redirect('/reservar/habitacion');
+       // return redirect('/reservar/habitacion');
+        return redirect('vehiculo/reserva');
     }
 
     /**
