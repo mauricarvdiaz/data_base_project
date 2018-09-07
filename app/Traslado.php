@@ -10,7 +10,7 @@ class Traslado extends Model
     protected $table = "traslado";
     protected $primaryKey = "id_traslado";
     protected $fillable = [
-      'tipo', 'fecha_traslado', 'nombre_hotel', 'nombre_aeropuerto', 'id_vehiculo'
+      'tipo', 'nombre_hotel', 'nombre_aeropuerto', 'id_vehiculo'
     ];
 
     public function reservas(){

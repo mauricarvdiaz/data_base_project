@@ -14,7 +14,6 @@ $factory->define(App\Traslado::class, function (Faker $faker) {
     $aeropuertos = App\Aeropuerto::where('ciudad_aeropuerto', $ciudad)->pluck('nombre_aeropuerto')->toArray();
     return [
     	'id_vehiculo' => $faker->randomElement($autos),
-    	'fecha_traslado' => $fecha_in->format('Y-m-d'),
     	'tipo' => $faker->numberBetween($min=1,$max=2),
     	'nombre_hotel' => $faker->randomElement($hoteles),
     	'nombre_aeropuerto' => $faker->randomElement($aeropuertos),
