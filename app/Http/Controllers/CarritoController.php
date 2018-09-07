@@ -104,21 +104,6 @@ class CarritoController extends Controller
 		if($actividad->fecha == $request->fecha){
 			$actividad_nueva->id_actividad = $id_actividad;
 		}
-			/*
-			$actividad->nro_menores_edad += $request->menores;
-			$actividad->nro_mayores_edad += $request->adultos;
-			array_push($carrito['actividad'], $actividad);*/
-		}/*
-		else{
-			$actividad_nueva = new Actividad();
-			$actividad_nueva->id_ciudad = $actividad->id_ciudad;
-			$actividad_nueva->fecha = $request->fecha;
-			$actividad_nueva->precio_actividad = $actividad->precio_actividad;
-			$actividad_nueva->descripcion = $actividad->descripcion;
-			$actividad_nueva->nro_menores_edad = $request->menores;
-			$actividad_nueva->nro_mayores_edad = $request->adultos;
-			array_push($carrito['actividad'], $actividad_nueva);
-		}*/
 
 		$actividad_nueva->id_ciudad = $actividad->id_ciudad;
 		$actividad_nueva->tipo_actividad = $actividad->tipo_actividad;

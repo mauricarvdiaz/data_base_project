@@ -35,14 +35,8 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-
-
-
-
-            //$table->primary('patente');
-            //$table->string('patente');
-
-
+        //$table->primary('patente');
+        //$table->string('patente');
     }
 
     /**
@@ -64,10 +58,17 @@ class VehiculoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
+    public function vehiculos_disponibles($pos)
+    {
+        $vehiculos = \Session::get('vehiculos');
+        $vehiculos_compania = $vehiculos->get($pos);
+ 
+        return view('seleccion.autosEncontrados')->with('vehiculos', $vehiculos_compania);
+    }
 
     public function show(Request $request)
     {
+        \Session::forget('vehiculos');
         $ciudad = Destino::where('ciudad', $request->destino)->first();
         $companias = $ciudad->companias()->get();
         $vehiculos = collect();
@@ -86,23 +87,14 @@ class VehiculoController extends Controller
                 ->where('hora_inicio_arriendo', '<',$request->hora2)
                 ->where('id_compania', $compania->id_compania)->get();
 
-            $vehiculos_comp->concat($vehiculos1);
-            $vehiculos_comp->concat($vehiculos2);
-            $vehiculos_comp->concat($vehiculos3);
-            $vehiculos_comp->concat($vehiculos4);
+            $vehiculos_comp = $vehiculos1->concat($vehiculos2)->concat($vehiculos3)->concat($vehiculos4);
             $vehiculos->push($vehiculos_comp);
         }
-        //$combine = $companias->combine($vehiculos);
-        //
-        //vehiculos ( (vehisculos 1 vehiculos2 vehiculos3  vehiculos4) (vehisculos 1 vehiculos2)  (vehiculos3)  (vehiculos4)))
-        return $vehiculos;
-
-/*        return view('seleccion.autosEncontrados')
+        \Session::put('vehiculos', $vehiculos);
+        return view('seleccion.companias')
             ->with('autosEncontrados', $vehiculos)
-            ->with('fechaInicio', $request->datestart)
-            ->with('fechaFin', $request->dateend)
-            ->with('horaInicio', $request->hora1)
-            ->with('horaFin',$request->hora2);*/
+            ->with('request', $request)
+            ->with('companias', $companias);
     }
 
     /**

@@ -16,12 +16,11 @@ Route::get("/", "HotelController@alojamientos");
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/alojamientos', 'HotelController@alojamientos')->name('alojamientos');
 
-Route::get("/autos", "EstructuraControlador@autos");
 Route::get("/buscar/vuelos", "VueloController@vuelos");
 Route::get("/traslados", "TrasladoController@traslado");
 Route::get("/paquetes", "EstructuraControlador@paquetes");
 Route::get("/actividades", "EstructuraControlador@actividades");
-
+Route::get('autos', 'VehiculoController@vehiculos');
 //Rutas para CRUD.
 Route::resource('actividad', 'ActividadControlador');
 Route::resource('hoteles', 'HotelController');
@@ -43,6 +42,7 @@ Route::get('habitacion/reserva', 'HabitacionController@reservar');
 Route::get('actividades/reserva', 'ActividadControlador@reservar');
 Route::get('vuelo/reserva', 'VueloController@reservar');
 Route::get('reservar/habitacion', 'ReservaController@reservar_habitacion');
+Route::get('vehiculos/disponibles/{pos}', 'VehiculoController@vehiculos_disponibles');
 
 //Carrito
 Route::get('carrito/compras', [
@@ -62,7 +62,7 @@ Route::get('detalle/orden', [
 	'uses' => 'CarritoController@detalle_orden'
 ]);
 
-Route::get('autos', 'VehiculoController@vehiculos');
+
 
 Route::get('actividad/detalle/{id}', 'ActividadControlador@detalleActividad');
 Route::get('/anadir/fondo', 'UsersController@nuevo_saldo');
