@@ -73,21 +73,28 @@ class CarritoController extends Controller
 		$vuelo_reservar->aerolinea = $vue->aerolinea;
 		$vuelo_reservar->nro_escala = $vue->nro_escala;
 		$vuelo_reservar->cantidad_equipaje = $vue->cantidad_equipaje;
-		$vuelo_reservar->precio_vuelo = $vue->precio_vuelo;
+	
 		if ($claseVuelo == 'Economica'){
 			$vuelo_reservar->cantidad_turista = $cantidad_viajeros;
 			$vuelo_reservar->cantidad_ejecutivo = 0;
 			$vuelo_reservar->cantidad_primera_clase = 0;
+			$vuelo_reservar->precio_vuelo = $vue->precio_vuelo;
 		}
 		else if($claseVuelo == 'Ejecutiva'){
 			$vuelo_reservar->cantidad_turista = 0;
 			$vuelo_reservar->cantidad_ejecutivo = $cantidad_viajeros;
 			$vuelo_reservar->cantidad_primera_clase = 0;
+			$decimales = $vue->precio_vuelo + ($vue->precio_vuelo * 0.3);
+			$vuelo_reservar->precio_vuelo = floor($decimales);
+
 		}
 		else{
 			$vuelo_reservar->cantidad_primera_clase = $cantidad_viajeros;
 			$vuelo_reservar->cantidad_ejecutivo = 0;
 			$vuelo_reservar->cantidad_turista = 0;
+			$decimales = $vue->precio_vuelo + ($vue->precio_vuelo * 0.5);
+			$vuelo_reservar->precio_vuelo = floor($decimales);
+
 		}
 		array_push($carrito['vuelo'], $vuelo_reservar);
 		\Session::put('carrito', $carrito);
