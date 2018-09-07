@@ -9,31 +9,27 @@
       <table class="table table-bordered" style="background-color:#ECF0F1;">
       <thead>
         <tr>
-          <th scope="col" align="center">Aerolinea</th>
-          <th scope="col" align="center">N° vuelo</th>
-          <th scope="col" align="center">Hora salida</th>
-          <th scope="col" align="center">Hora llegada</th>
-          <th scope="col" align="center">N° escalas</th>
+          <th scope="col" align="center">Patente</th>
+          <th scope="col" align="center">Tipo</th>
+          <th scope="col" align="center">Capacidad</th>
           <th scope="col" align="center">Precio</th>
           <th scope="col" align="center"></th>
         </tr>
       </thead>
       <tbody>
-      @foreach($vuelosEncontrados as $vuelos)
+      @foreach($autosDisponibles as $auto)
           <tr>
-              <td align="center"> {{ $vuelos->aerolinea }}</td>
-              <td align="center"> {{ $vuelos->nro_vuelo }}</td>
-              <td align="center"> {{ $vuelos->hora_salida }}</td>
-              <td align="center"> {{ $vuelos->hora_llegada }} </td>
-              <td align="center"> {{ $vuelos->nro_escala }} </td>
-              <td align="center"> ${{ $vuelos->precio_vuelo }} </td>
+              <td align="center"> {{ $auto->first()->patente }}</td>
+              <td align="center"> {{ $auto->tipo }}</td>
+              <td align="center"> {{ $auto->capacidad }}</td>
+              <td align="center"> ${{ $auto->precio_dia }} </td>
               <td align="center"> 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ $vuelos->nro_vuelo }}">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ $auto->id_vehiculo }}">
                   Detalles
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="{{ $vuelos->nro_vuelo }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="{{ $auto->id_vehiculo }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -42,10 +38,10 @@
                             <table style="width:100%">
                               <tr>
                                 <td align="left">
-                                  <font style="font-size:110%;color: #B9770E;font-weight:bold"> {{ $vuelos->aerolinea }} </font>
+                                  <font style="font-size:110%;color: #B9770E;font-weight:bold"> {{ $auto->tipo }} </font>
                                 </td>
                                 <td align="right">
-                                  <font style="font-size:90%;color: #A04000;font-weight:bold"> Vuelo {{ $vuelos->nro_vuelo }} </font>
+                                  <font style="font-size:90%;color: #A04000;font-weight:bold"> Patente {{ $auto->patente }} </font>
                                 </td> 
                               </tr>
                             </table>
@@ -58,59 +54,18 @@
                         <table style="width:100%">
                           <tr>
                             <td align="center" WIDTH="50">
-                              <font style="font-size:95%">{{ $vuelos->fecha_salida }}</font>
+                              <font style="font-size:95%">{{ $auto->precio }}</font>
                             </td>
                             <td align="center" WIDTH="50"></td> 
                             <td align="center" WIDTH="50">
-                              <font style="font-size:95%">{{ $vuelos->fecha_llegada }}</font>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td align="center" WIDTH="50">
-                              <font style="font-weight:bold;font-size:120%">{{ $vuelos->hora_salida }}</font>
-                            </td>
-                            <td align="center" WIDTH="50">
-                            </td> 
-                            <td align="center" WIDTH="50">
-                              <font style="font-weight:bold;font-size:120%">{{ $vuelos->hora_llegada }}</font>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td align="center" WIDTH="50">
-                              <font style="font-weight:normal;font-size:95%;color: #B89285">{{ $vuelos->origen }} </font>
-                            </td>
-                            <td align="center" WIDTH="50">
-                              <p>
-                                -<font style="font-weight:normal;font-size:75%"> Clase: </font>
-                                <font style="font-weight:bold;font-size:75%;color: #B89285"> {{ $claseVuelo }} </font>-
-                              </p>
-                            </td> 
-                            <td align="center" WIDTH="50">
-                              <font style="font-weight:normal;font-size:95%;color: #B89285">{{ $vuelos->destino }}</font>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td align="center" WIDTH="50">
-                              <font style="font-weight:normal;font-size:75%;color: #B89285">
-                                @foreach($aeropuertoOrigen as $aero)
-                                {{ $aero->nombre_aeropuerto }}
-                                @endforeach 
-                              </font>
-                            </td>
-                            <td align="center" WIDTH="50"></td> 
-                            <td align="center" WIDTH="50">
-                              <font style="font-weight:normal;font-size:75%;color: #B89285">
-                                @foreach($aeropuertoDestino as $aero)
-                                {{ $aero->nombre_aeropuerto }}
-                                @endforeach
-                              </font>
+                              <font style="font-size:95%">{{ $auto->capacidad }}</font>
                             </td>
                           </tr>
                         </table>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                         <a href="/carrito/agregar/vuelo/{{$vuelos->nro_vuelo}}/{{$claseVuelo}}/{{$cantidad_viajeros}}" class="btn btn-primary">Añadir al carrito</a>
+                         <a href="#" class="btn btn-primary">Añadir al carrito</a>
                       </div>
                     </div>
                   </div>
@@ -123,7 +78,7 @@
 </div>
     @else
       <h3>
-        <span class="label label-warning">No hay vuelos disponibles</span>
+        <span class="label label-warning">No hay traslados disponibles</span>
       </h3>
     @endif
   </body>

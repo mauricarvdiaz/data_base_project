@@ -51,11 +51,11 @@ class TrasladoController extends Controller
      */
     public function show(Request $request)
     {
-        $autos = Traslado::where('nombre_aeropuerto', $request->nomAeropuerto)->where('nombre_hotel', $request->nomHotel)->get(['id_vehiculo']);
+        $autos = Traslado::where('nombre_aeropuerto', $request->nomAeropuerto)->where('nombre_hotel', $request->nomHotel)->get();
         $vehiculos = collect();
         if ($autos != Null) {
             foreach ($autos as $auto) {
-                $vehiculo = Vehiculo::where('id_vehiculo', $auto->id_vehiculo)->where('capacidad', $request->numPasajeros)->where('fecha_inicio_arriendo', '>', $request->datestart)->orWhere('fecha_fin_arriendo', '<', $request->datestart)->get();
+                $vehiculo = Vehiculo::where('id_vehiculo', $auto->id_vehiculo)->where('capacidad', '>=', $request->numPasajeros)->where(function ($query) use ($request){$query->where('fecha_inicio_arriendo', '>', $request->datestart)->orWhere('fecha_fin_arriendo', '<', $request->datestart);})->get();
                 $vehiculos->push($vehiculo);
             }
         }

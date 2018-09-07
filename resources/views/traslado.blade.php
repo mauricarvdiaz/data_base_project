@@ -3,10 +3,10 @@
 
 @section('contenido')
 
-<body style="background-color:#AF601A;">
+<body>
 <div class="fh5co-hero">
-
-		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-color:#AF601A;">
+	<div class="fh5co-overlay"></div>
+		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_5.jpg);">
 			<div class="desc">
 				<div class="container">
 					<div class="row">
