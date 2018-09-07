@@ -58,6 +58,7 @@ class CarritoController extends Controller
 		\Session::put('carrito', $carrito);
 		return redirect()->route('carrito-compras');
 	}
+
 	public function agregar_vuelo($nro_vuelo, $claseVuelo, $cantidad_viajeros)
 	{
 		$carrito = \Session::get('carrito');
