@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Paquete;
+use App\Vuelo;
+use App\Hotel;
+use App\Habitacion;
+use App\Vehiculo;
+use App\Destino;
 
 class PaqueteController extends Controller
 {
@@ -47,9 +52,21 @@ class PaqueteController extends Controller
      */
     public function show(Request $request)
     {
-        //return $request;
-        $paquetes = Paquete::where('tipo', $request->tipo)->where('destino', $request->destino)->get();
-        return $paquetes;
+        
+        if ($request->radio == 1){ //si se selecciona vuelo + hotel
+            $capacidad_hab1 = $request->cantAdultos + $request->cantMenores;
+
+            $ciudad = Destino::where('ciudad', $request->destino)->first();
+            $hoteles = $ciudad->hoteles()->get();
+            
+            return view('seleccion.paqueteVueloHotel')->with('hoteles', $hoteles)->with('capa1', $capacidad_hab1)->with('fecha_in', $request->fecha_entrada)->with('fecha_out', $request->fecha_salida);
+
+            
+            $vuelo = Vuelo::where('', $request->tipo)->where('destino', $request->destino)->get();
+        }
+        else{
+            return "ayy lmao";
+        }
     }
 
     /**
